@@ -10,13 +10,11 @@ public class RotatingWall : MonoBehaviour
     [SerializeField]
     private float _rotationAngle = 15.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         _hitSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

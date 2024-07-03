@@ -11,9 +11,6 @@ namespace KevinCastejon.ConeMesh
         Z
     }
 
-    /// <summary>
-    /// Generate a cone mesh, renderer and collider, on the fly.
-    /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public class Cone : MonoBehaviour
     {
@@ -52,7 +49,9 @@ namespace KevinCastejon.ConeMesh
         public bool IsConeGenerated { get => _coneMesh != null; }
         public bool IsTrigger
         {
-            get => _isTrigger; set
+            get => _isTrigger;
+            
+            set
             {
                 _isTrigger = value; _meshCollider = _meshCollider ? _meshCollider : gameObject.GetComponent<MeshCollider>();
                 if (_isTrigger)
@@ -94,6 +93,7 @@ namespace KevinCastejon.ConeMesh
             Vector3[] vertices = new Vector3[subdivisions + 2];
             Vector2[] uv = new Vector2[vertices.Length];
             int[] triangles = new int[(subdivisions * 2) * 3];
+
             if (orientation == ConeOrientation.X)
             {
                 vertices[0] = pivotAtTop ? Vector3.right * height : Vector3.zero;
@@ -141,8 +141,6 @@ namespace KevinCastejon.ConeMesh
             }
             uv[subdivisions + 1] = new Vector2(0.5f, 1f);
 
-            // base
-
             for (int i = 0, n = subdivisions - 1; i < n; i++)
             {
                 int offset = i * 3;
@@ -150,8 +148,6 @@ namespace KevinCastejon.ConeMesh
                 triangles[offset + 1] = i + 1;
                 triangles[offset + 2] = i + 2;
             }
-
-            // sides
 
             int bottomOffset = subdivisions * 3;
             for (int i = 0, n = subdivisions - 1; i < n; i++)
@@ -171,12 +167,12 @@ namespace KevinCastejon.ConeMesh
             return mesh;
         }
 
-        //폭발 또는 가스폭발을 봤을 경우
+        // 폭발 또는 가스폭발을 봤을 경우
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Explosion" || other.gameObject.tag == "GasExplosion")
             {
-                //스테이지 클리어 실패
+                // 스테이지 클리어 실패
                 GameManager.Instance._isFailed = true;
             }
         }

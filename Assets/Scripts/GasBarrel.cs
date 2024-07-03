@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GasBarrel : MonoBehaviour
 {
-    //Æø¹ß ÇÁ¸®ÆÕ
+    // Æø¹ß ÇÁ¸®ÆÕ
     [SerializeField]
     private GameObject _explosionObject;
     [SerializeField]
@@ -12,18 +12,17 @@ public class GasBarrel : MonoBehaviour
     [SerializeField]
     private float _impactGauage;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
-    //Åº ¶Ç´Â °¡½ºÆø¹ß°ú Ãæµ¹ÇÑ °æ¿ì
+
+    // Åº ¶Ç´Â °¡½ºÆø¹ß°ú Ãæµ¹ÇÑ °æ¿ì
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Bullet" || other.tag == "GasExplosion")

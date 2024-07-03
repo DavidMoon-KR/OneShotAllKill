@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    //탄 스피드
-    public float speed = 20f;
-    //탄 퍼짐 효과
-    public GameObject muzzlePrefab;
-    //사물과 충돌했을 경우 탄퍼짐 효과
-    public GameObject hitPrefab;
-    //탄 거리
-    private Vector3 direction;
+    public float speed = 20f;       // 탄 스피드
+    public GameObject muzzlePrefab; // 탄 퍼짐 효과
+    public GameObject hitPrefab;    // 사물과 충돌했을 경우 탄퍼짐 효과
+    private Vector3 direction;      // 탄 거리
 
     private void Start()
     {
@@ -54,22 +50,24 @@ public class Ammo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //장애물에 충돌한 경우
+        // 장애물에 충돌한 경우
         if (collision.gameObject.CompareTag("Broken") || (collision.gameObject.CompareTag("EnergyWall")))
         {
             Destroy(gameObject);
         }
-        //탄 퍼짐 생성
+
+        // 탄 퍼짐 생성
         Instantiate(hitPrefab, transform.position, Quaternion.identity);
         var firstContact = collision.contacts[0];
-        //반대쪽으로 각 전환
+        
+        // 반대쪽으로 각 전환
         Vector3 newVelocity = Vector3.Reflect(direction.normalized, firstContact.normal);
         Bounce(newVelocity.normalized);
     }
 
     public void Bounce(Vector3 direction)
     {
-        //마우스 포인터 바라보는 위치로 방향 전환
+        // 마우스 포인터 바라보는 위치로 방향 전환
         transform.rotation = Quaternion.LookRotation(direction);
     }
 

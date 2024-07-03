@@ -10,13 +10,11 @@ public class CameraShake : MonoBehaviour
     private static CameraShake _instance;
     public static CameraShake Instance => _instance;
 
-    // Start is called before the first frame update
     void Start()
     {
         _instance = FindObjectOfType<CameraShake>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
