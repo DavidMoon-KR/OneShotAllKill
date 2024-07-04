@@ -7,30 +7,32 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private bool m_IsGameOver = false;       // °ÔÀÓÀÌ ³¡³µ´ÂÁö ÆÇ´ÜÇÏ´Â º¯¼ö
-    public bool m_IsFailed = false;          // ½ºÅ×ÀÌÁö Å¬¸®¾î ½ÇÆĞÇß´ÂÁö ÆÇ´ÜÇÏ´Â º¯¼ö
-    public bool m_HasExplosioned = false;    // ½ºÅ×ÀÌÁö ³»¿¡¼­ Æø¹ßÀÌ ÀÏ¾î³µ´ÂÁö ÆÇ´ÜÇÏ´Â º¯¼ö
-    public bool m_HasNotAmmo = false;        // ÇÃ·¹ÀÌ¾î°¡ ÅºÀ» ¼ÒÀ¯ÇÏ°í ÀÖ´ÂÁö È®ÀÎÇÏ´Â º¯¼ö
+    private bool m_IsGameOver = false;       // ê²Œì„ì´ ëë‚¬ëŠ”ì§€ íŒë‹¨í•˜ëŠ” ë³€ìˆ˜
+    public bool m_IsFailed = false;          // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ì‹¤íŒ¨í–ˆëŠ”ì§€ íŒë‹¨í•˜ëŠ” ë³€ìˆ˜
+    public bool m_HasExplosioned = false;    // ìŠ¤í…Œì´ì§€ ë‚´ì—ì„œ í­ë°œì´ ì¼ì–´ë‚¬ëŠ”ì§€ íŒë‹¨í•˜ëŠ” ë³€ìˆ˜
+    public bool m_HasNotAmmo = false;        // í”Œë ˆì´ì–´ê°€ íƒ„ì„ ì†Œìœ í•˜ê³  ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
 
-    // ÈŞ¸Ó³ëÀÌµå°¡ ½ºÅ×ÀÌÁö¿¡ Á¸ÀçÇÏ´ÂÁö ÆÇ´ÜÇÏ´Â º¯¼ö
+    // íœ´ë¨¸ë…¸ì´ë“œê°€ ìŠ¤í…Œì´ì§€ì— ì¡´ì¬í•˜ëŠ”ì§€ íŒë‹¨í•˜ëŠ” ë³€ìˆ˜
+    //ìŠ¤í…Œì´ì§€ ë‚´ì˜ íœ´ë¨¸ë…¸ì´ë“œê°€ ìˆëŠ”ì§€ íŒë³„í•˜ëŠ” ë³€ìˆ˜
+íœ´ë¨¸ë…¸ì´ë“œê°€ ìˆì„ ê²½ìš° trueë°˜í™˜í•˜ë©°, ê²Œì„ë§¤ë‹ˆì €ì—ì„œ íƒ€ê²Ÿì˜ ìœ„ì¹˜ë¥¼ íœ´ë¨¸ë…¸ì´ì—ê²Œ ëª¨ë‘ ì „ë‹¬í•œë‹¤. í•˜ì§€ë§Œ ì—†ì„ê²½ìš° falseë¥¼ ë°˜í™˜í•˜ë©°, ìœ„ì¹˜ë¥¼ ì „ë‹¬í•˜ì§€ ì•ŠìŒ. ê° ìŠ¤í…Œì´ì§€ë§ˆë‹¤ íœ´ë¨¸ë…¸ì´ë“œê°€ ì—†ëŠ” ê²½ìš°ë¥¼ ê³ ë ¤í•˜ì—¬, ë§Œë“  ë³€ìˆ˜
     [SerializeField]
     private bool m_IsHumanoid;
 
-    public int m_Targets;            // ½ºÅ×ÀÌÁö ³»¿¡ ÃÑ Å¸°Ù °³¼ö
-    private int m_TurretCount;       // ½ºÅ×ÀÌÁö ³»¿¡ ÅÍ·¿ °³¼ö
-    private int m_HumanoidCount;     // ½ºÅ×ÀÌÁö ³»¿¡ ÈŞ¸Ó³ëÀÌµå °³¼ö
-    public int m_SceneNumber;        // Çö ½ºÅ×ÀÌÁö ´Ü°è
-    public Vector3 m_ExplosionedPos; // Æø¹ßÀÌ ÀÏ¾î³­ À§Ä¡
+    public int m_Targets;            // ìŠ¤í…Œì´ì§€ ë‚´ì— ì´ íƒ€ê²Ÿ ê°œìˆ˜
+    private int m_TurretCount;       // ìŠ¤í…Œì´ì§€ ë‚´ì— í„°ë › ê°œìˆ˜
+    private int m_HumanoidCount;     // ìŠ¤í…Œì´ì§€ ë‚´ì— íœ´ë¨¸ë…¸ì´ë“œ ê°œìˆ˜
+    public int m_SceneNumber;        // í˜„ ìŠ¤í…Œì´ì§€ ë‹¨ê³„
+    public Vector3 m_ExplosionedPos; // í­ë°œì´ ì¼ì–´ë‚œ ìœ„ì¹˜
 
-    // °ÔÀÓÀÌ ³¡³ª±â Àü¿¡ Àá½Ã ±â´Ù¸®´Â ½Ã°£
+    // ê²Œì„ì´ ëë‚˜ê¸° ì „ì— ì ì‹œ ê¸°ë‹¤ë¦¬ëŠ” ì‹œê°„
     [SerializeField]
     private float m_GameOverDelay;
 
-    // Å¸°ÙÀÌ Æø¹ßÇÏ´Â µ¥ Àá½Ã ±â´Ù¸®´Â ½Ã°£
+    // íƒ€ê²Ÿì´ í­ë°œí•˜ëŠ” ë° ì ì‹œ ê¸°ë‹¤ë¦¬ëŠ” ì‹œê°„
     [SerializeField]
     public float m_DelayExplosion;
 
-    // °ÔÀÓ¸Å´ÏÀú ½ºÅ©¸³Æ®¸¦ ÀÎ½ºÅÏ½ºÈ­ ÇÑ °Í
+    // ê²Œì„ë§¤ë‹ˆì € ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì¸ìŠ¤í„´ìŠ¤í™” í•œ ê²ƒ
     private static GameManager m_Instance;
     public static GameManager Instance => m_Instance;
 
@@ -44,13 +46,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // °ÔÀÓ ³» Å¸°ÙÀÌ ¾ø°í, ÇÃ·¹ÀÌ¾î°¡ ¼ÒÁöÇÑ Åº¾ËÀÌ ¾ø´Ù¸é
+        // ê²Œì„ ë‚´ íƒ€ê²Ÿì´ ì—†ê³ , í”Œë ˆì´ì–´ê°€ ì†Œì§€í•œ íƒ„ì•Œì´ ì—†ë‹¤ë©´
         if(m_Targets == 0 || m_HasNotAmmo == true)
         {
             GameOver();
         }
 
-        // Æø¹ßÀÌ ÀÏ¾î³µ°í, ÈŞ¸Ó³ëÀÌµå¿¡°Ô ÇØ´ç À§Ä¡ÀÇ ÁÂÇ¥¸¦ ¾Ë·ÁÁÜ
+        // í­ë°œì´ ì¼ì–´ë‚¬ê³ , íœ´ë¨¸ë…¸ì´ë“œì—ê²Œ í•´ë‹¹ ìœ„ì¹˜ì˜ ì¢Œí‘œë¥¼ ì•Œë ¤ì¤Œ
         if(m_HasExplosioned == true && m_IsHumanoid == true)
         {
             GameObject[] humanoids = GameObject.FindGameObjectsWithTag("Humanoid");
@@ -59,25 +61,25 @@ public class GameManager : MonoBehaviour
                 Humanoid currentHumanoid = humanoid.GetComponent<Humanoid>();
                 currentHumanoid.m_ExplosionedPos = m_ExplosionedPos;
                 
-                // Å¸°Ù °¨Áö true
+                // íƒ€ê²Ÿ ê°ì§€ true
                 currentHumanoid.m_ExplosionDetection = true;
             }
             m_HasExplosioned = false;
         }
 
-        // Àç½ÃÀÛ
+        // ì¬ì‹œì‘
         if (Input.GetKeyUp(KeyCode.R))
         {
             SceneManager.LoadScene(m_SceneNumber);
         }
 
-        // °ÔÀÓÀÌ ³¡³µ°í Å¬¸®¾î ½ÇÆĞÇÑ °æ¿ì
+        // ê²Œì„ì´ ëë‚¬ê³  í´ë¦¬ì–´ ì‹¤íŒ¨í•œ ê²½ìš°
         if(m_IsGameOver == true && m_IsFailed == false)
         {
             UIManager.Instance.m_MissionComplete = true;
             UIManager.Instance.GameOverMessage();
         }
-        // °ÔÀÓÀÌ ³¡³µ°í Å¬¸®¾î ¼º°øÇÑ °æ¿ì
+        // ê²Œì„ì´ ëë‚¬ê³  í´ë¦¬ì–´ ì„±ê³µí•œ ê²½ìš°
         else if(m_IsGameOver == true && m_IsFailed == true)
         {
             UIManager.Instance.m_MissionComplete = false;
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // °ÔÀÓ¿À¹ö
+    // ê²Œì„ì˜¤ë²„
     public void GameOver()
     {
         StartCoroutine(GameOverNow());
@@ -95,13 +97,13 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
 
-        // Å¸°ÙÀÌ ¾øÀ»°æ¿ì
+        // íƒ€ê²Ÿì´ ì—†ì„ê²½ìš°
         if (m_Targets == 0)
         {
             m_IsGameOver = true;
             m_IsFailed = false;
         }
-        // ÀÖÀ» °æ¿ì
+        // ìˆì„ ê²½ìš°
         else
         {
             m_IsGameOver = true;
