@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    public float speed = 20f;       // 탄 스피드
-    public GameObject muzzlePrefab; // 탄 퍼짐 효과
-    public GameObject hitPrefab;    // 사물과 충돌했을 경우 탄퍼짐 효과
-    private Vector3 direction;      // 탄 거리
+    public float m_Speed = 70f;       // 탄 스피드
+    public GameObject m_MuzzlePrefab; // 탄 퍼짐 효과
+    public GameObject m_HitPrefab;    // 사물과 충돌했을 경우 탄퍼짐 효과
+    private Vector3 m_Direction;      // 탄 거리
 
     private void Start()
     {
-        direction = transform.forward;
-        if (muzzlePrefab != null)
+        m_Direction = transform.forward;
+        if (m_MuzzlePrefab != null)
         {
-            var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
+            var muzzleVFX = Instantiate(m_MuzzlePrefab, transform.position, Quaternion.identity);
             muzzleVFX.transform.forward = gameObject.transform.forward;
             var psMuzzle = muzzleVFX.GetComponent<ParticleSystem>();
             if (psMuzzle != null)
@@ -29,23 +29,21 @@ public class Ammo : MonoBehaviour
         }
     }
 
-
-
     void Update()
     {
-        if (speed != 0)
+        if (m_Speed != 0)
         {
-            transform.position += transform.forward * (speed * Time.deltaTime);
+            transform.position += transform.forward * (m_Speed * Time.deltaTime);
         }
         else
         {
-            Debug.Log("No Speed");
+            Debug.Log("No m_Speed");
         }
     }
 
     private void LateUpdate()
     {
-        direction = transform.forward;
+        m_Direction = transform.forward;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,18 +55,18 @@ public class Ammo : MonoBehaviour
         }
 
         // 탄 퍼짐 생성
-        Instantiate(hitPrefab, transform.position, Quaternion.identity);
+        Instantiate(m_HitPrefab, transform.position, Quaternion.identity);
         var firstContact = collision.contacts[0];
         
         // 반대쪽으로 각 전환
-        Vector3 newVelocity = Vector3.Reflect(direction.normalized, firstContact.normal);
+        Vector3 newVelocity = Vector3.Reflect(m_Direction.normalized, firstContact.normal);
         Bounce(newVelocity.normalized);
     }
 
-    public void Bounce(Vector3 direction)
+    public void Bounce(Vector3 p_direction)
     {
         // 마우스 포인터 바라보는 위치로 방향 전환
-        transform.rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.LookRotation(p_direction);
     }
 
 }

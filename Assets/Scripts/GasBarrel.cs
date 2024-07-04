@@ -6,11 +6,11 @@ public class GasBarrel : MonoBehaviour
 {
     // Æø¹ß ÇÁ¸®ÆÕ
     [SerializeField]
-    private GameObject _explosionObject;
+    private GameObject m_ExplosionObject;
     [SerializeField]
-    private float _impactTime;
+    private float m_ImpactTime;
     [SerializeField]
-    private float _impactGauage;
+    private float m_mpactGauage;
 
     void Start()
     {
@@ -27,8 +27,8 @@ public class GasBarrel : MonoBehaviour
     {
         if(other.tag == "Bullet" || other.tag == "GasExplosion")
         {
-            CameraShake.Instance.OnShakeCamera(_impactTime, _impactGauage);
-            Instantiate(_explosionObject, transform.position, transform.rotation);
+            CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_mpactGauage);
+            Instantiate(m_ExplosionObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

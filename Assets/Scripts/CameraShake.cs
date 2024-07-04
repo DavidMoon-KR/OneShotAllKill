@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    private float _shakeInstensity;
-    private float _shakeTime;
+    private float m_ShakeInstensity;
+    private float m_ShakeTime;
 
-    private static CameraShake _instance;
-    public static CameraShake Instance => _instance;
+    private static CameraShake m_Instance;
+    public static CameraShake Instance => m_Instance;
 
     void Start()
     {
-        _instance = FindObjectOfType<CameraShake>();
+        m_Instance = FindObjectOfType<CameraShake>();
     }
 
     void Update()
@@ -20,10 +20,10 @@ public class CameraShake : MonoBehaviour
 
     }
 
-    public void OnShakeCamera(float _shakeTime, float _shakeInstensity)
+    public void OnShakeCamera(float p_shakeTime, float p_shakeInstensity)
     {
-        this._shakeTime = _shakeTime;
-        this._shakeInstensity = _shakeInstensity;
+        m_ShakeTime = p_shakeTime;
+        m_ShakeInstensity = p_shakeInstensity;
         
         StartCoroutine(ShakeByPosition());
         StopCoroutine(ShakeByPosition());
@@ -31,17 +31,17 @@ public class CameraShake : MonoBehaviour
 
     private IEnumerator ShakeByPosition()
     {
-        Vector3 _startPosition = new Vector3(0f, 35f, 0f);
+        Vector3 startPosition = new Vector3(0f, 35f, 0f);
 
-        while(_shakeTime > 0.0f)
+        while(m_ShakeTime > 0.0f)
         {
-            transform.position = _startPosition + Random.insideUnitSphere * _shakeInstensity;
-            _shakeTime -= Time.deltaTime;
+            transform.position = startPosition + Random.insideUnitSphere * m_ShakeInstensity;
+            m_ShakeTime -= Time.deltaTime;
 
             yield return null;
         }
 
-        transform.position = _startPosition;
+        transform.position = startPosition;
 
     }
 }

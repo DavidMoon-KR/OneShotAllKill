@@ -5,90 +5,90 @@ using UnityEngine.AI;
 
 public class Humanoid : MonoBehaviour
 {
-    private static Humanoid _instance;
-    public static Humanoid Instance => _instance;
+    private static Humanoid m_Instance;
+    public static Humanoid Instance => m_Instance;
 
     [SerializeField]
-    private List<Transform> _wayPoint;
+    private List<Transform> m_WayPoint;
 
     [SerializeField]
-    private int _currentTarget = 0;
+    private int m_CurrentTarget = 0;
 
     [SerializeField]
-    private float _waitBeforeMoving;
+    private float m_WaitBeforeMoving;
     [SerializeField]
-    private float _impactTime;
+    private float m_ImpactTime;
     [SerializeField]
-    private float _impactGauge;
-    private float _distance;
+    private float m_ImpactGauge;
+    private float m_Distance;
 
     [SerializeField]
-    private GameObject _explosion;
+    private GameObject m_Explosion;
 
-    private bool _targetReached = false;
-    private bool _isReturned = false;
+    private bool m_TargetReached = false;
+    private bool m_IsReturned = false;
 
     // 폭발 감지를 딱 한번만 실행하도록 하기 위한 장치
-    private bool _triggerExplosion = false;
+    private bool m_TriggerExplosion = false;
 
-    public NavMeshAgent _agent;
+    public NavMeshAgent m_Agent;
 
-    private bool _isTriggerAni = true;
-    private Animator _anim;
+    private bool m_IsTriggerAni = true;
+    private Animator m_Anim;
 
-    public bool _explosionDetection = false;
+    public bool m_ExplosionDetection = false;
 
-    public Vector3 _explosionedPos;
+    public Vector3 m_ExplosionedPos;
 
     void Start()
     {
-        _instance = gameObject.GetComponent<Humanoid>();
-        _agent = GetComponent<NavMeshAgent>();
-        _anim = GetComponent<Animator>();
+        m_Instance = gameObject.GetComponent<Humanoid>();
+        m_Agent = GetComponent<NavMeshAgent>();
+        m_Anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         // 웨이포인트가 있다면
-        if (_wayPoint.Count > 0)
+        if (m_WayPoint.Count > 0)
         {
             // 애니메이션 작동
-            if(_isTriggerAni == true)
+            if(m_IsTriggerAni == true)
             {
-                _anim.SetBool("Walk", true);
+                m_Anim.SetBool("Walk", true);
             }
 
             // 설정한 웨이포인트로 이동
-            _agent.SetDestination(_wayPoint[_currentTarget].position);
+            m_Agent.SetDestination(m_WayPoint[m_CurrentTarget].position);
             
             // 자신의 위치와 웨이포인트 위치 사이의 거리를 구함
-            _distance = Vector3.Distance(transform.position, _wayPoint[_currentTarget].position);
+            m_Distance = Vector3.Distance(transform.position, m_WayPoint[m_CurrentTarget].position);
             
             // 거리가 1.0 미만이라면
-            if (_distance < 1.0f && _targetReached == false)
+            if (m_Distance < 1.0f && m_TargetReached == false)
             {
-                _targetReached = true;
-                _anim.SetBool("Walk", false);
-                _isTriggerAni = false;
+                m_TargetReached = true;
+                m_Anim.SetBool("Walk", false);
+                m_IsTriggerAni = false;
                 StartCoroutine(WaitBeforeMoving());
             }
         }
         else
         {
-            if(_explosionDetection == true)
+            if(m_ExplosionDetection == true)
             {
-                _anim.SetBool("Walk", true);
-                float _distance = Vector3.Distance(transform.position, _explosionedPos);
-                _agent.SetDestination(_explosionedPos);
-                if (_distance < 3.3f)
+                m_Anim.SetBool("Walk", true);
+                float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
+                m_Agent.SetDestination(m_ExplosionedPos);
+                if (distance < 3.3f)
                 {
-                    _anim.SetBool("Walk", false);
+                    m_Anim.SetBool("Walk", false);
                     
                     // 오브젝트 흔들림 버그 방지를 위해 작성함
                     Rigidbody rb = GetComponent<Rigidbody>();
                     rb.isKinematic = true;
                     rb.isKinematic = false;
-                    _explosionDetection = false;
+                    m_ExplosionDetection = false;
                 }
             }
         }
@@ -98,46 +98,46 @@ public class Humanoid : MonoBehaviour
     private IEnumerator WaitBeforeMoving()
     {
         // 현 웨이포인트 차례가 마지막이라면?
-        if(_currentTarget == 0 || _currentTarget == _wayPoint.Count - 1)
+        if(m_CurrentTarget == 0 || m_CurrentTarget == m_WayPoint.Count - 1)
         {
             // 대기
-            yield return new WaitForSeconds(_waitBeforeMoving);
+            yield return new WaitForSeconds(m_WaitBeforeMoving);
 
             // 방향 전환
-            if (_currentTarget == 0)
+            if (m_CurrentTarget == 0)
             {
-                _isReturned = false;
+                m_IsReturned = false;
             }
             else
             {
-                _isReturned = true;
+                m_IsReturned = true;
             }
         }
 
         // 방향 전환 연산
-        if(_isReturned == true)
+        if(m_IsReturned == true)
         {
-            _currentTarget--;
+            m_CurrentTarget--;
         }
         else
         {
-            _currentTarget++;
+            m_CurrentTarget++;
         }
 
-        _isTriggerAni = true;
-        _targetReached = false;
+        m_IsTriggerAni = true;
+        m_TargetReached = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // 탄과 충돌하거나 가스폭발과 충돌할 경우
-        if((other.tag == "Bullet" || other.tag == "GasExplosion") && _triggerExplosion == false)
+        if((other.tag == "Bullet" || other.tag == "GasExplosion") && m_TriggerExplosion == false)
         {
             // 폭발 상태 true로 전환
-            _triggerExplosion = true;
+            m_TriggerExplosion = true;
             
             // 게임 매니저에서 현 스테이지에 타겟 수 감소
-            GameManager.Instance._targets--;
+            GameManager.Instance.m_Targets--;
             
             // 탄과 충돌할 경우 _hasBullet에 true 전달
             if(other.tag == "Bullet")
@@ -166,33 +166,33 @@ public class Humanoid : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         
         // SetDestination 작동 끄기
-        _distance = 0;
-        _agent.ResetPath();
-        _anim.SetBool("Walk", false);
-        _explosionDetection = false;
+        m_Distance = 0;
+        m_Agent.ResetPath();
+        m_Anim.SetBool("Walk", false);
+        m_ExplosionDetection = false;
     }
 
     // 폭발 딜레이
-    private IEnumerator ExplosionDelay(bool _hasBullet)
+    private IEnumerator ExplosionDelay(bool p_hasBullet)
     {
         // 탄과 충돌한 경우
-        if(_hasBullet == true)
+        if(p_hasBullet == true)
         {
-            yield return new WaitForSeconds(GameManager.Instance._delayExplosion);
+            yield return new WaitForSeconds(GameManager.Instance.m_DelayExplosion);
         }
         // 가스 폭발과 충돌한 경우
         else
         {
             yield return new WaitForSeconds(0.3f);
         }
-        Instantiate(_explosion, transform.position, Quaternion.identity);
+        Instantiate(m_Explosion, transform.position, Quaternion.identity);
         
         // 폭발하기 전 몸을 사라지게 한다.
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
-        CameraShake.Instance.OnShakeCamera(_impactTime, _impactGauge);
+        CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_ImpactGauge);
         Destroy(gameObject);
     }
 }

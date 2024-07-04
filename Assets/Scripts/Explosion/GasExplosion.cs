@@ -6,7 +6,7 @@ public class GasExplosion : MonoBehaviour
 {
     // 폭발 시간
     [SerializeField]
-    private float _explosionTime;
+    private float m_ExplosionTime;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class GasExplosion : MonoBehaviour
     // 폭발하는 시간 설정
     private IEnumerator ExplosionTime()
     {
-        yield return new WaitForSeconds(_explosionTime);
-        Destroy(gameObject, _explosionTime);
+        yield return new WaitForSeconds(m_ExplosionTime);
+        Destroy(gameObject, m_ExplosionTime);
     }
 }

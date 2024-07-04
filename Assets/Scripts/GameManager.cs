@@ -7,80 +7,80 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private bool _isGameOver = false;       // 게임이 끝났는지 판단하는 변수
-    public bool _isFailed = false;          // 스테이지 클리어 실패했는지 판단하는 변수
-    public bool _hasExplosioned = false;    // 스테이지 내에서 폭발이 일어났는지 판단하는 변수
-    public bool _hasNotAmmo = false;        // 플레이어가 탄을 소유하고 있는지 확인하는 변수
+    private bool m_IsGameOver = false;       // 게임이 끝났는지 판단하는 변수
+    public bool m_IsFailed = false;          // 스테이지 클리어 실패했는지 판단하는 변수
+    public bool m_HasExplosioned = false;    // 스테이지 내에서 폭발이 일어났는지 판단하는 변수
+    public bool m_HasNotAmmo = false;        // 플레이어가 탄을 소유하고 있는지 확인하는 변수
 
     // 휴머노이드가 스테이지에 존재하는지 판단하는 변수
     [SerializeField]
-    private bool _isHumanoid;
+    private bool m_IsHumanoid;
 
-    public int _targets;            // 스테이지 내에 총 타겟 개수
-    private int _turretCount;       // 스테이지 내에 터렛 개수
-    private int _humanoidCount;     // 스테이지 내에 휴머노이드 개수
-    public int _sceneNumber;        // 현 스테이지 단계
-    public Vector3 _explosionedPos; // 폭발이 일어난 위치
+    public int m_Targets;            // 스테이지 내에 총 타겟 개수
+    private int m_TurretCount;       // 스테이지 내에 터렛 개수
+    private int m_HumanoidCount;     // 스테이지 내에 휴머노이드 개수
+    public int m_SceneNumber;        // 현 스테이지 단계
+    public Vector3 m_ExplosionedPos; // 폭발이 일어난 위치
 
     // 게임이 끝나기 전에 잠시 기다리는 시간
     [SerializeField]
-    private float _gameOverDelay;
+    private float m_GameOverDelay;
 
     // 타겟이 폭발하는 데 잠시 기다리는 시간
     [SerializeField]
-    public float _delayExplosion;
+    public float m_DelayExplosion;
 
     // 게임매니저 스크립트를 인스턴스화 한 것
-    private static GameManager _instance;
-    public static GameManager Instance => _instance;
+    private static GameManager m_Instance;
+    public static GameManager Instance => m_Instance;
 
     void Start()
     {
-        _instance = GetComponent<GameManager>();
-        _turretCount = GameObject.FindGameObjectsWithTag("Turret").Length;
-        _humanoidCount = GameObject.FindGameObjectsWithTag("Humanoid").Length;
-        _targets = _turretCount + _humanoidCount;
+        m_Instance = GetComponent<GameManager>();
+        m_TurretCount = GameObject.FindGameObjectsWithTag("Turret").Length;
+        m_HumanoidCount = GameObject.FindGameObjectsWithTag("Humanoid").Length;
+        m_Targets = m_TurretCount + m_HumanoidCount;
     }
 
     void Update()
     {
         // 게임 내 타겟이 없고, 플레이어가 소지한 탄알이 없다면
-        if(_targets == 0 || _hasNotAmmo == true)
+        if(m_Targets == 0 || m_HasNotAmmo == true)
         {
             GameOver();
         }
 
         // 폭발이 일어났고, 휴머노이드에게 해당 위치의 좌표를 알려줌
-        if(_hasExplosioned == true && _isHumanoid == true)
+        if(m_HasExplosioned == true && m_IsHumanoid == true)
         {
-            GameObject[] _humanoids = GameObject.FindGameObjectsWithTag("Humanoid");
-            foreach(var _humanoid in _humanoids)
+            GameObject[] humanoids = GameObject.FindGameObjectsWithTag("Humanoid");
+            foreach(var humanoid in humanoids)
             {
-                Humanoid _currentHumanoid = _humanoid.GetComponent<Humanoid>();
-                _currentHumanoid._explosionedPos = _explosionedPos;
+                Humanoid currentHumanoid = humanoid.GetComponent<Humanoid>();
+                currentHumanoid.m_ExplosionedPos = m_ExplosionedPos;
                 
                 // 타겟 감지 true
-                _currentHumanoid._explosionDetection = true;
+                currentHumanoid.m_ExplosionDetection = true;
             }
-            _hasExplosioned = false;
+            m_HasExplosioned = false;
         }
 
         // 재시작
         if (Input.GetKeyUp(KeyCode.R))
         {
-            SceneManager.LoadScene(_sceneNumber);
+            SceneManager.LoadScene(m_SceneNumber);
         }
 
         // 게임이 끝났고 클리어 실패한 경우
-        if(_isGameOver == true && _isFailed == false)
+        if(m_IsGameOver == true && m_IsFailed == false)
         {
-            UIManager.Instance._missionComplete = true;
+            UIManager.Instance.m_MissionComplete = true;
             UIManager.Instance.GameOverMessage();
         }
         // 게임이 끝났고 클리어 성공한 경우
-        else if(_isGameOver == true && _isFailed == true)
+        else if(m_IsGameOver == true && m_IsFailed == true)
         {
-            UIManager.Instance._missionComplete = false;
+            UIManager.Instance.m_MissionComplete = false;
             UIManager.Instance.GameOverMessage();
         }
     }
@@ -96,16 +96,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
 
         // 타겟이 없을경우
-        if (_targets == 0)
+        if (m_Targets == 0)
         {
-            _isGameOver = true;
-            _isFailed = false;
+            m_IsGameOver = true;
+            m_IsFailed = false;
         }
         // 있을 경우
         else
         {
-            _isGameOver = true;
-            _isFailed = true;
+            m_IsGameOver = true;
+            m_IsFailed = true;
         }
     }
 }

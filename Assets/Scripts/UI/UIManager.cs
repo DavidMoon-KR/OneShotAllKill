@@ -7,31 +7,31 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text _bulletCount;
+    private Text m_BulletCount;
     [SerializeField]
-    private GameObject _restartToMessage;
+    private GameObject m_RestartToMessage;
     [SerializeField]
-    private GameObject _blackScreen;
+    private GameObject m_BlackScreen;
     [SerializeField]
-    private GameObject _hightlightedNext;
+    private GameObject m_HightlightedNext;
     [SerializeField]
-    private GameObject _hightlightedRestart;
+    private GameObject m_HightlightedRestart;
 
-    public bool _missionComplete = false;   // 스테이지 클리어 여부 판단
-    private bool _oneChecking = true;       // 결과 애니메이션이 한번만 나오게 하는 변수
+    public bool m_MissionComplete = false;   // 스테이지 클리어 여부 판단
+    private bool m_OneChecking = true;       // 결과 애니메이션이 한번만 나오게 하는 변수
 
-    private static UIManager _instance;
-    public static UIManager Instance => _instance;
+    private static UIManager m_Instance;
+    public static UIManager Instance => m_Instance;
 
     void Start()
     {
-        _instance = GetComponent<UIManager>();
+        m_Instance = GetComponent<UIManager>();
     }
 
     // 탄 개수 표시
-    public void BulletCountSet(int _bullet)
+    public void BulletCountSet(int p_bullet)
     {
-        _bulletCount.text = _bullet.ToString();
+        m_BulletCount.text = p_bullet.ToString();
     }
 
     public void GameOverMessage()
@@ -42,26 +42,26 @@ public class UIManager : MonoBehaviour
     private IEnumerator GameOverAnim()
     {
         // 스테이지 클리어 못할 경우
-        if (_missionComplete == false && _oneChecking == true)
+        if (m_MissionComplete == false && m_OneChecking == true)
         {
-            _restartToMessage.gameObject.SetActive(true);
-            _oneChecking = false;
+            m_RestartToMessage.gameObject.SetActive(true);
+            m_OneChecking = false;
         }
         // 스테이지 클리어 한 경우
-        else if (_missionComplete == true && _oneChecking == true)
+        else if (m_MissionComplete == true && m_OneChecking == true)
         {
-            _blackScreen.SetActive(true);
+            m_BlackScreen.SetActive(true);
             yield return new WaitForSeconds(2.3f);
-            _hightlightedNext.SetActive(true);
-            _hightlightedRestart.SetActive(true);
-            _oneChecking = false;
+            m_HightlightedNext.SetActive(true);
+            m_HightlightedRestart.SetActive(true);
+            m_OneChecking = false;
         }
     }
 
     // 다음 스테이지로 이동
     public void NextStageLoadScene()
     {
-        SceneManager.LoadScene(GameManager.Instance._sceneNumber + 1);
+        SceneManager.LoadScene(GameManager.Instance.m_SceneNumber + 1);
     }
 
     // 메인메뉴 씬 로드

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RotatingWall : MonoBehaviour
 {
-    private AudioSource _hitSource;
+    private AudioSource m_HitSource;
     [SerializeField]
-    private AudioClip _hitWallClip;
+    private AudioClip m_HitWallClip;
     [SerializeField]
-    private float _rotationAngle = 15.0f;
+    private float m_RotationAngle = 15.0f;
 
     void Start()
     {
-        _hitSource = GetComponent<AudioSource>();
+        m_HitSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -22,8 +22,8 @@ public class RotatingWall : MonoBehaviour
 
     public void Rotation()
     {
-       _hitSource.clip = _hitWallClip;
-        _hitSource.Play();
-        this.gameObject.transform.Rotate(new Vector3(0, _rotationAngle, 0));
+       m_HitSource.clip = m_HitWallClip;
+        m_HitSource.Play();
+        this.gameObject.transform.Rotate(new Vector3(0, m_RotationAngle, 0));
     }
 }

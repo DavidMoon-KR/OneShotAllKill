@@ -564,11 +564,64 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_FireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_ImpactTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_BulletCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_ImpactGauge
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_BulletPrefab
+      value: 
+      objectReference: {fileID: 5103054444686054220, guid: d9e8a483f17522d48afabc93e1f8b624, type: 3}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_FireGenerated
+      value: 
+      objectReference: {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_BulletTransform
+      value: 
+      objectReference: {fileID: 329889065}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_WallID.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_WallID.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_WallID.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_WallID.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_WallID.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+--- !u!4 &329889065 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8437216928753888093, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+  m_PrefabInstance: {fileID: 311664129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &666650430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,11 +1084,40 @@ PrefabInstance:
       propertyPath: _minDir
       value: -20
       objectReference: {fileID: 0}
+    - target: {fileID: 5799972462615055164, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_Wheel
+      value: 
+      objectReference: {fileID: 1595005511}
+    - target: {fileID: 5799972462615055164, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_MaxDir
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799972462615055164, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_MinDir
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799972462615055164, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_MovingSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799972462615055164, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_RotateSpeed
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799972462615055164, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_WaitingTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+--- !u!1 &1595005511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3016569934926285827, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+  m_PrefabInstance: {fileID: 1595005510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1669524917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,18 +1556,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8420eb51ac8544a86286516bc448bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wayPoint:
-  - {fileID: 1878260142}
-  - {fileID: 1070999748}
-  - {fileID: 66851457}
-  _currentTarget: 0
-  _waitBeforeMoving: 0
-  _impactTime: 0
-  _impactGauge: 0
-  _explosion: {fileID: 0}
-  _agent: {fileID: 0}
-  _explosionDetection: 0
-  _explosionedPos: {x: 0, y: 0, z: 0}
+  m_WayPoint: []
+  m_CurrentTarget: 0
+  m_WaitBeforeMoving: 0
+  m_ImpactTime: 0
+  m_ImpactGauge: 0
+  m_Explosion: {fileID: 0}
+  m_Agent: {fileID: 0}
+  m_ExplosionDetection: 0
+  m_ExplosionedPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &2016974789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1830,6 +1909,22 @@ PrefabInstance:
     - target: {fileID: 5626127248075071856, guid: 88a1574385e483945b38653b82f87024, type: 3}
       propertyPath: m_Name
       value: Humanoid_1.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732339389343346942, guid: 88a1574385e483945b38653b82f87024, type: 3}
+      propertyPath: m_Explosion
+      value: 
+      objectReference: {fileID: 1956658677142100356, guid: 8f11636736926e04290d1efd64455bfd, type: 3}
+    - target: {fileID: 7732339389343346942, guid: 88a1574385e483945b38653b82f87024, type: 3}
+      propertyPath: m_ImpactTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732339389343346942, guid: 88a1574385e483945b38653b82f87024, type: 3}
+      propertyPath: m_ImpactGauge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732339389343346942, guid: 88a1574385e483945b38653b82f87024, type: 3}
+      propertyPath: m_WaitBeforeMoving
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7732339389343346942, guid: 88a1574385e483945b38653b82f87024, type: 3}
       propertyPath: _wayPoint.Array.size

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class AutoMovingWall : MonoBehaviour
 {
-    [SerializeField] private float _movingSpeed;
-    [SerializeField] private float _rotateSpeed;
-    [SerializeField] private float _minDir;
-    [SerializeField] private float _maxDir;
-    [SerializeField] private float _waitingTime;
+    [SerializeField] private float m_MovingSpeed;
+    [SerializeField] private float m_RotateSpeed;
+    [SerializeField] private float m_MinDir;
+    [SerializeField] private float m_MaxDir;
+    [SerializeField] private float m_WaitingTime;
 
-    [SerializeField] private bool _isTurned = false;
-    [SerializeField] private bool _isStopped = false;
+    [SerializeField] private bool m_IsTurned = false;
+    [SerializeField] private bool m_IsStopped = false;
 
     [SerializeField]
-    private GameObject _wheel;
+    private GameObject m_Wheel;
 
     void Start()
     {
@@ -24,27 +24,27 @@ public class AutoMovingWall : MonoBehaviour
     void Update()
     {
         // 현 위치가 최대거리보다 짧고 반대쪽 턴이 아닌 상태이며, 멈추지 않았을 경우
-        if(transform.position.x < _maxDir && _isTurned == true && _isStopped == false)
+        if(transform.position.x < m_MaxDir && m_IsTurned == true && m_IsStopped == false)
         {
-            transform.Translate(Vector3.right * _movingSpeed * Time.deltaTime);
-            _wheel.transform.Rotate(Vector3.back * _rotateSpeed * Time.deltaTime);
+            transform.Translate(Vector3.right * m_MovingSpeed * Time.deltaTime);
+            m_Wheel.transform.Rotate(Vector3.back * m_RotateSpeed * Time.deltaTime);
             
             // 현 위치가 최대거리보다 같거나 길경우
-            if(transform.position.x >= _maxDir)
+            if(transform.position.x >= m_MaxDir)
             {
                 // 방향 유턴
-                _isTurned = false;
+                m_IsTurned = false;
                 StartCoroutine(TimetoStopped());
             }
         }
         // 현 위치가 최소거리보다 길고 반대쪽 턴이 아닌 상태이며, 멈추지 않았을 경우
-        else if (transform.position.x > _minDir && _isTurned == false && _isStopped == false)
+        else if (transform.position.x > m_MinDir && m_IsTurned == false && m_IsStopped == false)
         {
-            transform.Translate(Vector3.left * _movingSpeed * Time.deltaTime);
-            _wheel.transform.Rotate(Vector3.forward * _rotateSpeed * Time.deltaTime);
-            if (transform.position.x <= _minDir)
+            transform.Translate(Vector3.left * m_MovingSpeed * Time.deltaTime);
+            m_Wheel.transform.Rotate(Vector3.forward * m_RotateSpeed * Time.deltaTime);
+            if (transform.position.x <= m_MinDir)
             {
-                _isTurned = true;
+                m_IsTurned = true;
                 StartCoroutine(TimetoStopped());
             }
         }
@@ -53,8 +53,8 @@ public class AutoMovingWall : MonoBehaviour
     // 일정시간 동안 이동을 멈춤
     private IEnumerator TimetoStopped()
     {
-        _isStopped = true;
-        yield return new WaitForSeconds(_waitingTime);
-        _isStopped = false;
+        m_IsStopped = true;
+        yield return new WaitForSeconds(m_WaitingTime);
+        m_IsStopped = false;
     }
 }
