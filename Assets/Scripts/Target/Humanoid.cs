@@ -80,15 +80,21 @@ public class Humanoid : MonoBehaviour
                 m_Anim.SetBool("Walk", true);
                 float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
                 m_Agent.SetDestination(m_ExplosionedPos);
+                
+                // 목적지에 도착하면 이동 멈춤
                 if (distance < 3.3f)
                 {
+                    // 작동 끄기
+                    m_Distance = 0;
+                    m_Agent.ResetPath();
                     m_Anim.SetBool("Walk", false);
-                    
+                    m_ExplosionDetection = false;
+
                     // 오브젝트 흔들림 버그 방지를 위해 작성함
                     Rigidbody rb = GetComponent<Rigidbody>();
                     rb.isKinematic = true;
                     rb.isKinematic = false;
-                    m_ExplosionDetection = false;
+                    
                 }
             }
         }
@@ -186,7 +192,13 @@ public class Humanoid : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
         Instantiate(m_Explosion, transform.position, Quaternion.identity);
-        
+
+        // 스테이지 내에서 타겟이 폭파되었다는 것을 알림
+        GameManager.Instance.m_HasExplosioned = true;
+
+        // 게임매니저에게 자신이 폭발한 위치를 전달하기
+        GameManager.Instance.m_ExplosionedPos = transform.position;
+
         // 폭발하기 전 몸을 사라지게 한다.
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {

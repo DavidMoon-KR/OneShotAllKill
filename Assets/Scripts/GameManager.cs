@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private bool m_IsGameOver = false;       // 게임이 끝났는지 판단하는 변수
+    public bool m_IsGameOver = false;        // 게임이 끝났는지 판단하는 변수
     public bool m_IsFailed = false;          // 스테이지 클리어 실패했는지 판단하는 변수
     public bool m_HasExplosioned = false;    // 스테이지 내에서 폭발이 일어났는지 판단하는 변수
     public bool m_HasNotAmmo = false;        // 플레이어가 탄을 소유하고 있는지 확인하는 변수
@@ -71,13 +71,13 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(m_SceneNumber);
         }
 
-        // 게임이 끝났고 클리어 실패한 경우
+        // 게임이 끝났고 클리어 성공한 경우
         if(m_IsGameOver == true && m_IsFailed == false)
         {
             UIManager.Instance.m_MissionComplete = true;
             UIManager.Instance.GameOverMessage();
         }
-        // 게임이 끝났고 클리어 성공한 경우
+        // 게임이 끝났고 클리어 실패한 경우
         else if(m_IsGameOver == true && m_IsFailed == true)
         {
             UIManager.Instance.m_MissionComplete = false;

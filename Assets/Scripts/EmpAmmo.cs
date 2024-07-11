@@ -1,13 +1,16 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ammo : MonoBehaviour
+public class EmpAmmo : MonoBehaviour
 {
-    public float m_Speed = 70f;       // íƒ„ ìŠ¤í”¼ë“œ
-    public GameObject m_MuzzlePrefab; // íƒ„ í¼ì§ íš¨ê³¼
-    public GameObject m_HitPrefab;    // ì‚¬ë¬¼ê³¼ ì¶©ëŒí–ˆì„ ê²½ìš° íƒ„í¼ì§ íš¨ê³¼
-    private Vector3 m_Direction;      // íƒ„ ê±°ë¦¬
+    public float m_Speed = 70f;       // Åº ½ºÇÇµå
+    public GameObject m_MuzzlePrefab; // Åº ÆÛÁü È¿°ú
+    public GameObject m_HitPrefab;    // »ç¹°°ú Ãæµ¹ÇßÀ» °æ¿ì ÅºÆÛÁü È¿°ú
+    private Vector3 m_Direction;      // Åº °Å¸®
+
+    [SerializeField]
+    private GameObject m_EmpExplosion;
 
     private void Start()
     {
@@ -48,25 +51,34 @@ public class Ammo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // ì¥ì• ë¬¼ì— ì¶©ëŒí•œ ê²½ìš°
+        // Àå¾Ö¹°¿¡ Ãæµ¹ÇÑ °æ¿ì
         if (collision.gameObject.CompareTag("Broken") || (collision.gameObject.CompareTag("EnergyWall")))
         {
+            // Emp Æø¹ß
+            EmpExplosion();
+
             Destroy(gameObject);
+            return;
         }
 
-        // íƒ„ í¼ì§ ìƒì„±
+        // Åº ÆÛÁü »ı¼º
         Instantiate(m_HitPrefab, transform.position, Quaternion.identity);
         var firstContact = collision.contacts[0];
-        
-        // ë°˜ëŒ€ìª½ìœ¼ë¡œ ê° ì „í™˜
+
+        // ¹İ´ëÂÊÀ¸·Î °¢ ÀüÈ¯
         Vector3 newVelocity = Vector3.Reflect(m_Direction.normalized, firstContact.normal);
         Bounce(newVelocity.normalized);
     }
 
-    private void Bounce(Vector3 p_direction)
+    // Emp Æø¹ß
+    private void EmpExplosion()
     {
-        // ë§ˆìš°ìŠ¤ í¬ì¸í„° ë°”ë¼ë³´ëŠ” ìœ„ì¹˜ë¡œ ë°©í–¥ ì „í™˜
-        transform.rotation = Quaternion.LookRotation(p_direction);
+        Instantiate(m_EmpExplosion, transform.position, Quaternion.identity);
     }
 
+    private void Bounce(Vector3 p_direction)
+    {
+        // ¸¶¿ì½º Æ÷ÀÎÅÍ ¹Ù¶óº¸´Â À§Ä¡·Î ¹æÇâ ÀüÈ¯
+        transform.rotation = Quaternion.LookRotation(p_direction);
+    }
 }
