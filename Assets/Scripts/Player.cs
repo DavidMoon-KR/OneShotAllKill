@@ -71,12 +71,6 @@ public class Player : MonoBehaviour
         // 사격 개시
         FireBullet();
 
-        // 장벽 클릭
-        if (Input.GetMouseButtonDown(0))
-        {
-            ClickWall();
-        }
-
         // 탄이 모두 떨어졌다면
         if (m_BulletSum <= 0)
         {
@@ -132,58 +126,6 @@ public class Player : MonoBehaviour
 
             // 카메라 쉐이크 효과
             CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_ImpactGauge);
-        }
-    }
-
-    void ClickWall()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            if (hitInfo.collider != null && hitInfo.collider.tag == "Wall")
-            {
-                for (int i = 0; i < m_WallID.Count; i++)
-                {
-                    // 클릭한 대상이 벽인 경우
-                    if (hitInfo.collider.gameObject == m_WallID[i])
-                    {
-                        // 화살표 표시
-                        GameObject wall = hitInfo.collider.gameObject;
-                        wall.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                        wall.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-                    }
-                    // 클릭한 대상이 벽이 아닌 경우
-                    else
-                    {
-                        // 화살표 미표시
-                        GameObject wall = m_WallID[i];
-                        wall.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                        wall.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                    }
-
-                }
-            }
-            // 오른쪽 화살표 클릭
-            if (hitInfo.collider.name == "RightArrow")
-            {
-                WallMovement wallMovement = hitInfo.collider.transform.parent.gameObject.GetComponent<WallMovement>();
-                wallMovement.Move(1);
-            }
-            // 왼쪽 화살표 클릭
-            else if (hitInfo.collider.name == "LeftArrow")
-            {
-                WallMovement wallMovement = hitInfo.collider.transform.parent.gameObject.GetComponent<WallMovement>();
-                wallMovement.Move(0);
-            }
-
-            // 회전벽 클릭
-            if (hitInfo.collider != null && hitInfo.collider.tag == "RotateWall")
-            {
-                RotatingWall rotatingWall = hitInfo.collider.transform.gameObject.GetComponent<RotatingWall>();
-                rotatingWall.Rotation();
-            }
         }
     }
 }
