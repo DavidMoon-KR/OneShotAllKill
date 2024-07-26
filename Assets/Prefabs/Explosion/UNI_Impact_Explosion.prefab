@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7498678877296079602}
   - component: {fileID: 7697887609811400761}
   - component: {fileID: 2440762606315827753}
+  - component: {fileID: -7529553108388831909}
   m_Layer: 0
   m_Name: UNI_Impact_Explosion
   m_TagString: Explosion
@@ -165,3 +166,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-7529553108388831909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545161965981264966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0d7c00703e0f145a5ea81ceff1e8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

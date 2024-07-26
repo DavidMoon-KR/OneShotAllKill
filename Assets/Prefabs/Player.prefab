@@ -47,16 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e8f386ecbe9ff4fb809f63b6aa136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletCount: 3
-  _fireRate: 0.5
-  _bulletPrefab: {fileID: 5103054444686054220, guid: d9e8a483f17522d48afabc93e1f8b624, type: 3}
-  _bulletTransform: {fileID: 8437216928753888093}
-  _wallID:
-  - {fileID: 0}
-  _gameManager: {fileID: 0}
-  _impactTime: 0.1
-  _impactGauge: 0.5
-  _fireGenerated: {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}
+  m_FireRate: 0.5
+  m_BulletPrefab: []
+  m_BulletCount: 
+  m_BulletTransform: {fileID: 0}
+  m_WallID: []
+  m_ImpactTime: 0
+  m_ImpactGauge: 0
+  m_FireGenerated: {fileID: 0}
 --- !u!82 &7576784862084751460
 AudioSource:
   m_ObjectHideFlags: 0
@@ -162,6 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8437216928753888093}
+  - component: {fileID: 103202035960035404}
   m_Layer: 0
   m_Name: AmmoSpawner
   m_TagString: Untagged
@@ -184,6 +183,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8640220330098365997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &103202035960035404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906364555265455233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f981636927737ff479960b70c7316816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LaserDistance: 100
 --- !u!1001 &124906370923273964
 PrefabInstance:
   m_ObjectHideFlags: 0

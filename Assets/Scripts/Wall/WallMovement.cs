@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class WallMovement : MonoBehaviour
@@ -19,24 +21,25 @@ public class WallMovement : MonoBehaviour
 
     private Vector3 m_MouseP;
 
+    private void Update()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            m_IsClick = false;
+            PrintArrow();
+        }
+    }
+
     private bool m_IsClick = false;
     void Start()
     {
         m_HitSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-
-    }
-
     private void OnMouseDown()
     {
         m_IsClick = true;
-    }
-    private void OnMouseUp()
-    {
-        m_IsClick = false;
+        PrintArrow();
     }
 
     private void OnMouseDrag()
@@ -47,7 +50,6 @@ public class WallMovement : MonoBehaviour
     public void MoveUpdate()
     {
         m_MouseP = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-
         if (gameObject.transform.eulerAngles.y == 0)
         {
             if (gameObject.transform.localPosition.x > m_MinDirection && this.gameObject.transform.position.x - 2 > m_MouseP.x)
@@ -78,4 +80,25 @@ public class WallMovement : MonoBehaviour
             gameObject.transform.Translate(Vector3.right * 2, Space.Self);
         }
     }
+    private void PrintArrow()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            GameObject wall = hitInfo.collider.gameObject;
+            if (m_IsClick == true)
+            {
+                this.gameObject.transform.GetChild(0).gameObject.SetActive(m_IsClick);
+                this.gameObject.transform.GetChild(1).gameObject.SetActive(m_IsClick);
+            }
+            else
+            {
+                this.gameObject.transform.GetChild(0).gameObject.SetActive(m_IsClick);
+                this.gameObject.transform.GetChild(1).gameObject.SetActive(m_IsClick);
+            }
+        }
+    }
 }
+
+

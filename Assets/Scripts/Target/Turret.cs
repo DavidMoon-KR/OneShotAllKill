@@ -40,44 +40,44 @@ public class Turret : MonoBehaviour
         {
             // 게임매니저에서 현재 타겟 수 -1
             GameManager.Instance.m_Targets--;
-            StartCoroutine(ExplosionDelay());
             m_ExploionTrigger = true;
 
-            // 탄알과 충돌한 경우 3초뒤에 파괴
-            if(other.tag == "Bullet")
+            if (other.tag == "Bullet")
             {
-                Destroy(gameObject, 3f);
+                StartCoroutine(ExplosionDelay(true));
             }
-            // 아닐 경우 바로 파괴
+
             else
             {
-                Instantiate(m_Explosion, transform.position, Quaternion.identity);
-                CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_ImpactGauge);
-                Destroy(gameObject);
+                StartCoroutine(ExplosionDelay(false));
             }
         }
     }
 
     // 폭발하기 전 잠깐의 짧은 딜레이
-    private IEnumerator ExplosionDelay()
+    private IEnumerator ExplosionDelay(bool p_hasBullet)
     {
-        yield return new WaitForSeconds(GameManager.Instance.m_DelayExplosion);
-        m_Audio.clip = m_ExplosionSound;
-        m_Audio.Play();
-
-        // 폭발 프리팹 생성
+        // 탄과 충돌한 경우
+        if (p_hasBullet == true)
+        {
+            yield return new WaitForSeconds(GameManager.Instance.m_DelayExplosion);
+        }
+        // 가스 폭발과 충돌한 경우
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
         Instantiate(m_Explosion, transform.position, Quaternion.identity);
-        
+
         // 스테이지 내에서 타겟이 폭파되었다는 것을 알림
         GameManager.Instance.m_HasExplosioned = true;
-        
+
         // 게임매니저에게 자신이 폭발한 위치를 전달하기
         GameManager.Instance.m_ExplosionedPos = transform.position;
-        
-        // 폭발하기 직전 자신의 위치를 땅 밑으로 옮긴다.
+
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, -14f, gameObject.transform.position.z);
-        
-        // 카메라 쉐이크 효과
+
         CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_ImpactGauge);
+        Destroy(gameObject);
     }
 }

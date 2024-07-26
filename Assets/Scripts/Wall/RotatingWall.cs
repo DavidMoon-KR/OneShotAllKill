@@ -80,6 +80,8 @@ public class RotatingWall : MonoBehaviour
     private void OnMouseUp()
     {
         m_IsClick = false;
+        m_HitSource.clip = m_HitWallClip;
+        m_HitSource.Play();
         //m_MoveT = false;
     }
 }

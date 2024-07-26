@@ -5,14 +5,42 @@ using UnityEngine;
 public class SecurityCamera : MonoBehaviour
 {
     [SerializeField]
-    private float m_RotateSpeed;
+    private float m_RotateAngle;
     private bool m_isRotate = true;
+    [SerializeField]
+    private float m_WatingTime;
+    [SerializeField]
+    private int m_RotatingSpot;
+    private float m_Timer;
+    private int m_TurnCnt;
+
+    private void Start()
+    {
+        m_TurnCnt = 0;
+        m_Timer = 0.0f;
+    }
 
     void Update()
     {
-        if (m_isRotate)
+        m_Timer += Time.deltaTime;
+        if (m_isRotate && m_Timer > m_WatingTime)
         {
-            transform.Rotate(0, m_RotateSpeed * Time.deltaTime, 0);
+            transform.Rotate(0, m_RotateAngle * Time.deltaTime, 0);
+            if (m_Timer > m_WatingTime + 1 && m_RotatingSpot != 0)
+            {
+                m_Timer = 0.0f;
+                if(m_RotateAngle*m_RotatingSpot < 360)
+                {
+                    m_TurnCnt++;
+                    if (m_TurnCnt == m_RotatingSpot - 1)
+                        m_RotateAngle *= -1;
+                    else if (m_TurnCnt == 2 * (m_RotatingSpot - 1))
+                    {
+                        m_RotateAngle = Mathf.Abs(m_RotateAngle);
+                        m_TurnCnt = 0;
+                    }
+                }                                 
+            }
         }
     }
 
