@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         // 재시작
         if (Input.GetKeyUp(KeyCode.R))
         {
-            SceneManager.LoadScene(m_SceneNumber);
+            SceneManager.LoadScene("Stage" + m_SceneNumber);
         }
 
         // 게임이 끝났고 클리어 성공한 경우

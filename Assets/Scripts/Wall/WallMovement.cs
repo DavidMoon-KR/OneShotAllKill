@@ -23,7 +23,13 @@ public class WallMovement : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        // 튜토리얼이 진행중이라면 상호작용 불가
+        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        {
+            return;
+        }
+
+        if (Input.GetMouseButtonUp(0))
         {
             m_IsClick = false;
             PrintArrow();
@@ -38,12 +44,24 @@ public class WallMovement : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // 튜토리얼이 진행중이라면 상호작용 불가
+        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        {
+            return;
+        }
+
         m_IsClick = true;
         PrintArrow();
     }
 
     private void OnMouseDrag()
     {
+        // 튜토리얼이 진행중이라면 상호작용 불가
+        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        {
+            return;
+        }
+
         MoveUpdate();
     }
     // 벽 움직이기

@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
     // 다음 스테이지로 이동
     public void NextStageLoadScene()
     {
-        SceneManager.LoadScene(GameManager.Instance.m_SceneNumber + 1);
+        SceneManager.LoadScene("Stage" + (GameManager.Instance.m_SceneNumber + 1));
     }
 
     // 메인메뉴 씬 로드

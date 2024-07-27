@@ -59,6 +59,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // 튜토리얼이 진행중이라면 상호작용 불가
+        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        {
+            return;
+        }
+
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.transform.position.z;
         Vector3 targetPos = Camera.main.ScreenToWorldPoint(mousePosition);
