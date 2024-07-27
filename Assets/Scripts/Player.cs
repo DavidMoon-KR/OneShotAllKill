@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private BulletType m_SelectBulletType = BulletType.BulletType_Normal;
 
     public List<int> m_BulletCount; // 각 총알 개수
-    private int m_BulletSum = 0;    // 전체 총알 개수 합
+    public int m_BulletSum = 0;    // 전체 총알 개수 합
 
     // 탄이 나오는 위치
     [SerializeField]
@@ -44,8 +44,13 @@ public class Player : MonoBehaviour
     private AudioClip m_FireGenerated;
     private AudioSource m_AudioSource;
 
+    // 플레이어 스크립트를 인스턴스화 한 것
+    private static Player m_Instance;
+    public static Player Instance => m_Instance;
+
     void Start()
     {
+        m_Instance = GetComponent<Player>();
         m_UiManager = FindObjectOfType<UIManager>();
         m_UiManager.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
         m_AudioSource = GetComponent<AudioSource>();

@@ -7,6 +7,7 @@ public class Tutorial1 : MonoBehaviour
 {
     public bool m_IsActive = true;
     public Text m_TalkText;
+    public Text m_TalkTextCount;
 
     private List<string> m_TextList = new List<string>();
     private int m_CurrentTextIndex = 0;
@@ -39,6 +40,7 @@ public class Tutorial1 : MonoBehaviour
 
         m_TalkText.text = m_TextList[m_CurrentTextIndex];
         m_CurrentTextIndex++;
+        m_TalkTextCount.text = m_CurrentTextIndex + " / " + m_TextList.Count;
 
         Mark1.SetActive(false);
         Mark2.SetActive(false);
@@ -56,6 +58,7 @@ public class Tutorial1 : MonoBehaviour
         {
             m_TalkText.text = m_TextList[m_CurrentTextIndex];
             m_CurrentTextIndex++;
+            m_TalkTextCount.text = m_CurrentTextIndex + " / " + m_TextList.Count;
         }
 
         if (4 == m_CurrentTextIndex)
@@ -78,6 +81,7 @@ public class Tutorial1 : MonoBehaviour
 
                 m_TalkText.text = m_TextList[m_CurrentTextIndex];
                 m_CurrentTextIndex++;
+                m_TalkTextCount.text = m_CurrentTextIndex + " / " + m_TextList.Count;
             }
         }
 
@@ -85,7 +89,15 @@ public class Tutorial1 : MonoBehaviour
         {
             m_IsActive = false;
 
-
+            if ( 0 >= Player.Instance.m_BulletSum)
+            {
+                if (0 >= GameManager.Instance.m_Targets)
+                {
+                    m_TalkText.text = m_TextList[m_CurrentTextIndex];
+                    m_CurrentTextIndex++;
+                    m_TalkTextCount.text = m_CurrentTextIndex + " / " + m_TextList.Count;
+                }
+            }
         }
     }
 }
