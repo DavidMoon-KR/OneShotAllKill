@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     private static UIManager m_Instance;
     public static UIManager Instance => m_Instance;
 
-    void Start()
+    void Awake()
     {
         m_Instance = GetComponent<UIManager>();
     }
@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
     // 다음 스테이지로 이동
     public void NextStageLoadScene()
     {
-        SceneManager.LoadScene("Stage" + (GameManager.Instance.m_SceneNumber + 1));
+        SceneManager.LoadScene(GameManager.Instance.m_SceneNumber + 1);
     }
 
     // 메인메뉴 씬 로드

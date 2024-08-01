@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -21,10 +22,13 @@ public class WallMovement : MonoBehaviour
 
     private Vector3 m_MouseP;
 
+    [SerializeField]
+    private NavMeshSurface m_NavMeshSurface;
+
     private void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
         {
             return;
         }
@@ -45,7 +49,7 @@ public class WallMovement : MonoBehaviour
     private void OnMouseDown()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
         {
             return;
         }
@@ -57,7 +61,7 @@ public class WallMovement : MonoBehaviour
     private void OnMouseDrag()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
         {
             return;
         }
@@ -97,6 +101,8 @@ public class WallMovement : MonoBehaviour
             m_HitSource.Play();
             gameObject.transform.Translate(Vector3.right * 2, Space.Self);
         }
+
+        m_NavMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
     private void PrintArrow()
     {

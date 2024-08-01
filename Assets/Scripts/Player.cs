@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 enum BulletType
@@ -18,17 +19,16 @@ public class Player : MonoBehaviour
     // 탄 프리팹
     [SerializeField]
     private List<GameObject> m_BulletPrefab;
-
+    
     // 현재 선택된 총알 타입
     private BulletType m_SelectBulletType = BulletType.BulletType_Normal;
 
     public List<int> m_BulletCount; // 각 총알 개수
-    public int m_BulletSum = 0;    // 전체 총알 개수 합
+    private int m_BulletSum = 0;    // 전체 총알 개수 합
 
     // 탄이 나오는 위치
     [SerializeField]
     private Transform m_BulletTransform;
-    private UIManager m_UiManager;
 
     public List<GameObject> m_WallID; // 각각의 벽들이 갖고 있는 번호
 
@@ -48,11 +48,12 @@ public class Player : MonoBehaviour
     private static Player m_Instance;
     public static Player Instance => m_Instance;
 
+    public int BulletSum { get => m_BulletSum; set => m_BulletSum = value; }
+
     void Start()
     {
         m_Instance = GetComponent<Player>();
-        m_UiManager = FindObjectOfType<UIManager>();
-        m_UiManager.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
+        UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
         m_AudioSource = GetComponent<AudioSource>();
         m_AudioSource.clip = m_FireGenerated;
 
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
         {
             return;
         }
@@ -115,7 +116,7 @@ public class Player : MonoBehaviour
             }
 
             // 바뀐 총알 개수 UI에 표시
-            m_UiManager.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
+            UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
         }
     }
 
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
             m_BulletSum--;
 
             // 현재 총알 개수 UI에 표시
-            m_UiManager.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
+            UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
             Instantiate(m_BulletPrefab[(int)m_SelectBulletType], m_BulletTransform.transform.position, m_BulletTransform.rotation);
             m_NextFireTime = Time.time + m_FireRate;
 

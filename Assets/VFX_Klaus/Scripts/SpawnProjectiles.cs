@@ -13,12 +13,12 @@ public class SpawnProjectiles : MonoBehaviour
 
     private GameObject effectToSpawn;
     private float timeToFire = 0;
-    private Text prefabName;
+    private Text prefabname;
 
     void Start()
     {
         effectToSpawn = Effects[0];
-        prefabName = GameObject.Find("PrefabName").GetComponent<Text>();
+        prefabname = GameObject.Find("Prefabname").GetComponent<Text>();
     }
 
     void Update()
@@ -50,10 +50,10 @@ public class SpawnProjectiles : MonoBehaviour
             effectToSpawn = Effects[selectedPrefab];
         }
 
-        // Prefab Name On Screen
+        // Prefab name On Screen
         if (Effects.Length > 0 && selectedPrefab >= 0 && selectedPrefab < Effects.Length)
         {
-            prefabName.text = Effects[selectedPrefab].name;
+            prefabname.text = Effects[selectedPrefab].name;
         }
     }
 

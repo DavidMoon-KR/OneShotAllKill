@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.AI.Navigation;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -21,6 +22,9 @@ public class RotatingWall : MonoBehaviour
 
     private Vector3 FinalDir = Vector3.zero;
 
+    [SerializeField]
+    private NavMeshSurface m_NavMeshSurface;
+
     void Start()
     {
         m_HitSource = GetComponent<AudioSource>();
@@ -29,8 +33,9 @@ public class RotatingWall : MonoBehaviour
     void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (Tutorial1.Instance != null && Tutorial1.Instance.m_IsActive)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
         {
+            m_IsClick = false;
             return;
         }
 
@@ -80,14 +85,28 @@ public class RotatingWall : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // 튜토리얼이 진행중이라면 상호작용 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        {
+            return;
+        }
+
         m_IsClick = true;
     }
 
     private void OnMouseUp()
     {
+        // 튜토리얼이 진행중이라면 상호작용 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        {
+            return;
+        }
+
         m_IsClick = false;
         m_HitSource.clip = m_HitWallClip;
         m_HitSource.Play();
         //m_MoveT = false;
+
+        m_NavMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 }

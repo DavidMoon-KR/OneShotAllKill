@@ -44,21 +44,21 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // 게임 내 타겟이 없고, 플레이어가 소지한 탄알이 없다면
-        if(m_Targets == 0 || m_HasNotAmmo == true)
+        // 게임 내 타겟이 없거나, 플레이어가 소지한 탄알이 없다면
+        if (m_Targets == 0 || m_HasNotAmmo == true)
         {
             GameOver();
         }
 
         // 폭발이 일어났고, 휴머노이드에게 해당 위치의 좌표를 알려줌
-        if(m_HasExplosioned == true && m_IsHumanoid == true)
+        if (m_HasExplosioned == true && m_IsHumanoid == true)
         {
             GameObject[] humanoids = GameObject.FindGameObjectsWithTag("Humanoid");
-            foreach(var humanoid in humanoids)
+            foreach (var humanoid in humanoids)
             {
                 Humanoid currentHumanoid = humanoid.GetComponent<Humanoid>();
                 currentHumanoid.m_ExplosionedPos = m_ExplosionedPos;
-                
+
                 // 타겟 감지 true
                 currentHumanoid.m_ExplosionDetection = true;
             }
@@ -68,17 +68,17 @@ public class GameManager : MonoBehaviour
         // 재시작
         if (Input.GetKeyUp(KeyCode.R))
         {
-            SceneManager.LoadScene("Stage" + m_SceneNumber);
+            SceneManager.LoadScene(m_SceneNumber);
         }
 
         // 게임이 끝났고 클리어 성공한 경우
-        if(m_IsGameOver == true && m_IsFailed == false)
+        if (m_IsGameOver == true && m_IsFailed == false)
         {
             UIManager.Instance.m_MissionComplete = true;
             UIManager.Instance.GameOverMessage();
         }
         // 게임이 끝났고 클리어 실패한 경우
-        else if(m_IsGameOver == true && m_IsFailed == true)
+        else if (m_IsGameOver == true && m_IsFailed == true)
         {
             UIManager.Instance.m_MissionComplete = false;
             UIManager.Instance.GameOverMessage();
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GameOverNow()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(m_GameOverDelay);
 
         // 타겟이 없을경우
         if (m_Targets == 0)
@@ -106,6 +106,13 @@ public class GameManager : MonoBehaviour
         {
             m_IsGameOver = true;
             m_IsFailed = true;
+        }
+
+        if (Player.Instance.BulletSum > 0)
+        {
+            m_IsGameOver = false;
+            m_IsFailed = false;
+            m_HasExplosioned = false;
         }
     }
 }

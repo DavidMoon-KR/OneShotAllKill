@@ -2060,7 +2060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707171495918377885, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8121868
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5707171495918377885, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3550,7 +3550,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 378406625}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: NextStageLoadScene
         m_Mode: 1
@@ -4063,7 +4063,7 @@ MonoBehaviour:
   m_HasNotAmmo: 0
   m_IsHumanoid: 0
   m_Targets: 0
-  m_SceneNumber: 2
+  m_SceneNumber: 3
   m_ExplosionedPos: {x: 0, y: 0, z: 0}
   m_GameOverDelay: 4.3
   m_DelayExplosion: 2
@@ -5553,7 +5553,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 378406625}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: MainMenuLoadScene
         m_Mode: 1
@@ -5621,7 +5621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1484996808624706138, guid: 7a506da838288424781ec92b84eaf31d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.902187
+      value: 10.28
       objectReference: {fileID: 0}
     - target: {fileID: 1484996808624706138, guid: 7a506da838288424781ec92b84eaf31d, type: 3}
       propertyPath: m_LocalRotation.w

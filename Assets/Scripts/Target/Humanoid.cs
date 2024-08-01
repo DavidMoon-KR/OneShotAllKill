@@ -73,6 +73,7 @@ public class Humanoid : MonoBehaviour
                 StartCoroutine(WaitBeforeMoving());
             }
         }
+        // 웨이포인트가 없다면
         else
         {
             if(m_ExplosionDetection == true)
