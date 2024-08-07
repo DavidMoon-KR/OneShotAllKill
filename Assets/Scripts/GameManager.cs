@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     private static GameManager m_Instance;
     public static GameManager Instance => m_Instance;
 
+
+
     void Start()
     {
         m_Instance = GetComponent<GameManager>();
@@ -106,13 +108,6 @@ public class GameManager : MonoBehaviour
         {
             m_IsGameOver = true;
             m_IsFailed = true;
-        }
-
-        if (Player.Instance.BulletSum > 0)
-        {
-            m_IsGameOver = false;
-            m_IsFailed = false;
-            m_HasExplosioned = false;
         }
     }
 }

@@ -27,6 +27,10 @@ public class RotatingWall : MonoBehaviour
 
     void Start()
     {
+        if (GetComponent<NavMeshSurface>() != null)
+        {
+            m_NavMeshSurface = GetComponent<NavMeshSurface>();
+        }
         m_HitSource = GetComponent<AudioSource>();
     }
 
@@ -107,6 +111,9 @@ public class RotatingWall : MonoBehaviour
         m_HitSource.Play();
         //m_MoveT = false;
 
-        m_NavMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();
+        if (m_NavMeshSurface != null)
+        {
+            m_NavMeshSurface.BuildNavMesh();
+        }
     }
 }

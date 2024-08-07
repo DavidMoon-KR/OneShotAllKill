@@ -14,12 +14,13 @@ public class Tutorial2 : MonoBehaviour
 
     private bool m_IsTyping = true;     // 타이핑이 진행되고 있는지 여부
     private int m_TypingIndex = 0;      // 얼마나 타이핑 했는지에 대한 인덱스 값
-    private float typingSpeed = 0.03f;  // 타이핑 속도
+    private float typingSpeed = 0.015f;  // 타이핑 속도
 
-    public Text m_TalkText;         // 현재 대사
-    public Text m_NextClickText;    // 다음으로 넘어가는 방법 알려주는 텍스트
-    public Text m_TalkTextCount;    // 대사 카운트
+    public Text m_TalkText;             // 현재 대사
+    public Text m_NextClickText;        // 다음으로 넘어가는 방법 알려주는 텍스트
+    public Text m_TalkTextCount;        // 대사 카운트
     private int m_CurrentTextIndex = 0; // 현재 대사 인덱스
+    private bool m_IsNextText = true;   // 다음 대사를 출력할 수 있는지 여부
 
     // 각종 마크들
     [SerializeField]
@@ -30,6 +31,8 @@ public class Tutorial2 : MonoBehaviour
     private Image m_ArrowMark3; // 화살표3
     [SerializeField]
     private Image m_RectangleMark1; // 사각형 테두리 표시1
+    [SerializeField]
+    private Image m_RectangleMark2; // 사각형 테두리 표시2
 
     // 튜토리얼에 사용할 오브젝트들
     [SerializeField]
@@ -62,8 +65,8 @@ public class Tutorial2 : MonoBehaviour
         m_TextList.Add("이제 에너지 방벽의 버튼을 향해 발사하세요.");
         m_TextList.Add("잘하셨습니다. 이제 방벽이 OFF 되었으니, 터렛을 사격할 수 있는 구도가 완성되었습니다. 터렛을 파괴하세요.");
         m_TextList.Add("네 터렛이 파괴되면서, 아래에 있는 휴머노이드1.0이 터렛을 향해 이동할 것입니다." +
-                        "휴머노이드1.0은 평소에 각 지점을 순환해서 이동하다가, 다른 타겟이 폭발하면, 폭발한 곳으로 이동하는 기능이 있습니다.");
-        m_TextList.Add("휴머노이드 1.0이 해당 위치로 이동할 때까지 기다리세요.");
+                        "휴머노이드1.0은 평소에 각 지점을 순환해서 이동하다가, 다른 타겟이 폭발하면, 폭발한 곳으로 이동하는 기능이 있습니다." +
+                        "휴머노이드 1.0이 해당 위치로 이동할 때까지 기다리세요.");
         m_TextList.Add("휴머노이드 1.0이 해당 위치에 도착했습니다. 이제 휴머노이드 1.0을 파괴하세요.");
         m_TextList.Add("잘하셨습니다. 이제, 모든 타겟을 파괴하셨습니다.");
 
@@ -83,6 +86,7 @@ public class Tutorial2 : MonoBehaviour
         m_ArrowMark2.gameObject.SetActive(false);
         m_ArrowMark3.gameObject.SetActive(false);
         m_RectangleMark1.gameObject.SetActive(false);
+        m_RectangleMark2.gameObject.SetActive(false);
     }
 
     void Update()
@@ -91,18 +95,18 @@ public class Tutorial2 : MonoBehaviour
         if (m_CurrentTextIndex >= m_TextList.Count && Input.GetMouseButtonDown(0))
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             gameObject.SetActive(false);
         }
-
         // 타이핑이 끝났을 때 클릭하면 다음 대사로 넘어가기
-        if (TutorialManager.Instance.IsActive && !m_IsTyping && Input.GetMouseButtonDown(0))
+        if (m_IsNextText && TutorialManager.Instance.IsActive && !m_IsTyping && Input.GetMouseButtonDown(0))
         {
             m_TypingIndex = 0;
             StartCoroutine(Typing());
             m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
         }
         // 타이핑 중이라면 타이핑 되고있는 대사 한번에 출력하기
-        else if (TutorialManager.Instance.IsActive && m_IsTyping && Input.GetMouseButtonDown(0))
+        else if (m_IsNextText && TutorialManager.Instance.IsActive && m_IsTyping && Input.GetMouseButtonDown(0))
         {
             m_TypingIndex = 0;
             m_IsTyping = false;
@@ -110,11 +114,13 @@ public class Tutorial2 : MonoBehaviour
             m_TalkText.text = m_TextList[m_CurrentTextIndex];
         }
 
+        //================================================= 기믹관련 ====================================================
         // 에너지방벽 표시하는 UI 출력
         if (5 == m_CurrentTextIndex)
         {
             m_ArrowMark1.gameObject.SetActive(true);
             m_RectangleMark1.gameObject.SetActive(true);
+            m_RectangleMark2.gameObject.SetActive(true);
         }
 
         // 회전 장벽에 화살표 표시
@@ -122,10 +128,12 @@ public class Tutorial2 : MonoBehaviour
         if (!m_IsGimicClear[0] && 6 == m_CurrentTextIndex)
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
             m_ArrowMark1.gameObject.SetActive(false);
             m_RectangleMark1.gameObject.SetActive(false);
+            m_RectangleMark2.gameObject.SetActive(false);
 
             m_IsClearRotateWall1 = false;
             m_IsClearRotateWall2 = false;
@@ -158,11 +166,7 @@ public class Tutorial2 : MonoBehaviour
                 m_ArrowMark3.gameObject.SetActive(false);
 
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[0] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+                SettingNextText(0);
             }
         }
 
@@ -170,80 +174,61 @@ public class Tutorial2 : MonoBehaviour
         if (!m_IsGimicClear[1] && 8 == m_CurrentTextIndex)
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
-            // 에너지 버튼을 맞췄다면 다음 대사로 넘어가기
-            if (!m_EnergyShield.gameObject.activeSelf)
+            // 만약 총알 한 발을 발사했다면
+            // 더이상 행동금지, 에너지 방벽을 맞췄는지 체크하는 코루틴 호출
+            if (2 >= Player.Instance.BulletSum)
             {
-                // 플레이어 총알 보충
-                Player.Instance.m_BulletCount[0]++;
-                Player.Instance.BulletSum++;
-                UIManager.Instance.BulletCountSet(1);
-
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[1] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+
+                StartCoroutine(EnergyWallHitCheck());
             }
         }
-
         // 터렛 파괴하는 기믹
         if (!m_IsGimicClear[2] && 9 == m_CurrentTextIndex)
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
-            // 터렛을 파괴했다면 다음 대사로 넘어가기
-            if (m_Turret1 == null)
+            // 만약 총알 한 발을 발사했다면
+            // 더이상 행동금지, 터렛을 맞췄는지 체크하는 코루틴 호출
+            if (1 >= Player.Instance.BulletSum)
             {
-                // 플레이어 총알 보충
-                Player.Instance.m_BulletCount[0]++;
-                Player.Instance.BulletSum++;
-                UIManager.Instance.BulletCountSet(1);
-
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[2] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+
+                StartCoroutine(TurretHitCheck());
             }
         }
 
         // 휴머노이드가 폭발한 위치로 갔는지 체크
-        if (!m_IsGimicClear[3] && 11 == m_CurrentTextIndex)
+        if (!m_IsGimicClear[3] && 10 == m_CurrentTextIndex)
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
-            if (!m_Humanoid1_1.GetComponent<Humanoid>().m_ExplosionDetection)
+            if (m_Humanoid1_1.GetComponent<Humanoid>().AgroNow)
             {
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[3] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+                SettingNextText(3);
             }
         }
 
         // 휴머노이드 파괴하는 기믹
-        if (!m_IsGimicClear[4] && 12 == m_CurrentTextIndex)
+        if (!m_IsGimicClear[4] && 11 == m_CurrentTextIndex)
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
             // 휴머노이드를 파괴했다면 다음 대사로 넘어가기
             if (m_Humanoid1_1 == null)
             {
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[4] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+                SettingNextText(4);
             }
         }
     }
@@ -270,5 +255,52 @@ public class Tutorial2 : MonoBehaviour
 
         m_IsTyping = false;
         m_CurrentTextIndex++;
+    }
+
+    private IEnumerator EnergyWallHitCheck()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        if (m_IsGimicClear[1])
+            yield break;
+
+        // 에너지 버튼을 맞췄다면 다음 대사로 넘어가기
+        if (!m_EnergyShield.gameObject.activeSelf)
+        {
+            SettingNextText(1);
+        }
+        else
+        {
+            GameManager.Instance.m_IsGameOver = true;
+            GameManager.Instance.m_IsFailed = true;
+        }
+    }
+    private IEnumerator TurretHitCheck()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        if (m_IsGimicClear[2])
+            yield break;
+
+        // 에너지 버튼을 맞췄다면 다음 대사로 넘어가기
+        if (m_Turret1 == null)
+        {
+            SettingNextText(2);
+        }
+        else
+        {
+            GameManager.Instance.m_IsGameOver = true;
+            GameManager.Instance.m_IsFailed = true;
+        }
+    }
+
+    private void SettingNextText(int p_gimicNumber)
+    {
+        m_IsNextText = true;
+        m_IsGimicClear[p_gimicNumber] = true;
+        m_NextClickText.gameObject.SetActive(true);
+        m_TypingIndex = 0;
+        StartCoroutine(Typing());
+        m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
     }
 }

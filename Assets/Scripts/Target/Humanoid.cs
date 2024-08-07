@@ -46,6 +46,8 @@ public class Humanoid : MonoBehaviour
 
     public Vector3 m_ExplosionedPos;
 
+    public bool AgroNow { get => m_AgroNow; }
+
     void Start()
     {
         m_Instance = gameObject.GetComponent<Humanoid>();

@@ -15,10 +15,11 @@ public class Tutorial1 : MonoBehaviour
     private int m_TypingIndex = 0;      // 얼마나 타이핑 했는지에 대한 인덱스 값
     private float typingSpeed = 0.03f;  // 타이핑 속도
 
-    public Text m_TalkText;         // 현재 대사
-    public Text m_NextClickText;    // 다음으로 넘어가는 방법 알려주는 텍스트
-    public Text m_TalkTextCount;    // 대사 카운트
+    public Text m_TalkText;             // 현재 대사
+    public Text m_NextClickText;        // 다음으로 넘어가는 방법 알려주는 텍스트
+    public Text m_TalkTextCount;        // 대사 카운트
     private int m_CurrentTextIndex = 0; // 현재 대사 인덱스
+    private bool m_IsNextText = true;   // 다음 대사를 출력할 수 있는지 여부
 
     // 각종 마크들
     [SerializeField]
@@ -66,18 +67,19 @@ public class Tutorial1 : MonoBehaviour
         if (m_CurrentTextIndex >= m_TextList.Count && Input.GetMouseButtonDown(0))
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             gameObject.SetActive(false);
         }
 
         // 타이핑이 끝났을 때 클릭하면 다음 대사로 넘어가기
-        if (TutorialManager.Instance.IsActive && !m_IsTyping && Input.GetMouseButtonDown(0))
+        if (m_IsNextText && TutorialManager.Instance.IsActive && !m_IsTyping && Input.GetMouseButtonDown(0))
         {
             m_TypingIndex = 0;
             StartCoroutine(Typing());
             m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
         }
         // 타이핑 중이라면 타이핑 되고있는 대사 한번에 출력하기
-        else if (TutorialManager.Instance.IsActive && m_IsTyping && Input.GetMouseButtonDown(0))
+        else if (m_IsNextText && TutorialManager.Instance.IsActive && m_IsTyping && Input.GetMouseButtonDown(0))
         {
             m_TypingIndex = 0;
             m_IsTyping = false;
@@ -85,6 +87,7 @@ public class Tutorial1 : MonoBehaviour
             m_TalkText.text = m_TextList[m_CurrentTextIndex];
         }
 
+        //================================================= 기믹관련 ====================================================
         // 이동 장벽 표시하는 UI 출력
         if (4 == m_CurrentTextIndex)
         {
@@ -99,6 +102,7 @@ public class Tutorial1 : MonoBehaviour
             m_ArrowMark2.gameObject.SetActive(true);
             
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
             // 벽을 제대로 된 위치에 옮겼다면 다음 대사로 넘어가기
@@ -107,11 +111,7 @@ public class Tutorial1 : MonoBehaviour
                 m_ArrowMark2.gameObject.SetActive(false);
 
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[0] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+                SettingNextText(0);
             }
         }
 
@@ -119,17 +119,14 @@ public class Tutorial1 : MonoBehaviour
         if (!m_IsGimicClear[1] && 7 == m_CurrentTextIndex)
         {
             TutorialManager.Instance.IsActive = false;
+            m_IsNextText = false;
             m_NextClickText.gameObject.SetActive(false);
 
             // 터렛을 파괴했다면 다음 대사로 넘어가기
             if (m_Turret1 == null)
             {
                 TutorialManager.Instance.IsActive = true;
-                m_IsGimicClear[1] = true;
-                m_NextClickText.gameObject.SetActive(true);
-                m_TypingIndex = 0;
-                StartCoroutine(Typing());
-                m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+                SettingNextText(1);
             }
         }
     }
@@ -156,5 +153,15 @@ public class Tutorial1 : MonoBehaviour
 
         m_IsTyping = false;
         m_CurrentTextIndex++;
+    }
+
+    private void SettingNextText(int p_gimicNumber)
+    {
+        m_IsNextText = true;
+        m_IsGimicClear[p_gimicNumber] = true;
+        m_NextClickText.gameObject.SetActive(true);
+        m_TypingIndex = 0;
+        StartCoroutine(Typing());
+        m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
     }
 }

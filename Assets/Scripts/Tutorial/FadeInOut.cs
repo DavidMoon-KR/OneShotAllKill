@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class FadeInOut : MonoBehaviour
 {
     [SerializeField]
     private float m_FadeTime;   // 페이드 되는 시간
-    private Text m_FadeText;    // 페이드 효과에 사용되는 Image UI
-
-    private void Awake()
-    {
-        m_FadeText = GetComponent<Text>();
-    }
+    [SerializeField]
+    private Graphic m_FadeText;    // 페이드 효과에 사용되는 Image UI
 
     private void OnEnable()
     {
         // Fade 효과를 In -> Out 무한 반복한다.
-        StartCoroutine("FadeInOut");
+        StartCoroutine("IFadeInOut");
     }
 
     private void OnDisable()
     {
-        StopCoroutine("FadeInOut");
+        StopCoroutine("IFadeInOut");
     }
 
-    private IEnumerator FadeInOut()
+    private IEnumerator IFadeInOut()
     {
         while (true)
         {

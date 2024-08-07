@@ -43,7 +43,7 @@ public class WallMovement : MonoBehaviour
     private bool m_IsClick = false;
     void Start()
     {
-        m_HitSource = GetComponent<AudioSource>();
+        m_HitSource = GetComponent<AudioSource>();        
     }
 
     private void OnMouseDown()
@@ -102,7 +102,10 @@ public class WallMovement : MonoBehaviour
             gameObject.transform.Translate(Vector3.right * 2, Space.Self);
         }
 
-        m_NavMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();
+        if (m_NavMeshSurface != null)
+        {
+            m_NavMeshSurface.BuildNavMesh();
+        }
     }
     private void PrintArrow()
     {
