@@ -13,7 +13,7 @@ public class Tutorial1 : MonoBehaviour
 
     private bool m_IsTyping = true;     // 타이핑이 진행되고 있는지 여부
     private int m_TypingIndex = 0;      // 얼마나 타이핑 했는지에 대한 인덱스 값
-    private float typingSpeed = 0.03f;  // 타이핑 속도
+    private float m_TypingSpeed = 0.03f;  // 타이핑 속도
 
     public Text m_TalkText;             // 현재 대사
     public Text m_NextClickText;        // 다음으로 넘어가는 방법 알려주는 텍스트
@@ -148,7 +148,7 @@ public class Tutorial1 : MonoBehaviour
 
             m_TypingIndex++;
 
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSeconds(m_TypingSpeed);
         }
 
         m_IsTyping = false;
