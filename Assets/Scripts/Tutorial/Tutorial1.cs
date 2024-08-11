@@ -17,7 +17,7 @@ public class Tutorial1 : MonoBehaviour
 
     public Text m_TalkText;             // 현재 대사
     public Text m_NextClickText;        // 다음으로 넘어가는 방법 알려주는 텍스트
-    public Text m_TalkTextCount;        // 대사 카운트
+    //public Text m_TalkTextCount;        // 대사 카운트
     private int m_CurrentTextIndex = 0; // 현재 대사 인덱스
     private bool m_IsNextText = true;   // 다음 대사를 출력할 수 있는지 여부
 
@@ -54,7 +54,7 @@ public class Tutorial1 : MonoBehaviour
 
         // 첫 대사 자동 출력
         StartCoroutine(Typing());
-        m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+        //m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
 
         // 모든 마크 비활성화
         m_ArrowMark1.gameObject.SetActive(false);
@@ -76,7 +76,7 @@ public class Tutorial1 : MonoBehaviour
         {
             m_TypingIndex = 0;
             StartCoroutine(Typing());
-            m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+            //m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
         }
         // 타이핑 중이라면 타이핑 되고있는 대사 한번에 출력하기
         else if (m_IsNextText && TutorialManager.Instance.IsActive && m_IsTyping && Input.GetMouseButtonDown(0))
@@ -162,6 +162,6 @@ public class Tutorial1 : MonoBehaviour
         m_NextClickText.gameObject.SetActive(true);
         m_TypingIndex = 0;
         StartCoroutine(Typing());
-        m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
+        //m_TalkTextCount.text = (m_CurrentTextIndex + 1) + " / " + m_TextList.Count;
     }
 }

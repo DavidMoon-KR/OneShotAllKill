@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text m_BulletCount;
+    private List<Image> m_BulletCount;
     [SerializeField]
     private GameObject m_RestartToMessage;
     [SerializeField]
@@ -31,7 +31,15 @@ public class UIManager : MonoBehaviour
     // Åº °³¼ö Ç¥½Ã
     public void BulletCountSet(int p_bullet)
     {
-        m_BulletCount.text = p_bullet.ToString();
+        for (int i = 0; i < m_BulletCount.Count; i++)
+        {
+            if (p_bullet < (i + 1)) 
+            {
+                m_BulletCount[i].gameObject.SetActive(false);
+                continue;
+            }
+            m_BulletCount[i].gameObject.SetActive(true);            
+        }
     }
 
     public void GameOverMessage()

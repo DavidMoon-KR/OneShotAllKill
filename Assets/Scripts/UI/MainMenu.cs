@@ -33,6 +33,8 @@ public class MainMenu : MonoBehaviour
     private List<GameObject> m_LevelWindowInfo = new List<GameObject>(); // 레벨 정보 창
     [SerializeField]
     private List<GameObject> m_StageWindowInfo = new List<GameObject>(); // 스테이지 정보 창
+    [SerializeField]
+    private List<GameObject> m_LevelWindowInfo_Title = new List<GameObject>(); // 레벨 별 타이틀 정보
 
     [SerializeField]
     private Image m_LevelWindowBackGround; // 레벨 창 배경
@@ -170,8 +172,13 @@ public class MainMenu : MonoBehaviour
 
         m_LevelWindowInfo[m_SelectLevelNumber - 1].SetActive(false);
         m_StageWindowInfo[m_SelectStageIDValue].gameObject.SetActive(false);
+
+        m_LevelWindowInfo_Title[m_SelectLevelNumber - 1].SetActive(true);
+        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("MapInfo").gameObject.SetActive(true);
+        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("TargetInfo").gameObject.SetActive(false);
     }
 
+    // 각각의 스테이지를 눌렀을 때
     public void OnClickEachStage()
     {
         int stageid = int.Parse(EventSystem.current.currentSelectedGameObject.name.Substring(0, 4));
@@ -194,6 +201,22 @@ public class MainMenu : MonoBehaviour
 
         m_LevelWindowInfo[m_SelectLevelNumber - 1].SetActive(true);
         m_StageWindowInfo[m_SelectStageIDValue].gameObject.SetActive(true);
+    }
+
+    // 맵 버튼을 눌렀을 때
+    public void OnClickMap()
+    {
+        m_LevelWindowInfo_Title[m_SelectLevelNumber - 1].SetActive(true);
+        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("MapInfo").gameObject.SetActive(true);
+        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("TargetInfo").gameObject.SetActive(false);
+    }
+
+    // 타겟 버튼을 눌렀을 때
+    public void OnClickTarget()
+    {
+        m_LevelWindowInfo_Title[m_SelectLevelNumber - 1].SetActive(false);
+        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("MapInfo").gameObject.SetActive(false);
+        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("TargetInfo").gameObject.SetActive(true);
     }
 
     // 설정 버튼 눌렀을 때
