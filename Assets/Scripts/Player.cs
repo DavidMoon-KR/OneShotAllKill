@@ -66,7 +66,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             return;
         }
@@ -86,6 +87,14 @@ public class Player : MonoBehaviour
         // 탄이 모두 떨어졌다면
         if (m_BulletSum <= 0)
         {
+            if (TutorialManager.Instance != null)
+            {
+                m_BulletCount[(int)m_SelectBulletType]++;
+                UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
+                m_BulletSum++;
+                return;
+            }
+
             // 게임매니저에게 탄 없다는 것을 알림
             GameManager.Instance.m_HasNotAmmo = true;
         }

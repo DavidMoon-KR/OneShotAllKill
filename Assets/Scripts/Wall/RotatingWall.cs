@@ -37,7 +37,8 @@ public class RotatingWall : MonoBehaviour
     void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             m_IsClick = false;
             return;
@@ -90,7 +91,8 @@ public class RotatingWall : MonoBehaviour
     private void OnMouseDown()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             return;
         }
@@ -101,7 +103,8 @@ public class RotatingWall : MonoBehaviour
     private void OnMouseUp()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             return;
         }

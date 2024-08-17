@@ -13,9 +13,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject m_BlackScreen;
     [SerializeField]
-    private GameObject m_HightlightedNext;
+    private GameObject m_ClearText;
     [SerializeField]
-    private GameObject m_HightlightedRestart;
+    private GameObject m_NextStageButton;
+    [SerializeField]
+    private GameObject m_GameExitButton;
+    [SerializeField]
+    private GameObject m_EscMessage;
 
     public bool m_MissionComplete = false;   // 스테이지 클리어 여부 판단
     private bool m_OneChecking = true;       // 결과 애니메이션이 한번만 나오게 하는 변수
@@ -26,6 +30,18 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         m_Instance = GetComponent<UIManager>();
+    }
+
+    void Update()
+    {
+        // Esc키 누르면 메시지 뜨고 사라지게 하기
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            m_EscMessage.SetActive(!m_EscMessage.activeSelf);
+
+            GameManager.Instance.IsGamePause = m_EscMessage.activeSelf;
+            Time.timeScale = 1.0f - Time.timeScale;
+        }
     }
 
     // 탄 개수 표시
@@ -60,8 +76,10 @@ public class UIManager : MonoBehaviour
         {
             m_BlackScreen.SetActive(true);
             yield return new WaitForSeconds(2.3f);
-            m_HightlightedNext.SetActive(true);
-            m_HightlightedRestart.SetActive(true);
+            m_ClearText.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            m_NextStageButton.SetActive(true);
+            m_GameExitButton.SetActive(true);
             m_OneChecking = false;
         }
     }
@@ -76,5 +94,21 @@ public class UIManager : MonoBehaviour
     public void MainMenuLoadScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    // Esc메시지에서 Yes버튼 눌렀을 때
+    public void EscMessageYes()
+    {
+        Time.timeScale = 1.0f;
+        GameManager.Instance.IsGamePause = false;
+        MainMenuLoadScene();
+    }
+
+    // Esc메시지에서 No버튼 눌렀을 때
+    public void EscMessageNo()
+    {
+        Time.timeScale = 1.0f;
+        GameManager.Instance.IsGamePause = false;
+        m_EscMessage.SetActive(false);
     }
 }

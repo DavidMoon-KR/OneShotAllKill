@@ -28,7 +28,8 @@ public class WallMovement : MonoBehaviour
     private void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             return;
         }
@@ -49,7 +50,8 @@ public class WallMovement : MonoBehaviour
     private void OnMouseDown()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             return;
         }
@@ -61,7 +63,8 @@ public class WallMovement : MonoBehaviour
     private void OnMouseDrag()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive)
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
         {
             return;
         }

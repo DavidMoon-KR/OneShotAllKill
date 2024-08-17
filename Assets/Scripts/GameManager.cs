@@ -30,11 +30,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public float m_DelayExplosion;
 
+    private bool m_IsGamePause = false;
+
     // 게임매니저 스크립트를 인스턴스화 한 것
     private static GameManager m_Instance;
     public static GameManager Instance => m_Instance;
 
-
+    public bool IsGamePause { get => m_IsGamePause; set => m_IsGamePause = value; }
 
     void Start()
     {
@@ -68,7 +70,7 @@ public class GameManager : MonoBehaviour
         }
 
         // 재시작
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R) && !m_IsGamePause)
         {
             SceneManager.LoadScene(m_SceneNumber);
         }

@@ -91,6 +91,12 @@ public class Tutorial2 : MonoBehaviour
 
     void Update()
     {
+        // 게임이 일시정지인 상황에서는 행동 불가
+        if (GameManager.Instance.IsGamePause)
+        {
+            return;
+        }
+
         // 모든 대사가 출력되었다면 대사창 없애기
         if (m_CurrentTextIndex >= m_TextList.Count && Input.GetMouseButtonDown(0))
         {
