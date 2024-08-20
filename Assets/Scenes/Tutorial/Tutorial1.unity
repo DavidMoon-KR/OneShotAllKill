@@ -4319,7 +4319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FadeTime: 0.5
-  m_FadeText: {fileID: 1251841159}
+  m_FadeGraphic: {fileID: 1251841159}
 --- !u!1 &1264872660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5762,7 +5762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FadeTime: 0.5
-  m_FadeText: {fileID: 1872543072}
+  m_FadeGraphic: {fileID: 1872543072}
 --- !u!1 &1898839796
 GameObject:
   m_ObjectHideFlags: 0
@@ -6939,6 +6939,7 @@ MonoBehaviour:
   m_ImpactGauge: 0.5
   m_RotateSpeed: 60
   m_Explosion: {fileID: 7545161965981264966, guid: 20f378658c70e2940826436a14dd9bac, type: 3}
+  m_Spark: {fileID: 0}
   m_ExplosionSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
 --- !u!4 &1097152706939206509 stripped
 Transform:

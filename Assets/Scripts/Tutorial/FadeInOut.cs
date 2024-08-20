@@ -8,7 +8,7 @@ public class FadeInOut : MonoBehaviour
     [SerializeField]
     private float m_FadeTime;   // 페이드 되는 시간
     [SerializeField]
-    private Graphic m_FadeText;    // 페이드 효과에 사용되는 Image UI
+    private Graphic m_FadeGraphic;    // 페이드 효과에 사용되는 Image UI
 
     private void OnEnable()
     {
@@ -41,9 +41,9 @@ public class FadeInOut : MonoBehaviour
             current += Time.deltaTime;
             percent = current / m_FadeTime;
 
-            Color color = m_FadeText.color;
+            Color color = m_FadeGraphic.color;
             color.a = Mathf.Lerp(start, end, percent);
-            m_FadeText.color = color;
+            m_FadeGraphic.color = color;
 
             yield return null;
         }

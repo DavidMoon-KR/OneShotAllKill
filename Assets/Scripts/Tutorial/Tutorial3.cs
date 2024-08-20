@@ -9,14 +9,34 @@ using UnityEngine.UI;
 
 public class Tutorial3 : MonoBehaviour
 {
-    // 각종 마크들
-    [SerializeField]
-    private Image m_LeftMouseImage; // 왼쪽 클릭 마우스 이미지
-    [SerializeField]
-    private GameObject m_LinkLineImage; // 연결선 오브젝트
+    private int m_NowGimicNumber = 1;
 
-    void Start()
+    // 각종 마크 및 표시들
+    [SerializeField]
+    private GameObject m_FirstGimicObjects;
+    [SerializeField]
+    private GameObject m_SecondGimicObjects;
+
+    void Update()
     {
-        TutorialManager.Instance.IsActive = false;
+        if (1 == m_NowGimicNumber)
+        {
+            TutorialManager.Instance.IsActive = false;
+            m_FirstGimicObjects.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                m_FirstGimicObjects.SetActive(false);
+
+                m_NowGimicNumber++;
+                TutorialManager.Instance.IsActive = true;
+            }
+        }
+
+        if (2 == m_NowGimicNumber)
+        {
+            TutorialManager.Instance.IsActive = false;
+            m_SecondGimicObjects.SetActive(true);
+        }
     }
 }

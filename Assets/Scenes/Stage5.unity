@@ -5588,9 +5588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a8f284126f1304c876b767dffaca27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RotateAngle: 0
-  m_WatingTime: 0
-  m_RotatingSpot: 0
+  m_RotateAngle: 90
+  m_WatingTime: 2
+  m_RotatingSpot: 4
 --- !u!4 &1254984959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6183100893584947730, guid: 5f218955cad910945a8d6b73fe57c348, type: 3}
@@ -6858,8 +6858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6946a8e01317b49872e19fa3954f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxDirection: 20
-  m_MinDirection: -20
+  m_MaxDirection: 35
+  m_MinDirection: -35
   m_HitArrowClip: {fileID: 8300000, guid: ced7c09d955e74b70a97af69106fb289, type: 3}
   m_NavMeshSurface: {fileID: 1000709623}
 --- !u!114 &1538835503
@@ -8868,8 +8868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6946a8e01317b49872e19fa3954f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxDirection: 20
-  m_MinDirection: -20
+  m_MaxDirection: 35
+  m_MinDirection: -35
   m_HitArrowClip: {fileID: 8300000, guid: ced7c09d955e74b70a97af69106fb289, type: 3}
   m_NavMeshSurface: {fileID: 1000709623}
 --- !u!114 &2073465819
