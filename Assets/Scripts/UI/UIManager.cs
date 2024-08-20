@@ -7,15 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Image m_RifleImage;
-    [SerializeField]
     private List<Image> m_BulletCount;
-
-    [SerializeField]
-    private List<Sprite> m_RifleSprites;
-    [SerializeField]
-    private List<Sprite> m_BulletSprites;
-
     [SerializeField]
     private GameObject m_RestartToMessage;
     [SerializeField]
@@ -57,22 +49,12 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < m_BulletCount.Count; i++)
         {
-            if (p_bullet < (i + 1))
+            if (p_bullet < (i + 1)) 
             {
                 m_BulletCount[i].gameObject.SetActive(false);
                 continue;
             }
             m_BulletCount[i].gameObject.SetActive(true);            
-        }
-    }
-
-    public void BulletSpriteChange(BulletType p_bullettype)
-    {
-        m_RifleImage.sprite = m_RifleSprites[(int)p_bullettype];
-
-        for (int i = 0; i < m_BulletCount.Count; i++)
-        {
-            m_BulletCount[i].sprite = m_BulletSprites[(int)p_bullettype];
         }
     }
 
@@ -105,7 +87,7 @@ public class UIManager : MonoBehaviour
     // 다음 스테이지로 이동
     public void NextStageLoadScene()
     {
-        SceneManager.LoadScene(GameManager.Instance.SceneNumber + 1);
+        SceneManager.LoadScene(GameManager.Instance.m_SceneNumber + 1);
     }
 
     // 메인메뉴 씬 로드
@@ -115,7 +97,7 @@ public class UIManager : MonoBehaviour
     }
 
     // Esc메시지에서 Yes버튼 눌렀을 때
-    public void OnclickEscMessageYes()
+    public void EscMessageYes()
     {
         Time.timeScale = 1.0f;
         GameManager.Instance.IsGamePause = false;
@@ -123,15 +105,10 @@ public class UIManager : MonoBehaviour
     }
 
     // Esc메시지에서 No버튼 눌렀을 때
-    public void OnclickEscMessageNo()
+    public void EscMessageNo()
     {
         Time.timeScale = 1.0f;
         GameManager.Instance.IsGamePause = false;
         m_EscMessage.SetActive(false);
-    }
-
-    public void OnClickRestartButton()
-    {
-        GameManager.Instance.RestartGame();
     }
 }

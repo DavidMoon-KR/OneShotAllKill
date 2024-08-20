@@ -151,6 +151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937e112073adb0b47afd6614fb11af14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pivotAtTop: 1
+  _orientation: 2
+  _invertDirection: 0
+  _isTrigger: 0
+  _material: {fileID: 2100000, guid: dce70a510f1dcc54eb293ab399650bdb, type: 2}
+  _coneSides: 24
+  _proportionalRadius: 0
+  _coneRadius: 0.5
+  _coneHeight: 1.2
 --- !u!1001 &2549921494984102717
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager Instance => m_Instance;
 
     public bool IsActive { get => m_IsActive; set => m_IsActive = value; }
-    void Awake()
+    private void Start()
     {
         m_Instance = GetComponent<TutorialManager>();
     }
