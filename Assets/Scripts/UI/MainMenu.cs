@@ -25,7 +25,6 @@ public enum StageID
     _1rd_Tutorial = 1030,
     _1rd_Stage1,
     _1rd_Stage2,
-
 }
 
 public class MainMenu : MonoBehaviour

@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     // 휴머노이드가 스테이지에 존재하는지 판단하는 변수 휴머노이드가 있을 경우 true반환하며, 게임매니저에서 타겟의 위치를 휴머노이에게 모두 전달한다. 하지만 없을경우 false를 반환하며, 위치를 전달하지 않음. 각 스테이지마다 휴머노이드가 없는 경우를 고려하여, 만든 변수
     [SerializeField]
     private bool m_IsHumanoid;
+    [SerializeField]
+    private int m_SceneNumber;        // 현 스테이지 단계
 
     public int m_Targets;            // 스테이지 내에 총 타겟 개수
     private int m_TurretCount;       // 스테이지 내에 터렛 개수
     private int m_HumanoidCount;     // 스테이지 내에 휴머노이드 개수
-    public int m_SceneNumber;        // 현 스테이지 단계
+                                     // 
     public Vector3 m_ExplosionedPos; // 폭발이 일어난 위치
 
     // 게임이 끝나기 전에 잠시 기다리는 시간
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => m_Instance;
 
     public bool IsGamePause { get => m_IsGamePause; set => m_IsGamePause = value; }
+    public int SceneNumber { get => m_SceneNumber; }
 
     void Start()
     {
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
         // 재시작
         if (Input.GetKeyUp(KeyCode.R) && !m_IsGamePause)
         {
-            SceneManager.LoadScene(m_SceneNumber);
+            RestartGame();
         }
 
         // 게임이 끝났고 클리어 성공한 경우
@@ -87,6 +90,11 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.m_MissionComplete = false;
             UIManager.Instance.GameOverMessage();
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(m_SceneNumber);
     }
 
     // 게임오버
