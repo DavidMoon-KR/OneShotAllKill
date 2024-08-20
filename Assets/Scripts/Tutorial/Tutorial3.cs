@@ -7,7 +7,7 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tutorial2 : MonoBehaviour
+public class Tutorial3 : MonoBehaviour
 {
     // 각종 마크들
     [SerializeField]
@@ -18,17 +18,5 @@ public class Tutorial2 : MonoBehaviour
     void Start()
     {
         TutorialManager.Instance.IsActive = false;
-    }
-
-    public void OnClickEnergyWallButton()
-    {
-        // 게임이 일시정지인 상황에서는 행동 불가
-        if (GameManager.Instance.IsGamePause)
-        {
-            return;
-        }
-
-        m_LeftMouseImage.gameObject.SetActive(!m_LeftMouseImage.gameObject.activeSelf);
-        m_LinkLineImage.SetActive(!m_LinkLineImage.activeSelf);
     }
 }

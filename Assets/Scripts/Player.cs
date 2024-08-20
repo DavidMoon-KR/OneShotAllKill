@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-enum BulletType
+
+public enum BulletType
 {
     BulletType_Normal,
     BulletType_Emp,
@@ -87,14 +88,6 @@ public class Player : MonoBehaviour
         // 탄이 모두 떨어졌다면
         if (m_BulletSum <= 0)
         {
-            if (TutorialManager.Instance != null)
-            {
-                m_BulletCount[(int)m_SelectBulletType]++;
-                UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
-                m_BulletSum++;
-                return;
-            }
-
             // 게임매니저에게 탄 없다는 것을 알림
             GameManager.Instance.m_HasNotAmmo = true;
         }
@@ -116,6 +109,10 @@ public class Player : MonoBehaviour
     // 총알 종류 변경
     void ChangeBulletType()
     {
+        // 만약 바꿀 총이 없다면 바꾸지 못하므로 바로 종료
+        if (1 >= m_BulletPrefab.Count)
+            return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             m_SelectBulletType++;
@@ -123,6 +120,9 @@ public class Player : MonoBehaviour
             {
                 m_SelectBulletType = BulletType.BulletType_Normal;
             }
+
+            // 바뀐 총 UI에 표시
+            UIManager.Instance.BulletSpriteChange(m_SelectBulletType);
 
             // 바뀐 총알 개수 UI에 표시
             UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
