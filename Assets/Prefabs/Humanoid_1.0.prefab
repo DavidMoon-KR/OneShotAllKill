@@ -1297,15 +1297,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8420eb51ac8544a86286516bc448bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wayPoint: []
-  _currentTarget: 0
-  _waitBeforeMoving: 5
-  _impactTime: 1
-  _impactGauge: 1
-  _explosion: {fileID: 1956658677142100356, guid: 8f11636736926e04290d1efd64455bfd, type: 3}
-  _agent: {fileID: 0}
-  _explosionDetection: 0
-  _explosionedPos: {x: 0, y: 0, z: 0}
+  m_WayPoint: []
+  m_CurrentTarget: 0
+  m_WaitBeforeMoving: 0
+  m_ImpactTime: 0
+  m_ImpactGauge: 0
+  m_AgroTime: 0
+  m_Explosion: {fileID: 1956658677142100356, guid: 8f11636736926e04290d1efd64455bfd, type: 3}
+  m_Spark: {fileID: 4618672182275008679, guid: 950906c75f70dea4598c6406b968b403, type: 3}
+  m_Agent: {fileID: 0}
+  m_ExplosionDetection: 0
+  m_ExplosionedPos: {x: 0, y: 0, z: 0}
 --- !u!82 &7386005472712005832
 AudioSource:
   m_ObjectHideFlags: 0

@@ -31,6 +31,9 @@ public class Humanoid : MonoBehaviour
     [SerializeField]
     private GameObject m_Explosion;
 
+    [SerializeField]
+    private GameObject m_Spark;
+
     private bool m_TargetReached = false;
     private bool m_IsReturned = false;
 
@@ -38,6 +41,8 @@ public class Humanoid : MonoBehaviour
     private bool m_TriggerExplosion = false;
 
     public NavMeshAgent m_Agent;
+
+    private bool m_IsHit;
 
     private bool m_IsTriggerAni = true;
     private Animator m_Anim;
@@ -55,6 +60,7 @@ public class Humanoid : MonoBehaviour
         m_Anim = GetComponent<Animator>();
         m_Time = 0.0f;
         m_OriginalLocation = transform.position;
+        m_IsHit = false;
     }
 
     void Update()
@@ -62,75 +68,78 @@ public class Humanoid : MonoBehaviour
         if (m_AgroNow)
             m_Time += Time.deltaTime;
         // 웨이포인트가 있다면
-        if (m_WayPoint.Count > 0 && m_ExplosionDetection == false)
+        if(m_IsHit == false)
         {
-            // 애니메이션 작동
-            if (m_IsTriggerAni == true)
+            if (m_WayPoint.Count > 0 && m_ExplosionDetection == false)
             {
-                m_Anim.SetBool("Walk", true);
-            }
-
-            // 설정한 웨이포인트로 이동
-            m_Agent.SetDestination(m_WayPoint[m_CurrentTarget].position);
-
-            // 자신의 위치와 웨이포인트 위치 사이의 거리를 구함
-            m_Distance = Vector3.Distance(transform.position, m_WayPoint[m_CurrentTarget].position);
-
-            // 거리가 1.0 미만이라면
-            if (m_Distance < 1.0f && m_TargetReached == false)
-            {
-                m_TargetReached = true;
-                m_Anim.SetBool("Walk", false);
-                m_IsTriggerAni = false;
-                StartCoroutine(WaitBeforeMoving());
-            }
-        }
-        else
-        {
-            if (m_ExplosionDetection == true)
-            {
-                m_Anim.SetBool("Walk", true);
-                float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
-                m_Agent.SetDestination(m_ExplosionedPos);
-
-                // 목적지에 도착하면 이동 멈춤
-                if (distance < 3.3f)
+                // 애니메이션 작동
+                if (m_IsTriggerAni == true)
                 {
-                    // 작동 끄기
-                    m_Distance = 0;
-                    m_Agent.ResetPath();
-                    m_Anim.SetBool("Walk", false);
+                    m_Anim.SetBool("Walk", true);
+                }
 
-                    // 오브젝트 흔들림 버그 방지를 위해 작성함
-                    Rigidbody rb = GetComponent<Rigidbody>();
-                    rb.isKinematic = true;
-                    rb.isKinematic = false;
-                    m_AgroNow = true;
+                // 설정한 웨이포인트로 이동
+                m_Agent.SetDestination(m_WayPoint[m_CurrentTarget].position);
+
+                // 자신의 위치와 웨이포인트 위치 사이의 거리를 구함
+                m_Distance = Vector3.Distance(transform.position, m_WayPoint[m_CurrentTarget].position);
+
+                // 거리가 1.0 미만이라면
+                if (m_Distance < 1.0f && m_TargetReached == false)
+                {
+                    m_TargetReached = true;
+                    m_Anim.SetBool("Walk", false);
+                    m_IsTriggerAni = false;
+                    StartCoroutine(WaitBeforeMoving());
                 }
             }
-        }
-        if (m_AgroTime < m_Time)
-        {
-            if(m_WayPoint.Count <= 0)
+            else
             {
-                m_Anim.SetBool("Walk", true);
-                float distance = Vector3.Distance(transform.position, m_OriginalLocation);
-                m_Agent.SetDestination(m_OriginalLocation);
-                if (distance < 3.3f)
+                if (m_ExplosionDetection == true)
                 {
-                    m_Distance = 0;
-                    m_Agent.ResetPath();
-                    m_Anim.SetBool("Walk", false);
-                    m_Time = 0.0f;
+                    m_Anim.SetBool("Walk", true);
+                    float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
+                    m_Agent.SetDestination(m_ExplosionedPos);
 
-                    // 오브젝트 흔들림 버그 방지를 위해 작성함
-                    Rigidbody rb = GetComponent<Rigidbody>();
-                    rb.isKinematic = true;
-                    rb.isKinematic = false;
+                    // 목적지에 도착하면 이동 멈춤
+                    if (distance < 3.3f)
+                    {
+                        // 작동 끄기
+                        m_Distance = 0;
+                        m_Agent.ResetPath();
+                        m_Anim.SetBool("Walk", false);
+
+                        // 오브젝트 흔들림 버그 방지를 위해 작성함
+                        Rigidbody rb = GetComponent<Rigidbody>();
+                        rb.isKinematic = true;
+                        rb.isKinematic = false;
+                        m_AgroNow = true;
+                    }
                 }
             }
-            m_AgroNow = false;
-            m_ExplosionDetection = false;
+            if (m_AgroTime < m_Time)
+            {
+                if (m_WayPoint.Count <= 0)
+                {
+                    m_Anim.SetBool("Walk", true);
+                    float distance = Vector3.Distance(transform.position, m_OriginalLocation);
+                    m_Agent.SetDestination(m_OriginalLocation);
+                    if (distance < 3.3f)
+                    {
+                        m_Distance = 0;
+                        m_Agent.ResetPath();
+                        m_Anim.SetBool("Walk", false);
+                        m_Time = 0.0f;
+
+                        // 오브젝트 흔들림 버그 방지를 위해 작성함
+                        Rigidbody rb = GetComponent<Rigidbody>();
+                        rb.isKinematic = true;
+                        rb.isKinematic = false;
+                    }
+                }
+                m_AgroNow = false;
+                m_ExplosionDetection = false;
+            }
         }
     }
 
@@ -173,6 +182,10 @@ public class Humanoid : MonoBehaviour
         // 탄과 충돌하거나 가스폭발과 충돌할 경우
         if ((other.tag == "Bullet" || other.tag == "GasExplosion") && m_TriggerExplosion == false)
         {
+            StopMoving();
+            Instantiate(m_Spark, transform.position, Quaternion.identity); 
+            m_IsHit = true;
+            m_Anim.SetBool("Hit", true);
             // 폭발 상태 true로 전환
             m_TriggerExplosion = true;
 
@@ -203,7 +216,7 @@ public class Humanoid : MonoBehaviour
     // 이동 멈춤
     private IEnumerator StopMoving()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.0f);
 
         // SetDestination 작동 끄기
         m_Distance = 0;
@@ -215,6 +228,7 @@ public class Humanoid : MonoBehaviour
     // 폭발 딜레이
     private IEnumerator ExplosionDelay(bool p_hasBullet)
     {
+
         // 탄과 충돌한 경우
         if (p_hasBullet == true)
         {

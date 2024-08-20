@@ -2967,33 +2967,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 695100517}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
---- !u!1 &695100516 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-  m_PrefabInstance: {fileID: 695100515}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &695100517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695100516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5611af17340b5459d37d532086952b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpactTime: 0.8
-  m_ImpactGauge: 0.5
-  m_RotateSpeed: 60
-  m_Explosion: {fileID: 7545161965981264966, guid: 20f378658c70e2940826436a14dd9bac, type: 3}
-  m_ExplosionSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
 --- !u!4 &695100518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2462617026002579991, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
@@ -6692,33 +6667,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1807337269}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
---- !u!1 &1807337268 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-  m_PrefabInstance: {fileID: 1807337267}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1807337269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807337268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5611af17340b5459d37d532086952b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpactTime: 0.8
-  m_ImpactGauge: 0.5
-  m_RotateSpeed: 60
-  m_Explosion: {fileID: 7545161965981264966, guid: 20f378658c70e2940826436a14dd9bac, type: 3}
-  m_ExplosionSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
 --- !u!4 &1807337270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2462617026002579991, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
@@ -7668,33 +7618,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2102079199}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
---- !u!1 &2102079198 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-  m_PrefabInstance: {fileID: 2102079197}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2102079199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2102079198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5611af17340b5459d37d532086952b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpactTime: 0.8
-  m_ImpactGauge: 0.5
-  m_RotateSpeed: 60
-  m_Explosion: {fileID: 7545161965981264966, guid: 20f378658c70e2940826436a14dd9bac, type: 3}
-  m_ExplosionSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
 --- !u!4 &2102079200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2462617026002579991, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}

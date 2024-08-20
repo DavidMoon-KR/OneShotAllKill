@@ -1283,38 +1283,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 140750445}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
 --- !u!4 &140750443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2462617026002579991, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
   m_PrefabInstance: {fileID: 140750442}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &140750444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2459318751005259613, guid: 5db4704d0405e464cb5fe5afffb92c70, type: 3}
-  m_PrefabInstance: {fileID: 140750442}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &140750445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140750444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5611af17340b5459d37d532086952b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpactTime: 0.8
-  m_ImpactGauge: 0.5
-  m_RotateSpeed: 60
-  m_Explosion: {fileID: 7545161965981264966, guid: 20f378658c70e2940826436a14dd9bac, type: 3}
-  m_ExplosionSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
 --- !u!114 &160413670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5609,9 +5584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a8f284126f1304c876b767dffaca27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RotateAngle: 90
-  m_WatingTime: 3
-  m_RotatingSpot: 3
+  m_RotateAngle: 0
+  m_WatingTime: 0
+  m_RotatingSpot: 0
 --- !u!4 &1254984959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6183100893584947730, guid: 5f218955cad910945a8d6b73fe57c348, type: 3}

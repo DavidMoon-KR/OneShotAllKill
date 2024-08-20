@@ -22,15 +22,25 @@ public class Turret : MonoBehaviour
     // 폭발 VFX 프리팹
     [SerializeField]
     GameObject m_Explosion;
-
+    [SerializeField]
+    private GameObject m_Spark;
+    private bool m_IsHit;
     [SerializeField]
     private AudioClip m_ExplosionSound;
     private AudioSource m_Audio;
 
+    private void Start()
+    {
+        m_IsHit = false;
+    }
+
     void Update()
     {
-        transform.Rotate(0, m_RotateSpeed * Time.deltaTime, 0);
-        m_Audio = GetComponent<AudioSource>();
+        if(m_IsHit == false)
+        {
+            transform.Rotate(0, m_RotateSpeed * Time.deltaTime, 0);
+            m_Audio = GetComponent<AudioSource>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +48,8 @@ public class Turret : MonoBehaviour
         // 탄알에 충돌하거나 가스 폭발과 충돌했다면
         if ((other.tag == "Bullet" || other.tag == "GasExplosion") && m_ExploionTrigger == false)
         {
+            m_IsHit = true;
+            Instantiate(m_Spark, transform.position, Quaternion.identity);
             // 게임매니저에서 현재 타겟 수 -1
             GameManager.Instance.m_Targets--;
             m_ExploionTrigger = true;
