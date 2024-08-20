@@ -2396,10 +2396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78205df696c98134a879756578c5a791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HitWallClip: {fileID: 8300000, guid: dfca84dc04e1f48c08e3a081991483b3, type: 3}
-  m_IsClick: 0
-  m_MouseP: {x: 0, y: 0, z: 0}
-  m_NavMeshSurface: {fileID: 1000709623}
+  _hitWallClip: {fileID: 8300000, guid: ced7c09d955e74b70a97af69106fb289, type: 3}
+  _rotationAngle: 15
 --- !u!114 &596649457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5658,10 +5656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78205df696c98134a879756578c5a791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HitWallClip: {fileID: 8300000, guid: dfca84dc04e1f48c08e3a081991483b3, type: 3}
-  m_IsClick: 0
-  m_MouseP: {x: 0, y: 0, z: 0}
-  m_NavMeshSurface: {fileID: 1000709623}
+  _hitWallClip: {fileID: 8300000, guid: ced7c09d955e74b70a97af69106fb289, type: 3}
+  _rotationAngle: 15
 --- !u!114 &1271215702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5700,7 +5696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxDirection: -1
   m_MinDirection: -16
-  m_HitArrowClip: {fileID: 0}
+  m_HitArrowClip: {fileID: 8300000, guid: ced7c09d955e74b70a97af69106fb289, type: 3}
   m_NavMeshSurface: {fileID: 1000709623}
 --- !u!114 &1300937696
 MonoBehaviour:
