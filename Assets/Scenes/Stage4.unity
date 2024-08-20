@@ -2735,6 +2735,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnergyWall
       objectReference: {fileID: 0}
+    - target: {fileID: 7667228543216701714, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667228543216701714, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667228543216701718, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667228543216701718, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7667228543216864562, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
       propertyPath: m_LocalPosition.z
       value: -8.42
