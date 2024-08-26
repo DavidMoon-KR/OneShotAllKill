@@ -225,9 +225,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!114 &1743700113831524946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca039d8b82c8ab140a22194604caeb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 70
+  m_Speed: 200
   m_MuzzlePrefab: {fileID: 5384489699667216464, guid: 89bc650243ef6a54ebcd807488081a8a, type: 3}
   m_HitPrefab: {fileID: 8340392718532922013, guid: ea0fc65712564bc4ca266be94cc91352, type: 3}
 --- !u!1001 &7137481261482024752
