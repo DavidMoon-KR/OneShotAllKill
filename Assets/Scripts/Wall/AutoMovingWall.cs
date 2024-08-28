@@ -1,60 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AutoMovingWall : MonoBehaviour
 {
-    [SerializeField] private float m_MovingSpeed;
-    [SerializeField] private float m_RotateSpeed;
-    [SerializeField] private float m_MinDir;
-    [SerializeField] private float m_MaxDir;
-    [SerializeField] private float m_WaitingTime;
+    [SerializeField] private float m_Speed;
 
-    [SerializeField] private bool m_IsTurned = false;
-    [SerializeField] private bool m_IsStopped = false;
+    [SerializeField] private float m_MaxRightPos;
+    [SerializeField] private float m_MaxLeftPos;
 
-    [SerializeField]
-    private GameObject m_Wheel;
+    private Vector3 m_MoveDirection = Vector3.right;
 
-    void Start()
-    {
-        
-    }
+    private bool m_IsStopped = false;
 
     void Update()
     {
-        // 현 위치가 최대거리보다 짧고 반대쪽 턴이 아닌 상태이며, 멈추지 않았을 경우
-        if(transform.position.x < m_MaxDir && m_IsTurned == true && m_IsStopped == false)
+        if (!m_IsStopped)
+            transform.Translate(m_MoveDirection * m_Speed * Time.deltaTime);
+
+        if (transform.localPosition.x >= m_MaxRightPos)
         {
-            transform.Translate(Vector3.right * m_MovingSpeed * Time.deltaTime);
-            m_Wheel.transform.Rotate(Vector3.back * m_RotateSpeed * Time.deltaTime);
-            
-            // 현 위치가 최대거리보다 같거나 길경우
-            if(transform.position.x >= m_MaxDir)
-            {
-                // 방향 유턴
-                m_IsTurned = false;
-                StartCoroutine(TimetoStopped());
-            }
+            StartCoroutine(TimetoStopped());
+            m_MoveDirection = Vector3.left;
         }
-        // 현 위치가 최소거리보다 길고 반대쪽 턴이 아닌 상태이며, 멈추지 않았을 경우
-        else if (transform.position.x > m_MinDir && m_IsTurned == false && m_IsStopped == false)
+        else if (transform.localPosition.x <= m_MaxLeftPos)
         {
-            transform.Translate(Vector3.left * m_MovingSpeed * Time.deltaTime);
-            m_Wheel.transform.Rotate(Vector3.forward * m_RotateSpeed * Time.deltaTime);
-            if (transform.position.x <= m_MinDir)
-            {
-                m_IsTurned = true;
-                StartCoroutine(TimetoStopped());
-            }
+            StartCoroutine(TimetoStopped());
+            m_MoveDirection = Vector3.right;
         }
     }
-    
-    // 일정시간 동안 이동을 멈춤
-    private IEnumerator TimetoStopped()
+
+    IEnumerator TimetoStopped()
     {
         m_IsStopped = true;
-        yield return new WaitForSeconds(m_WaitingTime);
+        yield return new WaitForSeconds(2.0f);
         m_IsStopped = false;
     }
 }

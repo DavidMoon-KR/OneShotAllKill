@@ -13,42 +13,29 @@ public enum BulletType
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float m_FireRate = 0.5f;     // 연사속도 (초당 발사 횟수)
+    [SerializeField] private float m_FireRate = 0.5f; // 연사속도 (초당 발사 횟수)
     private float m_NextFireTime = 0f;   // 다음 발사 시간
 
-    // 탄 프리팹
-    [SerializeField]
-    private List<GameObject> m_BulletPrefab;
-    
-    // 현재 선택된 총알 타입
-    private BulletType m_SelectBulletType = BulletType.BulletType_Normal;
+    [SerializeField] private List<GameObject> m_BulletPrefab;   // 탄 프리팹
+    [SerializeField] private Transform m_BulletTransform;       // 탄이 나오는 위치
 
-    public List<int> m_BulletCount; // 각 총알 개수
+    private BulletType m_SelectBulletType = BulletType.BulletType_Normal; // 현재 선택된 총알 타입
     private int m_BulletSum = 0;    // 전체 총알 개수 합
+    public List<int> m_BulletCount; // 각 총알 개수    
 
-    // 탄이 나오는 위치
-    [SerializeField]
-    private Transform m_BulletTransform;
+    // 카메라 쉐이킹
+    [SerializeField] private float m_ImpactTime;    // 카메라 쉐이킹 효과 시간
+    [SerializeField] private float m_ImpactGauge;   // 카메라 쉐이킹 효과 수치
 
-    public List<GameObject> m_WallID; // 각각의 벽들이 갖고 있는 번호
-
-    // 카메라 쉐이킹 효과 시간
-    [SerializeField]
-    private float m_ImpactTime;
-
-    // 카메라 쉐이킹 효과 수치
-    [SerializeField]
-    private float m_ImpactGauge;
-
-    [SerializeField]
-    private AudioClip m_FireGenerated;
+    // 사운드
+    [SerializeField] private AudioClip m_FireGenerated;
     private AudioSource m_AudioSource;
 
     // 플레이어 스크립트를 인스턴스화 한 것
     private static Player m_Instance;
     public static Player Instance => m_Instance;
 
+    // 프로퍼티
     public int BulletSum { get => m_BulletSum; set => m_BulletSum = value; }
 
     void Start()
@@ -68,7 +55,7 @@ public class Player : MonoBehaviour
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
         // 게임이 일시정지인 상황에서는 행동 불가
-        if (TutorialManager.Instance != null && TutorialManager.Instance.IsActive || GameManager.Instance.IsGamePause)
+        if (GameManager.Instance.IsGamePause)
         {
             return;
         }

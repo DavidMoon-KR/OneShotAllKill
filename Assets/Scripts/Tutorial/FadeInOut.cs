@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    [SerializeField]
-    private float m_FadeTime;   // 페이드 되는 시간
-    [SerializeField]
-    private Graphic m_FadeText;    // 페이드 효과에 사용되는 Image UI
+    [SerializeField] private float m_FadeTime;      // 페이드 되는 시간
+    [SerializeField] private Graphic m_FadeText;    // 페이드 효과에 사용되는 Image UI
 
     private void OnEnable()
     {

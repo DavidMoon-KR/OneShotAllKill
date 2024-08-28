@@ -6,39 +6,27 @@ using UnityEngine.AI;
 
 public class Humanoid : MonoBehaviour
 {
-    private static Humanoid m_Instance;
-    public static Humanoid Instance => m_Instance;
+    [SerializeField] private List<Transform> m_WayPoint;
 
-    [SerializeField]
-    private List<Transform> m_WayPoint;
+    [SerializeField] private int m_CurrentTarget = 0;
 
-    [SerializeField]
-    private int m_CurrentTarget = 0;
-
-    [SerializeField]
-    private float m_WaitBeforeMoving;
-    [SerializeField]
-    private float m_ImpactTime;
-    [SerializeField]
-    private float m_ImpactGauge;
+    [SerializeField] private float m_WaitBeforeMoving;
+    [SerializeField] private float m_ImpactTime;
+    [SerializeField] private float m_ImpactGauge;
     private float m_Distance;
-    [SerializeField]
-    private float m_AgroTime;
+
+    [SerializeField] private float m_AgroTime;
     private float m_Time;
     private bool m_AgroNow;
     private Vector3 m_OriginalLocation;
 
-    [SerializeField]
-    private GameObject m_Explosion;
-
-    [SerializeField]
-    private GameObject m_Spark;
+    [SerializeField] private GameObject m_Explosion;
+    [SerializeField] private GameObject m_Spark;
 
     private bool m_TargetReached = false;
     private bool m_IsReturned = false;
 
-    // 폭발 감지를 딱 한번만 실행하도록 하기 위한 장치
-    private bool m_TriggerExplosion = false;
+    private bool m_TriggerExplosion = false; // 폭발 했는지 여부
 
     public NavMeshAgent m_Agent;
 
@@ -55,7 +43,6 @@ public class Humanoid : MonoBehaviour
 
     void Start()
     {
-        m_Instance = gameObject.GetComponent<Humanoid>();
         m_Agent = GetComponent<NavMeshAgent>();
         m_Anim = GetComponent<Animator>();
         m_Time = 0.0f;

@@ -5,22 +5,9 @@ using UnityEngine;
 public class GasBarrel : MonoBehaviour
 {
     // Æø¹ß ÇÁ¸®ÆÕ
-    [SerializeField]
-    private GameObject m_ExplosionObject;
-    [SerializeField]
-    private float m_ImpactTime;
-    [SerializeField]
-    private float m_mpactGauage;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameObject m_ExplosionObject;
+    [SerializeField] private float m_ImpactTime;
+    [SerializeField] private float m_mpactGauage;
 
     // Åº ¶Ç´Â °¡½ºÆø¹ß°ú Ãæµ¹ÇÑ °æ¿ì
     private void OnTriggerEnter(Collider other)

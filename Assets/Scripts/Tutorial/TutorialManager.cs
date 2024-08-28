@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    private bool m_IsActive = true;
-
+    // 튜토리얼매니저 스크립트를 인스턴스화 한 것
     private static TutorialManager m_Instance;
     public static TutorialManager Instance => m_Instance;
 
-    public bool IsActive { get => m_IsActive; set => m_IsActive = value; }
     void Awake()
     {
         m_Instance = GetComponent<TutorialManager>();

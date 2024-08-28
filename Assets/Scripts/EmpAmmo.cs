@@ -9,8 +9,8 @@ public class EmpAmmo : MonoBehaviour
     public GameObject m_HitPrefab;    // »ç¹°°ú Ãæµ¹ÇßÀ» °æ¿ì ÅºÆÛÁü È¿°ú
     private Vector3 m_Direction;      // Åº °Å¸®
 
-    [SerializeField]
-    private GameObject m_EmpExplosion;
+    // EmpÅº Æø¹ß ÀÌÆåÆ®
+    [SerializeField] private GameObject m_EmpExplosion;
 
     private void Start()
     {

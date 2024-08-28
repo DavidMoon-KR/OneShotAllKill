@@ -5,8 +5,7 @@ using UnityEngine;
 public class GasExplosion : MonoBehaviour
 {
     // Æø¹ß ½Ã°£
-    [SerializeField]
-    private float m_ExplosionTime;
+    [SerializeField] private float m_ExplosionTime;
 
     void Start()
     {

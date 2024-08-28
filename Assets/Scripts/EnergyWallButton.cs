@@ -7,11 +7,10 @@ public class EnergyWallButton : MonoBehaviour
     // 버튼을 눌렀는지 상태 여부 판단
     private bool m_GetPress = false;
 
-    [SerializeField]
-    private List<GameObject> m_Shield;
+    [SerializeField] private List<GameObject> m_Shield;
 
-    [SerializeField]
-    private AudioClip m_Clip;
+    // 사운드
+    [SerializeField] private AudioClip m_Clip;
     private AudioSource m_AudioSource;
 
     void Start()

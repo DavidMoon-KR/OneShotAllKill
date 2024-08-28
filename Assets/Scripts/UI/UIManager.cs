@@ -6,32 +6,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private Image m_RifleImage;
-    [SerializeField]
-    private List<Image> m_BulletCount;
+    // 총, 총알 UI
+    [SerializeField] private Image m_RifleImage;
+    [SerializeField] private List<Image> m_BulletCount;
 
-    [SerializeField]
-    private List<Sprite> m_RifleSprites;
-    [SerializeField]
-    private List<Sprite> m_BulletSprites;
+    // 총, 총알 스프라이트
+    [SerializeField] private List<Sprite> m_RifleSprites;
+    [SerializeField] private List<Sprite> m_BulletSprites;
 
-    [SerializeField]
-    private GameObject m_RestartToMessage;
-    [SerializeField]
-    private GameObject m_BlackScreen;
-    [SerializeField]
-    private GameObject m_ClearText;
-    [SerializeField]
-    private GameObject m_NextStageButton;
-    [SerializeField]
-    private GameObject m_GameExitButton;
-    [SerializeField]
-    private GameObject m_EscMessage;
+    // 각종 오브젝트들
+    [SerializeField] private GameObject m_RestartToMessage; // 재시작 메시지
+    [SerializeField] private GameObject m_BlackScreen;      // 검은 화면
+    [SerializeField] private GameObject m_ClearText;        // 클리어 텍스트
+    [SerializeField] private GameObject m_NextStageButton;  // 다음 스테이지 넘어가는 버튼
+    [SerializeField] private GameObject m_GameExitButton;   // 게임 종료 버튼
+    [SerializeField] private GameObject m_EscMessage;       // Esc 눌렀을 떄 나오는 메시지
 
     public bool m_MissionComplete = false;   // 스테이지 클리어 여부 판단
     private bool m_OneChecking = true;       // 결과 애니메이션이 한번만 나오게 하는 변수
 
+    // UI매니저를 인스턴스화 한 것
     private static UIManager m_Instance;
     public static UIManager Instance => m_Instance;
 

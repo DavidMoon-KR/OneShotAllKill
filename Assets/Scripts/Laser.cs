@@ -6,8 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour
 {
-    [SerializeField]
-    public float m_DefaultLength;
+    [SerializeField] public float m_DefaultLength;
 
     private LineRenderer m_Laser;
     private Camera m_Cam;
@@ -16,6 +15,7 @@ public class Laser : MonoBehaviour
 
     private Ray m_Ray;
     private Vector3 m_Direction;
+
     private void Start()
     {//레이저 초기 설정(색, 굵기) 설정
         m_Laser = GetComponent<LineRenderer>();

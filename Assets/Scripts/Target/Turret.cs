@@ -3,30 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
-{
-    // 폭발했을 때 쉐이킹 시간
-    [SerializeField]
-    private float m_ImpactTime;
+{    
+    [SerializeField] private float m_ImpactTime;    // 폭발했을 때 쉐이킹 시간
+    [SerializeField] private float m_ImpactGauge;   // 폭발 쉐이킹 강도
+    [SerializeField] private float m_RotateSpeed;   // 회전 속도
 
-    // 폭발 쉐이킹 강도
-    [SerializeField]
-    private float m_ImpactGauge;
-
-    // 회전 속도
-    [SerializeField]
-    private float m_RotateSpeed;
-
-    // 한번만 폭발할 수 있도록 한다.
-    private bool m_ExploionTrigger = false;
-
-    // 폭발 VFX 프리팹
-    [SerializeField]
-    GameObject m_Explosion;
-    [SerializeField]
-    private GameObject m_Spark;
+    private bool m_ExploionTrigger = false; // 폭발 했는지 여부
+    
+    [SerializeField] GameObject m_Explosion;    // 폭발 VFX 프리팹
+    [SerializeField] private GameObject m_Spark;
     private bool m_IsHit;
-    [SerializeField]
-    private AudioClip m_ExplosionSound;
+
+    // 사운드
+    [SerializeField] private AudioClip m_ExplosionSound;
     private AudioSource m_Audio;
 
     private void Start()

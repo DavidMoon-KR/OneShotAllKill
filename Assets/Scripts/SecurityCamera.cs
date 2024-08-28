@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
-    [SerializeField]
-    private float m_RotateAngle;
+    [SerializeField] private float m_RotateAngle;
+
+    [SerializeField] private float m_WatingTime;
+    [SerializeField] private int m_RotatingSpot;
+
     private bool m_isRotate = true;
-    [SerializeField]
-    private float m_WatingTime;
-    [SerializeField]
-    private int m_RotatingSpot;
+
     private float m_Timer;
     private int m_TurnCnt;
 

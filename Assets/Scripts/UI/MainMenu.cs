@@ -29,42 +29,31 @@ public enum StageID
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI m_GameTitle; // 게임 제목
-    [SerializeField]
-    private GameObject m_Level; // 레벨 그룹
-    [SerializeField]
-    private List<GameObject> m_LevelWindowList = new List<GameObject>(); // 레벨 리스트 창
-    [SerializeField]
-    private List<GameObject> m_LevelWindowInfo = new List<GameObject>(); // 레벨 정보 창
-    [SerializeField]
-    private List<GameObject> m_StageWindowInfo = new List<GameObject>(); // 스테이지 정보 창
-    [SerializeField]
-    private List<GameObject> m_LevelWindowInfo_Title = new List<GameObject>(); // 레벨 별 타이틀 정보
+    [SerializeField] private TextMeshProUGUI m_GameTitle;   // 게임 제목
 
-    [SerializeField]
-    private Image m_LevelWindowBackGround;  // 레벨 상세창 배경
-    [SerializeField]
-    private GameObject m_StageListWindow;   // 스테이지 리스트 창
-    [SerializeField]
-    private GameObject m_StageInfoWindow;   // 스테이지 정보 창
-    [SerializeField]
-    private List<Image> m_LevelMarkOn;      // 활성화 레벨 마크
-    [SerializeField]
-    private List<Image> m_LevelMarkOff;     // 비활성화 레벨 마크
+    // 스테이지 관련===========================================================================================================================================================
+    [SerializeField] private Button m_StageButton;  // 스테이지 버튼
+    [SerializeField] private GameObject m_Level;    // 레벨 그룹
+    [SerializeField] private Image m_LevelWindowBackGround;  // 레벨 상세창 배경
 
-    [SerializeField]
-    private Button m_StageButton; // 스테이지 버튼
+    // 스테이지 리스트 관련
+    [SerializeField] private GameObject m_StageListWindow;          // 스테이지 리스트 창
+    [SerializeField] private List<GameObject> m_LevelWindowList;    // 레벨 리스트 창
 
-    // 화살표 관련 이미지 및 스프라이트
-    [SerializeField]
-    private Image m_PreviousArrowImage;
-    [SerializeField]
-    private Image m_NextArrowImage;
-    [SerializeField]
-    private Sprite m_ArrowOnSprite;
-    [SerializeField]
-    private Sprite m_ArrowOffSprite;
+    [SerializeField] private List<Image> m_LevelMarkOn;     // 활성화 레벨 마크
+    [SerializeField] private List<Image> m_LevelMarkOff;    // 비활성화 레벨 마크
+
+    [SerializeField] private Image m_PreviousArrowImage;    // 이전 페이지로 가는 화살표 UI
+    [SerializeField] private Image m_NextArrowImage;        // 다음 페이지로 가는 화살표 UI
+    [SerializeField] private Sprite m_ArrowOnSprite;        // 켜진 화살표 스프라이트
+    [SerializeField] private Sprite m_ArrowOffSprite;       // 꺼진 화살표 스프라이트
+
+    // 스테이지 정보 관련
+    [SerializeField] private GameObject m_StageInfoWindow;          // 스테이지 정보 창
+    [SerializeField] private List<GameObject> m_LevelWindowInfo;    // 레벨 정보 창
+    
+    [SerializeField] private List<GameObject> m_StageWindowInfo;        // 스테이지 정보 창
+    [SerializeField] private List<GameObject> m_LevelWindowInfo_Title;  // 레벨 별 타이틀 정보
 
     private GameObject m_ClickLevel; // 클릭한 레벨
     private int m_SelectLevelNumber; // 클릭한 레벨 숫자
@@ -75,6 +64,9 @@ public class MainMenu : MonoBehaviour
     private const int m_3rd_StageCount = 3; // 기본 사격 단계 스테이지 수
     private const int m_2nd_StageCount = 3; // 문제 해결 능력 단계 스테이지 수
     private const int m_1st_StageCount = 3; // 전략적 사고력 단계 스테이지 수
+
+    //========================================================================================================================================================================
+
 
     // 스테이지 버튼 눌렀을 때
     public void OnClickStage()
