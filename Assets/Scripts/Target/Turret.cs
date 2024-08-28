@@ -32,10 +32,10 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         // 탄알에 충돌하거나 가스 폭발과 충돌했다면
-        if ((other.tag == "Bullet" || other.tag == "GasExplosion") && m_ExploionTrigger == false)
+        if ((collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion")) && m_ExploionTrigger == false)
         {
             m_IsHit = true;
             Instantiate(m_Spark, transform.position, Quaternion.identity);
@@ -43,8 +43,9 @@ public class Turret : MonoBehaviour
             GameManager.Instance.m_Targets--;
             m_ExploionTrigger = true;
 
-            if (other.tag == "Bullet")
+            if (collision.gameObject.CompareTag("Bullet"))
             {
+                this.GetComponent<BoxCollider>().isTrigger = true;
                 StartCoroutine(ExplosionDelay(true));
             }
 

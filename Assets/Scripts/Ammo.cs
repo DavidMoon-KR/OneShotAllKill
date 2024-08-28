@@ -8,9 +8,11 @@ public class Ammo : MonoBehaviour
     public GameObject m_MuzzlePrefab; // 탄 퍼짐 효과
     public GameObject m_HitPrefab;    // 사물과 충돌했을 경우 탄퍼짐 효과
     private Vector3 m_Direction;      // 탄 거리
+    private Rigidbody m_Rigidbody;
 
     private void Start()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
         m_Direction = transform.forward;
         if (m_MuzzlePrefab != null)
         {
@@ -33,7 +35,7 @@ public class Ammo : MonoBehaviour
     {
         if (m_Speed != 0)
         {
-            transform.position += transform.forward * (m_Speed * Time.deltaTime);
+            m_Rigidbody.velocity = (transform.forward * (m_Speed * Time.deltaTime)) * 1000;
         }
         else
         {
@@ -56,11 +58,14 @@ public class Ammo : MonoBehaviour
 
         // 탄 퍼짐 생성
         Instantiate(m_HitPrefab, transform.position, Quaternion.identity);
-        var firstContact = collision.contacts[0];
-        
-        // 반대쪽으로 각 전환
-        Vector3 newVelocity = Vector3.Reflect(m_Direction.normalized, firstContact.normal);
-        Bounce(newVelocity.normalized);
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("RotateWall"))
+        {
+            var firstContact = collision.contacts[0];
+
+            // 반대쪽으로 각 전환
+            Vector3 newVelocity = Vector3.Reflect(m_Direction.normalized, firstContact.normal);
+            Bounce(newVelocity.normalized);
+        } 
     }
 
     private void Bounce(Vector3 p_direction)

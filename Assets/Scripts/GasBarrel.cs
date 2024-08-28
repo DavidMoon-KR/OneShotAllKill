@@ -9,14 +9,18 @@ public class GasBarrel : MonoBehaviour
     [SerializeField] private float m_ImpactTime;
     [SerializeField] private float m_mpactGauage;
 
-    // 탄 또는 가스폭발과 충돌한 경우
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.tag == "Bullet" || other.tag == "GasExplosion")
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion"))
         {
             CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_mpactGauage);
             Instantiate(m_ExplosionObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+    }
+    // 탄 또는 가스폭발과 충돌한 경우
+    private void OnTriggerEnter(Collider other)
+    {
+
     }
 }

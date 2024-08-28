@@ -2224,6 +2224,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8431193291575726311, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_TagString
+      value: EnergyWall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

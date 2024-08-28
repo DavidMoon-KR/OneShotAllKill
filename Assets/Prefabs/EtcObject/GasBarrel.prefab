@@ -74,9 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5060affe8ff51b41a027c641e902bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionObject: {fileID: 1794013266827495637, guid: c31168784c3d89a4a957c13876692da7, type: 3}
-  _impactTime: 1
-  _impactGauage: 1.5
+  m_ExplosionObject: {fileID: 0}
+  m_ImpactTime: 0
+  m_mpactGauage: 0
 --- !u!136 &6324037774349628977
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -100,12 +100,6 @@ public class Humanoid : MonoBehaviour
                         m_Distance = 0;
                         m_Agent.ResetPath();
                         m_Anim.SetBool("Walk", false);
-
-                        // 오브젝트 흔들림 버그 방지를 위해 작성함
-                        Rigidbody rb = GetComponent<Rigidbody>();
-                        rb.isKinematic = true;
-                        rb.isKinematic = false;
-                        m_AgroNow = true;
                     }
                 }
             }
@@ -123,11 +117,6 @@ public class Humanoid : MonoBehaviour
                         m_Agent.ResetPath();
                         m_Anim.SetBool("Walk", false);
                         m_Time = 0.0f;
-
-                        // 오브젝트 흔들림 버그 방지를 위해 작성함
-                        Rigidbody rb = GetComponent<Rigidbody>();
-                        rb.isKinematic = true;
-                        rb.isKinematic = false;
                     }
                 }
                 m_AgroNow = false;
@@ -170,6 +159,37 @@ public class Humanoid : MonoBehaviour
         m_TargetReached = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion")) && m_TriggerExplosion == false)
+        {
+            this.GetComponent<BoxCollider>().isTrigger = true;
+            StopMoving();
+            Instantiate(m_Spark, transform.position, Quaternion.identity);
+            m_IsHit = true;
+            //총알에 맞을시 true
+            m_Anim.SetBool("Hit", true);
+            // 폭발 상태 true로 전환
+            m_TriggerExplosion = true;
+
+            // 게임 매니저에서 현 스테이지에 타겟 수 감소
+            GameManager.Instance.m_Targets--;
+
+            // 탄과 충돌할 경우 _hasBullet에 true 전달
+            if (collision.gameObject.CompareTag("Bullet"))
+            {
+                StartCoroutine(ExplosionDelay(true));
+            }
+            else
+            {
+                StartCoroutine(ExplosionDelay(false));
+            }
+        }
+        if (collision.gameObject.CompareTag("EnergyWall"))
+        {
+            StartCoroutine(StopMoving());
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         // 탄과 충돌하거나 가스폭발과 충돌할 경우
@@ -198,14 +218,6 @@ public class Humanoid : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        // 에너지 방벽과 충돌한 경우
-        if (collision.gameObject.CompareTag("EnergyWall"))
-        {
-            StartCoroutine(StopMoving());
-        }
-    }
 
     // 이동 멈춤
     private IEnumerator StopMoving()
