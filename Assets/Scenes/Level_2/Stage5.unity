@@ -4991,7 +4991,7 @@ MonoBehaviour:
   m_HasExplosioned: 0
   m_HasNotAmmo: 0
   m_IsHumanoid: 0
-  m_SceneNumber: 3
+  m_SceneNumber: 5
   m_Targets: 0
   m_ExplosionedPos: {x: 0, y: 0, z: 0}
   m_GameOverDelay: 4.3

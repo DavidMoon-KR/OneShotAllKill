@@ -5,15 +5,24 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    [SerializeField] private float m_FadeTime;      // 페이드 되는 시간
-    [SerializeField] private Graphic m_FadeText;    // 페이드 효과에 사용되는 Image UI
+    [SerializeField] private float m_FadeTime;  // 페이드 되는 시간
+    [SerializeField] private Graphic m_FadeUI;  // 페이드 효과에 사용되는 Image UI
 
+    [Tooltip ("0 : Infinity | 1~ : RepeatCount")]
+    [SerializeField] private int m_RepeatFadeCount = 0;
+    private int m_NowRepeatFadeCount = 0;
+
+    [SerializeField] private bool m_IsFadeIn = false;
+    [SerializeField] private bool m_IsFadeOut = false;
+    [SerializeField] private bool m_IsFadeInOut = false;
+
+    // 활성화 되었을 때 FadeInOut 실행
     private void OnEnable()
     {
-        // Fade 효과를 In -> Out 무한 반복한다.
         StartCoroutine("IFadeInOut");
     }
 
+    // 비활성화 되었을 때 FadeInOut 정지
     private void OnDisable()
     {
         StopCoroutine("IFadeInOut");
@@ -23,9 +32,21 @@ public class FadeInOut : MonoBehaviour
     {
         while (true)
         {
-            yield return StartCoroutine(Fade(1, 0));    // Fade In
+            if (m_IsFadeIn || m_IsFadeInOut)
+            {
+                yield return StartCoroutine(Fade(1, 0));    // Fade In
+            }
+            if (m_IsFadeOut || m_IsFadeInOut)
+            {
+                yield return StartCoroutine(Fade(0, 1));    // Fade Out
+            }
 
-            yield return StartCoroutine(Fade(0, 1));    // Fade Out
+            m_NowRepeatFadeCount++;
+            if (0 != m_RepeatFadeCount && m_RepeatFadeCount <= m_NowRepeatFadeCount)
+            {
+                m_NowRepeatFadeCount = 0;
+                break;
+            }
         }
     }
 
@@ -39,9 +60,9 @@ public class FadeInOut : MonoBehaviour
             current += Time.deltaTime;
             percent = current / m_FadeTime;
 
-            Color color = m_FadeText.color;
+            Color color = m_FadeUI.color;
             color.a = Mathf.Lerp(start, end, percent);
-            m_FadeText.color = color;
+            m_FadeUI.color = color;
 
             yield return null;
         }

@@ -12,19 +12,19 @@ public enum StageID
     NotActive = 0, // 아직 스테이지를 열지 않았음을 체크 // 기본값
 
     // 기본 사격 단계
-    _3rd_Tutorial = 1010,
-    _3rd_Stage1,
+    _3rd_Stage1 = 1010,
     _3rd_Stage2,
+    _3rd_Stage3,
 
     // 문제 해결 능력 단계
-    _2rd_Tutorial = 1020,
-    _2rd_Stage1,
+    _2rd_Stage1 = 1020,
     _2rd_Stage2,
+    _2rd_Stage3,
 
     // 전략적 사고력 단계
-    _1rd_Tutorial = 1030,
-    _1rd_Stage1,
+    _1rd_Stage1 = 1030,
     _1rd_Stage2,
+    _1rd_Stage3,
 }
 
 public class MainMenu : MonoBehaviour

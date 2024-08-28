@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2239,7 +2239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 215333717}
   m_Layer: 5
-  m_Name: 1021Stage1
+  m_Name: 1021Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3066,11 +3066,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameTitle: {fileID: 173632490}
+  m_StageButton: {fileID: 791049825}
   m_Level: {fileID: 1576676604}
+  m_LevelWindowBackGround: {fileID: 453692540}
+  m_StageListWindow: {fileID: 454586194}
   m_LevelWindowList:
   - {fileID: 1160249557}
   - {fileID: 1818181076}
   - {fileID: 1452858308}
+  m_LevelMarkOn:
+  - {fileID: 1584309504}
+  - {fileID: 1900387393}
+  - {fileID: 955524813}
+  m_LevelMarkOff:
+  - {fileID: 1543113718}
+  - {fileID: 42472214}
+  - {fileID: 458871440}
+  m_PreviousArrowImage: {fileID: 1599319586}
+  m_NextArrowImage: {fileID: 1590948178}
+  m_ArrowOnSprite: {fileID: 21300000, guid: c91aa3bcda38941e297d233d07f5363a, type: 3}
+  m_ArrowOffSprite: {fileID: 21300000, guid: 2501e194079ca4a4c85614ca925e2931, type: 3}
+  m_StageInfoWindow: {fileID: 466863774}
   m_LevelWindowInfo:
   - {fileID: 559703393}
   - {fileID: 262451760}
@@ -3089,22 +3105,6 @@ MonoBehaviour:
   - {fileID: 1205097333}
   - {fileID: 539519728}
   - {fileID: 2130591442}
-  m_LevelWindowBackGround: {fileID: 453692540}
-  m_StageListWindow: {fileID: 454586194}
-  m_StageInfoWindow: {fileID: 466863774}
-  m_LevelMarkOn:
-  - {fileID: 1584309504}
-  - {fileID: 1900387393}
-  - {fileID: 955524813}
-  m_LevelMarkOff:
-  - {fileID: 1543113718}
-  - {fileID: 42472214}
-  - {fileID: 458871440}
-  m_StageButton: {fileID: 791049825}
-  m_PreviousArrowImage: {fileID: 1599319586}
-  m_NextArrowImage: {fileID: 1590948178}
-  m_ArrowOnSprite: {fileID: 21300000, guid: c91aa3bcda38941e297d233d07f5363a, type: 3}
-  m_ArrowOffSprite: {fileID: 21300000, guid: 2501e194079ca4a4c85614ca925e2931, type: 3}
 --- !u!1 &418841819
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,7 +3533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455261329}
   m_Layer: 5
-  m_Name: 1012Stage2
+  m_Name: 1012Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4064,7 +4064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 539519729}
   m_Layer: 5
-  m_Name: Title
+  m_Name: 2ndTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4102,7 +4102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548170208}
   m_Layer: 5
-  m_Name: 1032Stage2
+  m_Name: 1032Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9494,7 +9494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205097334}
   m_Layer: 5
-  m_Name: Title
+  m_Name: 1stTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10328,7 +10328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292693622}
   m_Layer: 5
-  m_Name: 1030Tutorial
+  m_Name: 1030Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10645,7 +10645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1333051893}
   m_Layer: 5
-  m_Name: 1022Stage2
+  m_Name: 1022Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11293,7 +11293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1411854469}
   m_Layer: 5
-  m_Name: 1031Stage1
+  m_Name: 1031Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11732,7 +11732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437690253}
   m_Layer: 5
-  m_Name: 1011Stage1
+  m_Name: 1011Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13504,7 +13504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1637550427}
   m_Layer: 5
-  m_Name: 1020Tutorial
+  m_Name: 1020Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17100,7 +17100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984727790}
   m_Layer: 5
-  m_Name: 1010Tutorial
+  m_Name: 1010Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18029,7 +18029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2130591443}
   m_Layer: 5
-  m_Name: Title
+  m_Name: 3rdTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
