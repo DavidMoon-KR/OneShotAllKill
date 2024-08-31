@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 8929625773206980612}
   - component: {fileID: 6247285430922051789}
   - component: {fileID: 6505684299545027327}
+  - component: {fileID: 8928759562108624847}
   m_Layer: 0
   m_Name: Wall1
   m_TagString: Wall
@@ -453,6 +454,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8928759562108624847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355304934242702767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a82292ba271b254a91b10e2f4c1135f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Materials:
+  - {fileID: 2100000, guid: 82d4ccd149c7e00429bf44bdad350ca7, type: 2}
+  - {fileID: 2100000, guid: 68e8fc67e36c49d4db668dba6509c2a3, type: 2}
 --- !u!1 &1798954152362626881
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ public class Tutorial2 : MonoBehaviour
         if (!m_EnergyWall.activeSelf)
         {
             EnergyWallClickButton.gameObject.SetActive(false);
+            m_LeftMouseImage.gameObject.SetActive(false);
             m_ArrowMark.gameObject.SetActive(false);
         }
     }

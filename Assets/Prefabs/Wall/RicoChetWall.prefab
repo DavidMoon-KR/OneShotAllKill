@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3417675313868168423}
   - component: {fileID: 8988447556205305057}
   - component: {fileID: 3789708567703911458}
+  - component: {fileID: 2133097494653961347}
   m_Layer: 0
   m_Name: Wall1
   m_TagString: Wall
@@ -304,7 +305,6 @@ MonoBehaviour:
   m_MaxDirection: 0
   m_MinDirection: 0
   m_HitArrowClip: {fileID: 8300000, guid: ced7c09d955e74b70a97af69106fb289, type: 3}
-  m_NavMeshSurface: {fileID: 0}
 --- !u!114 &3789708567703911458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +324,21 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &2133097494653961347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077739080448865203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a82292ba271b254a91b10e2f4c1135f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Materials:
+  - {fileID: 2100000, guid: 82d4ccd149c7e00429bf44bdad350ca7, type: 2}
+  - {fileID: 2100000, guid: 68e8fc67e36c49d4db668dba6509c2a3, type: 2}
 --- !u!1 &3051588963661036540
 GameObject:
   m_ObjectHideFlags: 0
