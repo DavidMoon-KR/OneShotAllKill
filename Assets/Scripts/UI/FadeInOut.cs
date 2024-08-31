@@ -57,6 +57,10 @@ public class FadeInOut : MonoBehaviour
 
         while (percent < 1)
         {
+            if (1.0f <= m_FadeUI.color.a)
+            {
+                current = 0;
+            }
             current += Time.deltaTime;
             percent = current / m_FadeTime;
 

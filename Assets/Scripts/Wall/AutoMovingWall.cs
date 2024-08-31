@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,10 +15,29 @@ public class AutoMovingWall : MonoBehaviour
 
     private bool m_IsStopped = false;
 
+    private NavMeshSurface m_NavMeshSurface;
+
+    void Start()
+    {
+        if (null != GameObject.Find("Navigation"))
+            m_NavMeshSurface = GameObject.Find("Navigation").GetComponent<NavMeshSurface>();
+    }
+
     void Update()
     {
         if (!m_IsStopped)
-            transform.Translate(m_MoveDirection * m_Speed * Time.deltaTime);
+        {
+            Moving();
+        }
+    }
+
+    private void Moving()
+    {
+        transform.Translate(m_MoveDirection * m_Speed * Time.deltaTime);
+        if (m_NavMeshSurface != null)
+        {
+            m_NavMeshSurface.BuildNavMesh();
+        }
 
         if (transform.localPosition.x >= m_MaxRightPos)
         {

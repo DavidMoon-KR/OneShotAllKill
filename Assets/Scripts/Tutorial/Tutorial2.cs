@@ -20,16 +20,12 @@ public class Tutorial2 : MonoBehaviour
     {
         if (0 >= m_ArrowMark.color.a)
         {
-            Color color = m_ArrowMark.color;
-            color.a = 1.0f;
-            m_ArrowMark.color = color;
             m_ArrowMark.gameObject.SetActive(false);
         }
 
         if (!m_EnergyWall.activeSelf)
         {
             EnergyWallClickButton.gameObject.SetActive(false);
-            m_LeftMouseImage.gameObject.SetActive(false);
             m_ArrowMark.gameObject.SetActive(false);
         }
     }
@@ -43,6 +39,10 @@ public class Tutorial2 : MonoBehaviour
         }
 
         m_LeftMouseImage.gameObject.SetActive(false);
-        m_ArrowMark.gameObject.SetActive(true);
+
+        Color color = m_ArrowMark.color;
+        color.a = 1.0f;
+        m_ArrowMark.color = color;
+        m_ArrowMark.gameObject.SetActive(true);        
     }
 }

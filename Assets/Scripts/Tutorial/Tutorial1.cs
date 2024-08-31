@@ -12,8 +12,7 @@ public class Tutorial1 : MonoBehaviour
     private int m_NowGimicNumber = 1;
 
     // 각종 마크 및 표시들
-    [SerializeField] private GameObject m_FirstGimicObjects;
-    [SerializeField] private GameObject m_SecondGimicObjects;
+    [SerializeField] private List<GameObject> m_GimicObjects;
 
     // 튜토리얼에 사용할 오브젝트들
     [SerializeField] private Transform m_RicochetWall1; // 이동 장벽1
@@ -31,12 +30,12 @@ public class Tutorial1 : MonoBehaviour
         // 벽을 지정된 위치로 옮기기
         if (1 == m_NowGimicNumber)
         {
-            m_FirstGimicObjects.SetActive(true);
+            m_GimicObjects[m_NowGimicNumber - 1].SetActive(true);
 
             // 벽을 제대로 된 위치에 옮겼다면 다음 기믹으로 넘어가기
             if (m_RicochetWall1.position.x < 1)
             {
-                m_FirstGimicObjects.SetActive(false);
+                m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);
 
                 m_NowGimicNumber++;
             }
@@ -46,12 +45,12 @@ public class Tutorial1 : MonoBehaviour
         // 터렛 파괴하기
         if (2 == m_NowGimicNumber)
         {
-            m_SecondGimicObjects.SetActive(true);
+            m_GimicObjects[m_NowGimicNumber - 1].SetActive(true);
 
             // 터렛을 파괴했다면 다음 대사로 넘어가기
             if (m_Turret1 == null)
             {
-                m_SecondGimicObjects.SetActive(false);
+                m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);
 
                 m_NowGimicNumber++;
             }

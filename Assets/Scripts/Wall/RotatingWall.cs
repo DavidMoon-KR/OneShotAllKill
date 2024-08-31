@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class RotatingWall : MonoBehaviour
@@ -13,8 +14,13 @@ public class RotatingWall : MonoBehaviour
     private bool m_IsMousePress = false;
     private bool m_IsMouseCoroutineActive = false;
 
+    private NavMeshSurface m_NavMeshSurface;
+
     void Start()
     {
+        if (null != GameObject.Find("Navigation"))
+            m_NavMeshSurface = GameObject.Find("Navigation").GetComponent<NavMeshSurface>();
+
         _hitSource = GetComponent<AudioSource>();
     }
 
@@ -38,6 +44,11 @@ public class RotatingWall : MonoBehaviour
         _hitSource.clip = _hitWallClip;
         _hitSource.Play();
         this.gameObject.transform.Rotate(new Vector3(0, _rotationAngle, 0));
+
+        if (m_NavMeshSurface != null)
+        {
+            m_NavMeshSurface.BuildNavMesh();
+        }
     }
 
     public IEnumerator MouseDownDelay()

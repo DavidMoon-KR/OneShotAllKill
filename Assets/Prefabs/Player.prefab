@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FireRate: 0.5
-  m_BulletPrefab: []
+  m_BulletPrefab:
+  - {fileID: 5103054444686054220, guid: d9e8a483f17522d48afabc93e1f8b624, type: 3}
   m_BulletTransform: {fileID: 0}
-  m_BulletCount: 
+  m_BulletCount: 00000000
   m_ImpactTime: 0.1
   m_ImpactGauge: 0.5
   m_FireGenerated: {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}

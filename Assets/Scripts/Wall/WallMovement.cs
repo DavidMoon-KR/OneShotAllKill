@@ -20,7 +20,7 @@ public class WallMovement : MonoBehaviour
 
     private Vector3 m_MouseP;
 
-    [SerializeField] private NavMeshSurface m_NavMeshSurface;
+    private NavMeshSurface m_NavMeshSurface;
 
     private void Update()
     {
@@ -41,7 +41,10 @@ public class WallMovement : MonoBehaviour
     private bool m_IsClick = false;
     void Start()
     {
-        m_HitSource = GetComponent<AudioSource>();        
+        if (null != GameObject.Find("Navigation"))
+            m_NavMeshSurface = GameObject.Find("Navigation").GetComponent<NavMeshSurface>();
+
+        m_HitSource = GetComponent<AudioSource>();
     }
 
     private void OnMouseDown()

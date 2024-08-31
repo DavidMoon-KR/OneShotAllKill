@@ -953,6 +953,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2754577673591731142, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_MaxLeftPos
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754577673591731142, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
+      propertyPath: m_MaxRightPos
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3823134363165778699, guid: bcb8cc04034c1d247a83452d1c550f30, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
