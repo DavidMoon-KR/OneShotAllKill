@@ -199,8 +199,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0, z: 1.2}
+  m_Radius: 0.0001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6301172930692470868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -251,6 +251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1334774909114158989}
     m_Modifications:
+    - target: {fileID: 1613513878, guid: 0dea8b38c307f224fb2e0e0664629dd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4999344153515423592, guid: 0dea8b38c307f224fb2e0e0664629dd2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -298,6 +302,10 @@ PrefabInstance:
     - target: {fileID: 4999344153515423595, guid: 0dea8b38c307f224fb2e0e0664629dd2, type: 3}
       propertyPath: m_Name
       value: FX_Shoot_03_projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999344153515423595, guid: 0dea8b38c307f224fb2e0e0664629dd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
