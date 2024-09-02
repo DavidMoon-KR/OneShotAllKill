@@ -8,12 +8,13 @@ public class EmpAmmo : MonoBehaviour
     public GameObject m_MuzzlePrefab; // 탄 퍼짐 효과
     public GameObject m_HitPrefab;    // 사물과 충돌했을 경우 탄퍼짐 효과
     private Vector3 m_Direction;      // 탄 거리
-
+    private Rigidbody m_Rigidbody;
     // Emp탄 폭발 이펙트
     [SerializeField] private GameObject m_EmpExplosion;
 
     private void Start()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
         m_Direction = transform.forward;
         if (m_MuzzlePrefab != null)
         {
@@ -36,7 +37,7 @@ public class EmpAmmo : MonoBehaviour
     {
         if (m_Speed != 0)
         {
-            transform.position += transform.forward * (m_Speed * Time.deltaTime);
+            m_Rigidbody.velocity = (transform.forward * (m_Speed * Time.deltaTime)) * 1000;
         }
         else
         {
@@ -54,20 +55,21 @@ public class EmpAmmo : MonoBehaviour
         // 장애물에 충돌한 경우
         if (collision.gameObject.CompareTag("Broken") || (collision.gameObject.CompareTag("EnergyWall")))
         {
-            // Emp 폭발
             EmpExplosion();
-
             Destroy(gameObject);
             return;
         }
 
         // 탄 퍼짐 생성
         Instantiate(m_HitPrefab, transform.position, Quaternion.identity);
-        var firstContact = collision.contacts[0];
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("RotateWall"))
+        {
+            var firstContact = collision.contacts[0];
 
-        // 반대쪽으로 각 전환
-        Vector3 newVelocity = Vector3.Reflect(m_Direction.normalized, firstContact.normal);
-        Bounce(newVelocity.normalized);
+            // 반대쪽으로 각 전환
+            Vector3 newVelocity = Vector3.Reflect(m_Direction.normalized, firstContact.normal);
+            Bounce(newVelocity.normalized);
+        }
     }
 
     // Emp 폭발

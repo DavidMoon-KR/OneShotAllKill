@@ -19,9 +19,10 @@ public class WallMovement : MonoBehaviour
     private AudioSource m_HitSource;
 
     private Vector3 m_MouseP;
-
+    private float m_Walldistance = 3.9f;//두 벽간의 거리
     private NavMeshSurface m_NavMeshSurface;
-
+    RaycastHit m_RaycastHit;
+    private float m_tempF;
     private void Update()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
@@ -43,7 +44,6 @@ public class WallMovement : MonoBehaviour
     {
         if (null != GameObject.Find("Navigation"))
             m_NavMeshSurface = GameObject.Find("Navigation").GetComponent<NavMeshSurface>();
-
         m_HitSource = GetComponent<AudioSource>();
     }
 
@@ -72,45 +72,55 @@ public class WallMovement : MonoBehaviour
         MoveUpdate();
     }
     // 벽 움직이기
-    public void MoveUpdate()
+    private void MoveUpdate()
     {
         m_MouseP = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-        if (gameObject.transform.eulerAngles.y == 0)
+        if ((gameObject.transform.eulerAngles.y == 0 && this.gameObject.transform.position.x + 2 < m_MouseP.x) ||
+            (gameObject.transform.eulerAngles.y == 270 && this.gameObject.transform.position.z + 2 < m_MouseP.z))
         {
-            if (gameObject.transform.localPosition.x > m_MinDirection && this.gameObject.transform.position.x - 2 > m_MouseP.x)
-                WMove(true);
-            else if (gameObject.transform.localPosition.x < m_MaxDirection && this.gameObject.transform.position.x + 2 < m_MouseP.x)
-                WMove(false);
+            Debug.DrawRay(transform.position, transform.right * m_Walldistance * 2, UnityEngine.Color.clear, 0.3f);
+            if (Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance*2))
+            {
+                if (m_RaycastHit.transform.CompareTag("RotateWall"))
+                {
+                    if (Vector3.Distance(m_RaycastHit.transform.position, transform.position) < m_Walldistance * 2)
+                        return;
+                }
+            }
+            Debug.DrawRay(transform.position, transform.right * m_Walldistance, UnityEngine.Color.clear, 0.3f);
+            if (!Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance))
+            {
+                m_HitSource.clip = m_HitArrowClip;
+                m_HitSource.Play();
+                gameObject.transform.Translate(Vector3.right * 2, Space.Self);
+            }
         }
-        else
+        else if ((gameObject.transform.eulerAngles.y == 0 && this.gameObject.transform.position.x - 2 > m_MouseP.x) ||
+            (gameObject.transform.eulerAngles.y == 270 && this.gameObject.transform.position.z - 2 > m_MouseP.z))
         {
-            if (gameObject.transform.localPosition.x > m_MinDirection && this.gameObject.transform.position.z - 2 > m_MouseP.z)
-                WMove(true);
-            else if (gameObject.transform.localPosition.x < m_MaxDirection && this.gameObject.transform.position.z + 2 < m_MouseP.z)
-                WMove(false);
+            Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance * 2, UnityEngine.Color.clear, 0.3f);
+            if (Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance*2))
+            {
+                if (m_RaycastHit.transform.CompareTag("RotateWall"))
+                {
+                    if (Vector3.Distance(m_RaycastHit.transform.position, transform.position) < m_Walldistance * 2)
+                        return;
+                }
+            }
+            Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance, UnityEngine.Color.clear, 0.3f);
+            if (!Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance))
+            {
+                m_HitSource.clip = m_HitArrowClip;
+                m_HitSource.Play();
+                gameObject.transform.Translate(Vector3.left * 2, Space.Self);
+            }
         }
-    }
-    private void WMove(bool direction)
-    {
-        if (direction)
-        {
-            m_HitSource.clip = m_HitArrowClip;
-            m_HitSource.Play();
-            gameObject.transform.Translate(Vector3.left * 2, Space.Self);
-        }
-        else
-        {
-            m_HitSource.clip = m_HitArrowClip;
-            m_HitSource.Play();
-            gameObject.transform.Translate(Vector3.right * 2, Space.Self);
-        }
-
         if (m_NavMeshSurface != null)
         {
             m_NavMeshSurface.BuildNavMesh();
         }
     }
-    private void PrintArrow()
+private void PrintArrow()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
