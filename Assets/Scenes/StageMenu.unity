@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 5198866}
   - component: {fileID: 5198865}
   m_Layer: 5
-  m_Name: 1030_Stage1
+  m_Name: 1030Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -893,7 +893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 16326844}
   m_Layer: 5
-  m_Name: Level1_Window_Info
+  m_Name: 3rd_LevelWindow_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1130,6 +1130,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34008272}
+  m_CullTransparentMesh: 1
+--- !u!1 &42472212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 42472213}
+  - component: {fileID: 42472215}
+  - component: {fileID: 42472214}
+  m_Layer: 5
+  m_Name: 2nd_LevelMarkOff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &42472213
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42472212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 571475756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 40, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &42472214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42472212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &42472215
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42472212}
   m_CullTransparentMesh: 1
 --- !u!1 &60611603
 GameObject:
@@ -2586,7 +2661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 215333717}
   m_Layer: 5
-  m_Name: 1021_Stage2
+  m_Name: 1021Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2832,7 +2907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262451761}
   m_Layer: 5
-  m_Name: Level2_Window_Info
+  m_Name: 2nd_LevelWindow_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3588,24 +3663,26 @@ MonoBehaviour:
   m_LevelWindowBackGround: {fileID: 453692540}
   m_StageListWindow: {fileID: 454586194}
   m_LevelWindowList:
-  - {fileID: 1452858308}
-  - {fileID: 1818181076}
   - {fileID: 1160249557}
-  m_LevelMark:
-  - {fileID: 955524813}
-  - {fileID: 1900387393}
+  - {fileID: 1818181076}
+  - {fileID: 1452858308}
+  m_LevelMarkOn:
   - {fileID: 1584309504}
-  m_MarkOnSprite: {fileID: 21300000, guid: 30adf3f9841554dfeb89c216a0fec3c4, type: 3}
-  m_MarkOffSprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  - {fileID: 1900387393}
+  - {fileID: 955524813}
+  m_LevelMarkOff:
+  - {fileID: 1543113718}
+  - {fileID: 42472214}
+  - {fileID: 458871440}
   m_PreviousArrowImage: {fileID: 1599319586}
   m_NextArrowImage: {fileID: 1590948178}
   m_ArrowOnSprite: {fileID: 21300000, guid: c91aa3bcda38941e297d233d07f5363a, type: 3}
   m_ArrowOffSprite: {fileID: 21300000, guid: 2501e194079ca4a4c85614ca925e2931, type: 3}
   m_StageInfoWindow: {fileID: 466863774}
   m_LevelWindowInfo:
-  - {fileID: 16326843}
-  - {fileID: 262451760}
   - {fileID: 559703393}
+  - {fileID: 262451760}
+  - {fileID: 16326843}
   m_StageWindowInfo:
   - {fileID: 1984727789}
   - {fileID: 1437690252}
@@ -4013,7 +4090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &454586195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4048,7 +4125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455261329}
   m_Layer: 5
-  m_Name: 1012_Stage3
+  m_Name: 1012Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4075,6 +4152,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &458871438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 458871439}
+  - component: {fileID: 458871441}
+  - component: {fileID: 458871440}
+  m_Layer: 5
+  m_Name: 3rd_LevelMarkOff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &458871439
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458871438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 571475756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &458871440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458871438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &458871441
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458871438}
+  m_CullTransparentMesh: 1
 --- !u!1 &466863774
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,7 +4656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 539519729}
   m_Layer: 5
-  m_Name: Title
+  m_Name: 2ndTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4542,7 +4694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548170208}
   m_Layer: 5
-  m_Name: 1032_Stage3
+  m_Name: 1032Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4694,7 +4846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559703394}
   m_Layer: 5
-  m_Name: Level3_Window_Info
+  m_Name: 1st_LevelWindow_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5020,8 +5172,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 955524812}
+  - {fileID: 458871439}
   - {fileID: 1900387392}
+  - {fileID: 42472213}
   - {fileID: 1584309503}
+  - {fileID: 1543113717}
   m_Father: {fileID: 454586195}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -5511,7 +5666,7 @@ GameObject:
   - component: {fileID: 623275993}
   - component: {fileID: 623275992}
   m_Layer: 5
-  m_Name: 1020_Stage1
+  m_Name: 1020Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6064,7 +6219,7 @@ GameObject:
   - component: {fileID: 733215028}
   - component: {fileID: 733215027}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6444,7 +6599,7 @@ GameObject:
   - component: {fileID: 742841275}
   - component: {fileID: 742841274}
   m_Layer: 5
-  m_Name: 1022_Stage3
+  m_Name: 1022Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8435,7 +8590,7 @@ GameObject:
   - component: {fileID: 935259288}
   - component: {fileID: 935259287}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8570,7 +8725,7 @@ GameObject:
   - component: {fileID: 947250753}
   - component: {fileID: 947250752}
   m_Layer: 5
-  m_Name: 1010_Stage1
+  m_Name: 1010Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8777,12 +8932,12 @@ GameObject:
   - component: {fileID: 955524814}
   - component: {fileID: 955524813}
   m_Layer: 5
-  m_Name: Level1_Mark
+  m_Name: 3rd_LevelMarkOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &955524812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8822,7 +8977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30adf3f9841554dfeb89c216a0fec3c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10103,7 +10258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1160249558}
   m_Layer: 5
-  m_Name: Level3_Window_List
+  m_Name: 1st_LevelWindow_List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10143,7 +10298,7 @@ GameObject:
   - component: {fileID: 1189541931}
   - component: {fileID: 1189541930}
   m_Layer: 5
-  m_Name: 1012_Stage3
+  m_Name: 1012Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10273,7 +10428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205097334}
   m_Layer: 5
-  m_Name: Title
+  m_Name: 1stTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11036,7 +11191,7 @@ GameObject:
   - component: {fileID: 1283115336}
   - component: {fileID: 1283115335}
   m_Layer: 5
-  m_Name: 1011_Stage2
+  m_Name: 1011Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11241,7 +11396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292693622}
   m_Layer: 5
-  m_Name: 1030_Stage1
+  m_Name: 1030Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11281,7 +11436,7 @@ GameObject:
   - component: {fileID: 1298471299}
   - component: {fileID: 1298471298}
   m_Layer: 5
-  m_Name: 1031_Stage2
+  m_Name: 1031Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11558,7 +11713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1333051893}
   m_Layer: 5
-  m_Name: 1022_Stage3
+  m_Name: 1022Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11597,7 +11752,7 @@ GameObject:
   - component: {fileID: 1353463652}
   - component: {fileID: 1353463651}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12340,7 +12495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1411854469}
   m_Layer: 5
-  m_Name: 1031_Stage2
+  m_Name: 1031Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12779,7 +12934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437690253}
   m_Layer: 5
-  m_Name: 1011_Stage2
+  m_Name: 1011Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12891,7 +13046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1452858309}
   m_Layer: 5
-  m_Name: Level1_Window_List
+  m_Name: 3rd_LevelWindow_List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13256,6 +13411,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525577890}
   m_CullTransparentMesh: 1
+--- !u!1 &1543113716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1543113717}
+  - component: {fileID: 1543113719}
+  - component: {fileID: 1543113718}
+  m_Layer: 5
+  m_Name: 1st_LevelMarkOff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1543113717
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543113716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 571475756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 80, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1543113718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543113716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1543113719
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543113716}
+  m_CullTransparentMesh: 1
 --- !u!1 &1549258498
 GameObject:
   m_ObjectHideFlags: 0
@@ -13460,7 +13690,7 @@ GameObject:
   - component: {fileID: 1566669250}
   - component: {fileID: 1566669249}
   m_Layer: 5
-  m_Name: 3_Level
+  m_Name: 1st_Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13923,12 +14153,12 @@ GameObject:
   - component: {fileID: 1584309505}
   - component: {fileID: 1584309504}
   m_Layer: 5
-  m_Name: Level3_Mark
+  m_Name: 1st_LevelMarkOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1584309503
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13968,7 +14198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30adf3f9841554dfeb89c216a0fec3c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14263,7 +14493,7 @@ GameObject:
   - component: {fileID: 1608099420}
   - component: {fileID: 1608099419}
   m_Layer: 5
-  m_Name: 1032_Stage3
+  m_Name: 1032Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14396,7 +14626,7 @@ GameObject:
   - component: {fileID: 1615347373}
   - component: {fileID: 1615347372}
   m_Layer: 5
-  m_Name: 2_Level
+  m_Name: 2nd_Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14551,7 +14781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1637550427}
   m_Layer: 5
-  m_Name: 1020_Stage1
+  m_Name: 1020Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16577,7 +16807,6 @@ GameObject:
   - component: {fileID: 1802912927}
   - component: {fileID: 1802912926}
   - component: {fileID: 1802912925}
-  - component: {fileID: 1802912928}
   m_Layer: 5
   m_Name: LevelExitButton
   m_TagString: Untagged
@@ -16698,18 +16927,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802912923}
   m_CullTransparentMesh: 1
---- !u!114 &1802912928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802912923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08e6709d0dbf684dbf4f8f82c6ca45e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1814111395
 GameObject:
   m_ObjectHideFlags: 0
@@ -16929,7 +17146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1818181077}
   m_Layer: 5
-  m_Name: Level2_Window_List
+  m_Name: 2nd_LevelWindow_List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17613,12 +17830,12 @@ GameObject:
   - component: {fileID: 1900387394}
   - component: {fileID: 1900387393}
   m_Layer: 5
-  m_Name: Level2_Mark
+  m_Name: 2nd_LevelMarkOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1900387392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17658,7 +17875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2678574f048a74d27944f9c44d8cf0f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30adf3f9841554dfeb89c216a0fec3c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18449,7 +18666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984727790}
   m_Layer: 5
-  m_Name: 1010_Stage1
+  m_Name: 1010Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18623,7 +18840,7 @@ GameObject:
   - component: {fileID: 2045356925}
   - component: {fileID: 2045356924}
   m_Layer: 5
-  m_Name: 1_Level
+  m_Name: 3rd_Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19115,7 +19332,7 @@ GameObject:
   - component: {fileID: 2096600091}
   - component: {fileID: 2096600090}
   m_Layer: 5
-  m_Name: 1021_Stage2
+  m_Name: 1021Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19378,7 +19595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2130591443}
   m_Layer: 5
-  m_Name: Title
+  m_Name: 3rdTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
