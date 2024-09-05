@@ -61,6 +61,40 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 12
     min: 2
+--- !u!114 &-3117888988395882768
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
+  m_EditorClassIdentifier: 
+  active: 1
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 0.89899176, y: 0.9777098, z: 1, w: -0.47960192}
+  midtones:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.24454957}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.06815376}
+  shadowsStart:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 0
+    m_Value: 0.3
+  highlightsStart:
+    m_OverrideState: 0
+    m_Value: 0.55
+  highlightsEnd:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &-2223948172287066284
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -130,17 +164,7 @@ MonoBehaviour:
   m_Name: DemoSceneVolumeHDRP
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 1359070828411649799}
-  - {fileID: 8049981929359091865}
-  - {fileID: 6640133647794636954}
-  - {fileID: 2759069934644561995}
-  - {fileID: 8300247594604814326}
-  - {fileID: 2112682869544596416}
-  - {fileID: 5002876554434076654}
-  - {fileID: -2223948172287066284}
-  - {fileID: -3969488579639410846}
-  - {fileID: 747098994415714109}
-  - {fileID: 6784262444093050763}
+  - {fileID: -3117888988395882768}
 --- !u!114 &747098994415714109
 MonoBehaviour:
   m_ObjectHideFlags: 3
