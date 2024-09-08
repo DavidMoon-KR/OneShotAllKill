@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
 
     void FireBullet()
     {
-        if (Input.GetMouseButtonUp(1) && m_BulletCount[(int)m_SelectBulletType] != 0 && Time.time > m_NextFireTime)
+        if (Input.GetMouseButtonUp(0) && m_BulletCount[(int)m_SelectBulletType] != 0 && Time.time > m_NextFireTime)
         {
             m_AudioSource.Play();
 
