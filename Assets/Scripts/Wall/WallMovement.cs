@@ -18,6 +18,7 @@ public class WallMovement : MonoBehaviour
     [SerializeField] private AudioClip m_HitArrowClip;
     private AudioSource m_HitSource;
 
+    private bool m_EnterMouse = false;
     private Vector3 m_MouseP;
     private float m_Walldistance = 3.9f;//두 벽간의 거리
     private NavMeshSurface m_NavMeshSurface;
@@ -32,11 +33,19 @@ public class WallMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonDown(1) && m_EnterMouse)
         {
+            MouseRDown();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            m_EnterMouse = false;
             m_IsClick = false;
             PrintArrow();
         }
+        if (m_EnterMouse && m_IsClick)
+            MoveUpdate();
     }
 
     private bool m_IsClick = false;
@@ -47,7 +56,12 @@ public class WallMovement : MonoBehaviour
         m_HitSource = GetComponent<AudioSource>();
     }
 
-    private void OnMouseDown()
+    private void OnMouseEnter()
+    {
+        m_EnterMouse = true;
+    }
+
+    private void MouseRDown()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
         // 게임이 일시정지인 상황에서는 행동 불가
@@ -60,20 +74,13 @@ public class WallMovement : MonoBehaviour
         PrintArrow();
     }
 
-    private void OnMouseDrag()
+    // 벽 움직이기
+    private void MoveUpdate()
     {
-        // 튜토리얼이 진행중이라면 상호작용 불가
-        // 게임이 일시정지인 상황에서는 행동 불가
         if (GameManager.Instance.IsGamePause)
         {
             return;
         }
-
-        MoveUpdate();
-    }
-    // 벽 움직이기
-    private void MoveUpdate()
-    {
         m_MouseP = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
         if ((gameObject.transform.eulerAngles.y == 0 && this.gameObject.transform.position.x + 2 < m_MouseP.x) ||
             (gameObject.transform.eulerAngles.y == 270 && this.gameObject.transform.position.z + 2 < m_MouseP.z))
