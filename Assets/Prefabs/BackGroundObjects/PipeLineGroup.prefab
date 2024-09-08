@@ -29,28 +29,28 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6513508316051611048}
-  - {fileID: 5317447195013957713}
-  - {fileID: 3965316700379073978}
-  - {fileID: 5824867939197820428}
-  - {fileID: 8209067303271575258}
-  - {fileID: 6056679470019528498}
-  - {fileID: 715314619206528303}
-  - {fileID: 1809867892086166405}
-  - {fileID: 827939189447629432}
-  - {fileID: 1228730598260599467}
-  - {fileID: 1679999748157497859}
   - {fileID: 8321791951808056586}
+  - {fileID: 1679999748157497859}
   - {fileID: 3013196031633145381}
   - {fileID: 4789044771273843902}
+  - {fileID: 1228730598260599467}
+  - {fileID: 827939189447629432}
   - {fileID: 6627850678498081509}
   - {fileID: 7853481595362808171}
   - {fileID: 8186327358360470343}
+  - {fileID: 1809867892086166405}
+  - {fileID: 715314619206528303}
+  - {fileID: 6056679470019528498}
+  - {fileID: 8209067303271575258}
   - {fileID: 2801719813613086300}
+  - {fileID: 5824867939197820428}
+  - {fileID: 3965316700379073978}
   - {fileID: 6299526286410189656}
   - {fileID: 6534285411950495761}
+  - {fileID: 5317447195013957713}
   - {fileID: 4268617655615268975}
-  - {fileID: 5579085032051214444}
+  - {fileID: 3134153192760280043}
+  - {fileID: 6513508316051611048}
   - {fileID: 8413451387604488730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1691,7 +1691,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b3ab4535a142c4b9fd8649ccb3eb1b, type: 3}
---- !u!4 &5579085032051214444 stripped
+--- !u!4 &3134153192760280043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3681469835542919089, guid: c0b3ab4535a142c4b9fd8649ccb3eb1b, type: 3}
   m_PrefabInstance: {fileID: 9114108104911716317}
