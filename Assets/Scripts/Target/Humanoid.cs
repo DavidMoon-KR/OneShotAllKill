@@ -15,9 +15,9 @@ public class Humanoid : MonoBehaviour
     [SerializeField] private float m_ImpactGauge;
     private float m_Distance;
 
-    [SerializeField] private float m_AgroTime;
+    [SerializeField] readonly float m_AgroTime = 3;
     private float m_Time;
-    private bool m_AgroNow;
+    [SerializeField] private bool m_AgroNow;
     private Vector3 m_OriginalLocation;
 
     [SerializeField] private GameObject m_Explosion;
@@ -52,17 +52,18 @@ public class Humanoid : MonoBehaviour
 
     void Update()
     {
-        if (m_AgroNow)
+        if (AgroNow)
             m_Time += Time.deltaTime;
-        // 웨이포인트가 있다면
-        if(m_IsHit == false)//총알에 맞지 않았을 경우
+
+        if (m_IsHit == false)//총알에 맞지 않았을 경우
         {
-            if (m_WayPoint.Count > 0 && m_ExplosionDetection == false)
+            // 웨이포인트가 있다면
+            if (m_WayPoint.Count > 0 && m_ExplosionDetection == false && AgroNow == false)
             {
                 // 애니메이션 작동
                 if (m_IsTriggerAni == true)
                 {
-                    m_Anim.SetBool("Walk", true);
+                    m_Anim.SetBool("walk", true);
                 }
 
                 // 설정한 웨이포인트로 이동
@@ -75,7 +76,7 @@ public class Humanoid : MonoBehaviour
                 if (m_Distance < 1.0f && m_TargetReached == false)
                 {
                     m_TargetReached = true;
-                    m_Anim.SetBool("Walk", false);
+                    m_Anim.SetBool("walk", false);
                     m_IsTriggerAni = false;
                     StartCoroutine(WaitBeforeMoving());
                 }
@@ -83,45 +84,58 @@ public class Humanoid : MonoBehaviour
             else
             {
                 if (m_ExplosionDetection == true)
-                    //폭파가 감지 되었다면
+                //폭파가 감지 되었다면
                 {
-                    m_Anim.SetBool("Walk", true);
+                    m_Anim.SetBool("walk", true);
                     float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
                     //폭파가 감지된 위치로 이동
                     m_Agent.SetDestination(m_ExplosionedPos);
-
+                    if (m_Agent.velocity.sqrMagnitude > 0.0f && m_Agent.remainingDistance + 1 < Vector3.Distance(transform.position, m_ExplosionedPos))
+                    {
+                        m_Agent.SetDestination(transform.position);
+                        m_Anim.SetBool("walk", false);
+                        distance = 0;
+                    }
                     // 목적지에 도착하면 이동 멈춤
                     if (distance < 3.3f)
-                    {                                       
+                    {
                         m_Time = 0.0f;
                         //경계하러 가던도중 폭발이 일어날수 있기 때문에 0으로 항상 초기화
-                       
+
                         // 작동 끄기
                         m_Distance = 0;
                         m_Agent.ResetPath();
-                        m_Anim.SetBool("Walk", false);
+                        m_Anim.SetBool("walk", false);
+                        m_AgroNow = true;
+                        m_ExplosionDetection = false;
                     }
                 }
             }
             if (m_AgroTime < m_Time)
-                //경계하고 있는 시간이 정해진 시간보다 클 경우
+            //경계하고 있는 시간이 정해진 시간보다 클 경우
             {
-                if (m_WayPoint.Count <= 0)
+                if(m_WayPoint.Count <= 0)
                 {
-                    m_Anim.SetBool("Walk", true);
+                    m_Anim.SetBool("walk", true);
                     float distance = Vector3.Distance(transform.position, m_OriginalLocation);
                     m_Agent.SetDestination(m_OriginalLocation);
+                    if (m_Agent.velocity.sqrMagnitude > 0 && m_Agent.remainingDistance + 1 < Vector3.Distance(transform.position, m_OriginalLocation))
+                    {
+                        m_Agent.SetDestination(transform.position);
+                        m_Anim.SetBool("walk", false);
+                        distance = 0;
+                    }
                     if (distance < 3.3f)
                     {
                         m_Distance = 0;
                         m_Agent.ResetPath();
-                        m_Anim.SetBool("Walk", false);
+                        m_Anim.SetBool("walk", false);
                         m_Time = 0.0f;
                     }
                 }
                 m_AgroNow = false;
                 m_ExplosionDetection = false;
-            }
+            }            
         }
     }
 
@@ -165,10 +179,13 @@ public class Humanoid : MonoBehaviour
         {
             this.GetComponent<BoxCollider>().isTrigger = true;
             StopMoving();
+            m_Agent.SetDestination(transform.position);
             Instantiate(m_Spark, transform.position, Quaternion.identity);
             m_IsHit = true;
+            m_Anim.SetBool("walk", false);
             //총알에 맞을시 true
-            m_Anim.SetBool("Hit", true);
+
+            m_Anim.SetBool("die", true);
             // 폭발 상태 true로 전환
             m_TriggerExplosion = true;
 
@@ -196,10 +213,12 @@ public class Humanoid : MonoBehaviour
         if ((other.tag == "Bullet" || other.tag == "GasExplosion") && m_TriggerExplosion == false)
         {
             StopMoving();
-            Instantiate(m_Spark, transform.position, Quaternion.identity); 
+            Instantiate(m_Spark, transform.position, Quaternion.identity);
+            m_Agent.SetDestination(transform.position);
             m_IsHit = true;
             //총알에 맞을시 true
-            m_Anim.SetBool("Hit", true);
+            m_Anim.SetBool("walk", false);
+            m_Anim.SetBool("die", true);            
             // 폭발 상태 true로 전환
             m_TriggerExplosion = true;
 
@@ -225,9 +244,9 @@ public class Humanoid : MonoBehaviour
         yield return new WaitForSeconds(0.0f);
 
         // SetDestination 작동 끄기
-        m_Distance = 0;
+        m_Distance = 0;        
         m_Agent.ResetPath();
-        m_Anim.SetBool("Walk", false);
+        m_Anim.SetBool("walk", false);
         m_ExplosionDetection = false;
     }
 
