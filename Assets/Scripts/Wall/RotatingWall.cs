@@ -11,7 +11,6 @@ public class RotatingWall : MonoBehaviour
     [SerializeField]
     private float _rotationAngle = 15.0f;
 
-    private bool m_EnterMouse = false;
     private bool m_IsMousePress = false;
     private bool m_IsMouseCoroutineActive = false;
 
@@ -25,26 +24,7 @@ public class RotatingWall : MonoBehaviour
         _hitSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
-    {
-        if(m_EnterMouse)
-        {
-            if (Input.GetMouseButtonDown(1))
-                MouseRButtonDown();
-            else if (Input.GetMouseButtonUp(1))
-                MouseRButtonUp();
-        }
-    }
-    private void OnMouseEnter()
-    {
-        m_EnterMouse = true;
-    }
-    private void OnMouseExit()
-    {
-        m_EnterMouse = false;
-    }
-
-    private void MouseRButtonDown()
+    private void OnMouseDown()
     {
         m_IsMousePress = true;
         if (!m_IsMouseCoroutineActive)
@@ -54,7 +34,7 @@ public class RotatingWall : MonoBehaviour
         }
     }
 
-    private void MouseRButtonUp()
+    private void OnMouseUp()
     {
         m_IsMousePress = false;
     }
@@ -73,7 +53,7 @@ public class RotatingWall : MonoBehaviour
 
     public IEnumerator MouseDownDelay()
     {
-        while (m_IsMousePress && m_EnterMouse)
+        while (m_IsMousePress)
         {
             Rotation();
             yield return new WaitForSeconds(0.15f);

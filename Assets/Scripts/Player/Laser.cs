@@ -21,6 +21,7 @@ public class Laser : MonoBehaviour
         m_Laser = GetComponent<LineRenderer>();
         m_Cam = Camera.main;
         m_Laser.material.color = Color.red;
+
         m_Laser.startWidth = 0.05f;
         m_Laser.endWidth = 0.05f;
     }
@@ -42,28 +43,24 @@ public class Laser : MonoBehaviour
         {
             if (Physics.Raycast(m_Ray.origin, m_Ray.direction, out m_CollidedObject, remainLength))//충돌하였는가?
             {
-                m_Laser.positionCount++;//레이저를 구현할 선의 점의 개수를 1개 늘림
                 if ((m_CollidedObject.collider.tag == "Wall" || m_CollidedObject.collider.tag == "RotateWall"))//튕길수 있는 벽과 충돌하였는가?
-                {                   
+                {
+                    m_Laser.positionCount++; //레이저를 구현할 선의 점의 개수를 1개 늘림
                     m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point);//부딛힌 그 벽에 점을 찍어 선 생성
                     remainLength -= Vector3.Distance(m_Ray.origin, m_CollidedObject.point);//남은 길이를 구함
 
                     m_Ray = new Ray(m_CollidedObject.point, Vector3.Reflect(m_Ray.direction, m_CollidedObject.normal));//반사각 구하기
                 }
-                else if(m_CollidedObject.collider.tag == "Broken")//총알이 부딛혔을때 파괴되는 오브젝트를 만났을때                                    
-                    m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point);//점을 찍어 선 생성                
-                else
+                else//튕기지 못하는 무언가에 부딛힌 경우
                 {
-                    m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point);//점을 찍어 선 생성                
-                    remainLength -= Vector3.Distance(m_Ray.origin, m_CollidedObject.point);//남은 길이를 구함
                     m_Laser.positionCount++;//레이저를 구현할 선의 점의 개수를 1개 늘림
-                    m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point + (m_Ray.direction * remainLength));//레이저의 남은 거리만큼 레이저 생성
+                    m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point);//점을 찍어 선 생성
                 }
             }
             else//어디에도 부딛히지 않았을 경우
             {
                 m_Laser.positionCount++;//레이저를 구현할 선의 점의 개수를 1개 늘림
-                m_Laser.SetPosition(m_Laser.positionCount - 1, m_Ray.origin + (m_Ray.direction * remainLength));//레이저의 남은 거리만큼 레이저 생성
+                m_Laser.SetPosition(m_Laser.positionCount - 1, m_Ray.origin + (m_Ray.direction * remainLength));//레이저의 남은 거릭만큼 레이저 생성
             }
         }
     }
