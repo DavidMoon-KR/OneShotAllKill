@@ -11,7 +11,7 @@ public class GasBarrel : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_mpactGauage);
             Instantiate(m_ExplosionObject, transform.position, transform.rotation);
@@ -21,6 +21,11 @@ public class GasBarrel : MonoBehaviour
     // 탄 또는 가스폭발과 충돌한 경우
     private void OnTriggerEnter(Collider other)
     {
-
+        if(other.gameObject.CompareTag("GasExplosion"))
+        {
+            CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_mpactGauage);
+            Instantiate(m_ExplosionObject, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }

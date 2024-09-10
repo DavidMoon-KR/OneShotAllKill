@@ -60,6 +60,11 @@ public class WallMovement : MonoBehaviour
     {
         m_EnterMouse = true;
     }
+    private void OnMouseExit()
+    {
+        if(m_IsClick == false)
+            m_EnterMouse=false;
+    }
 
     private void MouseRDown()
     {
