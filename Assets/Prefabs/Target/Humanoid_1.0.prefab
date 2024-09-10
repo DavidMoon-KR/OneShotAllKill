@@ -469,9 +469,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WayPoint: []
   m_CurrentTarget: 0
-  m_WaitBeforeMoving: 9
-  m_ImpactTime: 0.9
-  m_ImpactGauge: 1
+  m_WaitBeforeMoving: 2
+  m_ImpactTime: 0
+  m_ImpactGauge: 0
   m_AgroNow: 0
   m_Explosion: {fileID: 1956658677142100356, guid: 8f11636736926e04290d1efd64455bfd, type: 3}
   m_Spark: {fileID: 4618672182275008679, guid: 950906c75f70dea4598c6406b968b403, type: 3}

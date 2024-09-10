@@ -200,7 +200,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.0001
-  m_Center: {x: 0, y: 0, z: -0.0001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6301172930692470868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca039d8b82c8ab140a22194604caeb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 20
+  m_Speed: 10
   m_MuzzlePrefab: {fileID: 5384489699667216464, guid: 89bc650243ef6a54ebcd807488081a8a, type: 3}
   m_HitPrefab: {fileID: 8340392718532922013, guid: ea0fc65712564bc4ca266be94cc91352, type: 3}
 --- !u!1001 &7137481261482024752

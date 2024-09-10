@@ -620,7 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441142803902248407, guid: 2ca4f2d0533398d469c2c03b2c2b2fcd, type: 3}
       propertyPath: m_ImpactGauge
-      value: 1.2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4441142803902248407, guid: 2ca4f2d0533398d469c2c03b2c2b2fcd, type: 3}
       propertyPath: m_ExplosionDetection
