@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6997491708614920889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50,10 +50,10 @@ MonoBehaviour:
   m_FireRate: 0.5
   m_BulletPrefab:
   - {fileID: 5103054444686054220, guid: d9e8a483f17522d48afabc93e1f8b624, type: 3}
-  m_BulletTransform: {fileID: 0}
-  m_BulletCount: 00000000
-  m_ImpactTime: 0.1
-  m_ImpactGauge: 0.5
+  m_BulletTransform: {fileID: 8437216928753888093}
+  m_BulletCount: 02000000
+  m_ImpactTime: 0.2
+  m_ImpactGauge: 0.75
   m_FireGenerated: {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}
 --- !u!82 &7576784862084751460
 AudioSource:
