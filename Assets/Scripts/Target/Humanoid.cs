@@ -15,7 +15,7 @@ public class Humanoid : MonoBehaviour
     [SerializeField] private float m_ImpactGauge;
     private float m_Distance;
 
-    [SerializeField] readonly float m_AgroTime = 15;
+    [SerializeField] readonly float m_AgroTime = 3;
     private float m_Time;
     [SerializeField] private bool m_AgroNow;
     private Vector3 m_OriginalLocation;
@@ -88,16 +88,13 @@ public class Humanoid : MonoBehaviour
                 {
                     m_Anim.SetBool("walk", true);
                     float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
+                    //폭파가 감지된 위치로 이동
+                    m_Agent.SetDestination(m_ExplosionedPos);
                     if (m_Agent.velocity.sqrMagnitude > 0.0f && m_Agent.remainingDistance + 1 < Vector3.Distance(transform.position, m_ExplosionedPos))
                     {
                         m_Agent.SetDestination(transform.position);
                         m_Anim.SetBool("walk", false);
                         distance = 0;
-                    }
-                    else
-                    {
-                        //폭파 위치로 이동
-                        m_Agent.SetDestination(m_ExplosionedPos);
                     }
                     // 목적지에 도착하면 이동 멈춤
                     if (distance < 3.3f)
