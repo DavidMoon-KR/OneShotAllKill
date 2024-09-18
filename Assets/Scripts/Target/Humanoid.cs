@@ -15,7 +15,7 @@ public class Humanoid : MonoBehaviour
     [SerializeField] private float m_ImpactGauge;
     private float m_Distance;
 
-    [SerializeField] readonly float m_AgroTime = 3;
+    [SerializeField] readonly float m_AgroTime = 14;
     private float m_Time;
     [SerializeField] private bool m_AgroNow;
     private Vector3 m_OriginalLocation;

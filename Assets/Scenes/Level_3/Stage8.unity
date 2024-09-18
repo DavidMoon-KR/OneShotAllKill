@@ -565,13 +565,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273950596}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09229593, y: 0.7010574, z: -0.09229593, w: 0.7010574}
-  m_LocalPosition: {x: 37.53, y: 6.37, z: 4}
+  m_LocalRotation: {x: 0.06162845, y: 0.70441604, z: -0.06162845, w: 0.70441604}
+  m_LocalPosition: {x: 38.5, y: 6.37, z: 4}
   m_LocalScale: {x: 60, y: 18, z: 0.90000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 929889978}
-  m_LocalEulerAnglesHint: {x: 15, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 90, z: 0}
 --- !u!65 &273950598
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1507,8 +1507,8 @@ Transform:
   m_GameObject: {fileID: 712220804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8, y: 6.37, z: -15.6}
-  m_LocalScale: {x: 70, y: 18, z: 0.9}
+  m_LocalPosition: {x: 4.7, y: 6.37, z: -15.6}
+  m_LocalScale: {x: 69.7, y: 18, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 929889978}
@@ -2048,7 +2048,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052616, y: -0, z: -0, w: 0.9914449}
   m_LocalPosition: {x: 4.8, y: 6.37, z: 21.2}
-  m_LocalScale: {x: 69.3, y: 18.5, z: 0.90000004}
+  m_LocalScale: {x: 69.7, y: 18.5, z: 0.90000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 929889978}
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.39333332
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 0ff7b65fddcf3ec45b6c40b931c38b86, type: 2}
   m_BuildHeightMesh: 0
@@ -2280,13 +2280,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084070401}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09229599, y: 0.7010574, z: 0.09229599, w: 0.7010574}
-  m_LocalPosition: {x: -27.93, y: 6.3, z: 4}
+  m_LocalRotation: {x: -0.06162845, y: 0.70441604, z: 0.06162845, w: 0.70441604}
+  m_LocalPosition: {x: -29, y: 6.3, z: 4}
   m_LocalScale: {x: 60, y: 18, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 929889978}
-  m_LocalEulerAnglesHint: {x: -15, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: -10, y: 90, z: 0}
 --- !u!65 &1084070403
 BoxCollider:
   m_ObjectHideFlags: 0
