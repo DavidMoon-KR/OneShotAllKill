@@ -52,7 +52,7 @@ public class SecurityCamera : MonoBehaviour
         {
             m_isRotate = false;
 
-            transform.Find("Cone").gameObject.SetActive(false);
+            transform.Find("Robot_Scout_HyperX").transform.Find("Cone").gameObject.SetActive(false);
         }
     }
 }

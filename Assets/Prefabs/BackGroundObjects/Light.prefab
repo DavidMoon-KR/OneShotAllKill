@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3219806684629108358}
+  m_Father: {fileID: 8345232288176414487}
   m_LocalEulerAnglesHint: {x: 120, y: 0, z: 0}
 --- !u!108 &1757014076515978657
 Light:
@@ -45,10 +45,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200
+  m_Intensity: 120
   m_Range: 36.2
   m_SpotAngle: 123.34303
-  m_InnerSpotAngle: 87.97391
+  m_InnerSpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -163,10 +163,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200
+  m_Intensity: 120
   m_Range: 36.2
   m_SpotAngle: 123.34303
-  m_InnerSpotAngle: 87.97391
+  m_InnerSpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -268,7 +268,7 @@ Transform:
   - {fileID: 2097400608580790966}
   - {fileID: 7064118287418840632}
   - {fileID: 4149614104002090591}
-  - {fileID: 3219806684629108358}
+  - {fileID: 8345232288176414487}
   - {fileID: 927148031037937856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -317,10 +317,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200
+  m_Intensity: 120
   m_Range: 36.2
   m_SpotAngle: 123.34303
-  m_InnerSpotAngle: 87.97391
+  m_InnerSpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -553,10 +553,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200
+  m_Intensity: 120
   m_Range: 36.2
   m_SpotAngle: 123.34303
-  m_InnerSpotAngle: 87.97391
+  m_InnerSpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -702,7 +702,7 @@ PrefabInstance:
       addedObject: {fileID: 1218557686136642873}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4241560dc5f5944f915d8730d11eafc, type: 3}
---- !u!4 &3219806684629108358 stripped
+--- !u!4 &8345232288176414487 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6881277664517101970, guid: f4241560dc5f5944f915d8730d11eafc, type: 3}
   m_PrefabInstance: {fileID: 3219806684629108357}
