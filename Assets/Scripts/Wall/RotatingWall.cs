@@ -6,12 +6,10 @@ using UnityEngine;
 public class RotatingWall : MonoBehaviour
 {
     private AudioSource _hitSource;
-    
-    [SerializeField] private AudioClip _hitWallClip;
-    [SerializeField] private float _rotationAngle = 15.0f;
-
-    [SerializeField] private GameObject m_LeftArrow;
-    [SerializeField] private GameObject m_RightArrow;
+    [SerializeField]
+    private AudioClip _hitWallClip;
+    [SerializeField]
+    private float _rotationAngle = 15.0f;
 
     private bool m_EnterMouse = false;
     private bool m_IsMousePress = false;
@@ -44,16 +42,11 @@ public class RotatingWall : MonoBehaviour
     private void OnMouseExit()
     {
         m_EnterMouse = false;
-        m_LeftArrow.SetActive(false);
-        m_RightArrow.SetActive(false);
     }
 
     private void MouseRButtonDown()
     {
         m_IsMousePress = true;
-        m_LeftArrow.SetActive(true);
-        m_RightArrow.SetActive(true);
-
         if (!m_IsMouseCoroutineActive)
         {
             StartCoroutine(MouseDownDelay());
@@ -64,8 +57,6 @@ public class RotatingWall : MonoBehaviour
     private void MouseRButtonUp()
     {
         m_IsMousePress = false;
-        m_LeftArrow.SetActive(false);
-        m_RightArrow.SetActive(false);
     }
 
     public void Rotation()

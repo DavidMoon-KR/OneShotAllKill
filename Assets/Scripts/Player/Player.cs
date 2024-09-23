@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < m_BulletCount.Count; i++)
         {
             m_BulletSum += m_BulletCount[i];
-        }
+        }        
     }
 
     void Update()
@@ -71,6 +71,13 @@ public class Player : MonoBehaviour
 
         // 사격 개시
         FireBullet();
+
+        // 탄이 모두 떨어졌다면
+        if (m_BulletSum <= 0)
+        {
+            // 게임매니저에게 탄 없다는 것을 알림
+            GameManager.Instance.m_HasNotAmmo = true;
+        }
     }
 
     //마우스 포인터를 바라보는 방향으로 회전

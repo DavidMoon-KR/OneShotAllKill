@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484996808624706138}
   - component: {fileID: 7057419403626294882}
-  - component: {fileID: -1212524462045701376}
+  - component: {fileID: 97182679045498228}
   m_Layer: 0
   m_Name: SandObject
   m_TagString: Broken
@@ -54,8 +54,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.3, y: 9, z: 8.5}
-  m_Center: {x: 0, y: 3, z: 0}
---- !u!114 &-1212524462045701376
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &97182679045498228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

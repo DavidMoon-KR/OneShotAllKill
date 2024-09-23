@@ -59,8 +59,8 @@ public class Tutorial3 : MonoBehaviour
         }
     }
 
-    // ! 아이콘을 클릭했을 경우
-    public void OnClickNoticeIcon()
+    // 감시카메라를 클릭했을 경우
+    public void OnClickSecurityCameraButton()
     {
         EventSystem.current.currentSelectedGameObject.gameObject.SetActive(false);
 
