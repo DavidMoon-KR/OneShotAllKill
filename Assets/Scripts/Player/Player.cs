@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public enum BulletType
@@ -111,7 +112,8 @@ public class Player : MonoBehaviour
 
     void FireBullet()
     {
-        if (Input.GetMouseButtonUp(0) && m_BulletCount[(int)m_SelectBulletType] != 0 && Time.time > m_NextFireTime)
+        if (Input.GetMouseButtonUp(0) && m_BulletCount[(int)m_SelectBulletType] != 0 && Time.time > m_NextFireTime
+            && !EventSystem.current.IsPointerOverGameObject())
         {
             m_AudioSource.Play();
 
