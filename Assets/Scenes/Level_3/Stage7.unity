@@ -2137,6 +2137,11 @@ Transform:
   - {fileID: 2022571883}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1506573016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5243360689024049522, guid: c70a1398e7180634e9502f9360bb6386, type: 3}
+  m_PrefabInstance: {fileID: 6022358856811177960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1557820997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2282,7 +2287,7 @@ MonoBehaviour:
   - {fileID: 1579636767}
   - {fileID: 1946515333}
   m_Turret: {fileID: 654110447}
-  m_SecurityCameraCone: {fileID: 2022571882}
+  m_SecurityCameraCone: {fileID: 1506573016}
 --- !u!224 &1557821000 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 405686866114404927, guid: 6afdf6506432cd24abe44acc12598e24, type: 3}
@@ -3224,11 +3229,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2022571882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8878164918497228991, guid: a5b9363057964924497f43ec905f933d, type: 3}
-  m_PrefabInstance: {fileID: 1757767266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2022571883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8878164918497125535, guid: a5b9363057964924497f43ec905f933d, type: 3}
