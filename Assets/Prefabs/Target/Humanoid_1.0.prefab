@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WayPoint: []
   m_CurrentTarget: 0
-  m_WaitBeforeMoving: 9
+  m_WaitBeforeMoving: 4
   m_ImpactTime: 1.33
   m_ImpactGauge: 1.3
   m_AgroNow: 0

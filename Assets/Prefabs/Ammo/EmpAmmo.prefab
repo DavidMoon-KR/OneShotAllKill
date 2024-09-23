@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbd2426afe2b4144aec2f28742b3909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 25
+  m_Speed: 40
   m_MuzzlePrefab: {fileID: 3661185807493288774, guid: ebae62d1a45b1724a986eef517e5938b, type: 3}
   m_HitPrefab: {fileID: 9034931375999670547, guid: 65dec5b8440b7f84da7096f12cb9b5fb, type: 3}
   m_EmpExplosion: {fileID: 5361129478927472489, guid: 0e2bf6e162b496a4d81107d59806ab30, type: 3}
