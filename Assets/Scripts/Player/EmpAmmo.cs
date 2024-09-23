@@ -55,6 +55,11 @@ public class EmpAmmo : MonoBehaviour
         // 장애물에 충돌한 경우
         if (collision.gameObject.CompareTag("Broken") || (collision.gameObject.CompareTag("EnergyWall")))
         {
+            if (0 >= Player.Instance.BulletSum)
+            {
+                GameManager.Instance.IsNotAmmo = true;
+            }
+
             EmpExplosion();
             Destroy(gameObject);
             return;

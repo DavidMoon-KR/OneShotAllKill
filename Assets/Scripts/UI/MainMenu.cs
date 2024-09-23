@@ -43,8 +43,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private List<GameObject> m_LevelWindowList;    // 레벨 리스트 창
 
     [SerializeField] private List<Image> m_LevelMark;   // 레벨 마크
-    [SerializeField] private Sprite m_MarkOnSprite;      // 켜진 화살표 스프라이트
-    [SerializeField] private Sprite m_MarkOffSprite;     // 꺼진 화살표 스프라이트
+    [SerializeField] private Sprite m_MarkOnSprite;     // 켜진 화살표 스프라이트
+    [SerializeField] private Sprite m_MarkOffSprite;    // 꺼진 화살표 스프라이트
 
     [SerializeField] private Image m_PreviousArrowImage;    // 이전 페이지로 가는 화살표 UI
     [SerializeField] private Image m_NextArrowImage;        // 다음 페이지로 가는 화살표 UI
@@ -59,8 +59,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private List<GameObject> m_StageWindowInfo;        // 스테이지 정보 창
     [SerializeField] private List<GameObject> m_LevelWindowInfo_Title;  // 레벨 별 타이틀 정보
 
-    private GameObject m_ClickLevel; // 클릭한 레벨
-    private int m_SelectLevelNumber = 0; // 클릭한 레벨 숫자
+    private GameObject m_ClickLevel;        // 클릭한 레벨
+    private int m_SelectLevelNumber = 0;    // 클릭한 레벨 숫자
 
     private StageID m_SelectStageID = StageID.NotActive; // 스테이지 아이디
     private int m_SelectStageIDValue = 0;                // 스테이지 아이디를 스테이지 단계에 맞게 정수로 변환한 값
