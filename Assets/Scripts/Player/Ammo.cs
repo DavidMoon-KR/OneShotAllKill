@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    public float m_Speed = 70f;       // 탄 스피드
+    public float m_Speed = 25f;       // 탄 스피드
     public GameObject m_MuzzlePrefab; // 탄 퍼짐 효과
     public GameObject m_HitPrefab;    // 사물과 충돌했을 경우 탄퍼짐 효과
     private Vector3 m_Direction;      // 탄 거리

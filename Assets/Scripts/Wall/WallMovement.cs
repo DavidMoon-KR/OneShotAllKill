@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using Unity.AI.Navigation;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class WallMovement : MonoBehaviour

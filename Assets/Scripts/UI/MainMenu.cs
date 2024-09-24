@@ -282,6 +282,10 @@ public class MainMenu : MonoBehaviour
     // 게임 종료 버튼 눌렀을 때
     public void OnClickGameExit()
     {
-
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // 에디터 종료
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
     }
 }
