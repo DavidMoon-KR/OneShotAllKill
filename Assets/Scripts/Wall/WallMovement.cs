@@ -17,6 +17,8 @@ public class WallMovement : MonoBehaviour
     private AudioSource m_HitSource;
 
     private bool m_EnterMouse = false;
+    private bool m_IsClick = false;
+    private bool m_IsMoveable = false;
     private Vector3 m_MouseP;
     private float m_Walldistance = 3.9f;//두 벽간의 거리
     private NavMeshSurface m_NavMeshSurface;
@@ -38,15 +40,15 @@ public class WallMovement : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
-            m_EnterMouse = false;
             m_IsClick = false;
+            if (!m_EnterMouse)
+                m_IsMoveable = false;            
             PrintArrow();
         }
-        if (m_EnterMouse && m_IsClick)
+        if (m_IsMoveable)
             MoveUpdate();
     }
 
-    private bool m_IsClick = false;
     void Start()
     {
         if (null != GameObject.Find("Navigation"))
@@ -60,8 +62,7 @@ public class WallMovement : MonoBehaviour
     }
     private void OnMouseExit()
     {
-        if(m_IsClick == false)
-            m_EnterMouse=false;
+        m_EnterMouse=false;
     }
 
     private void MouseRDown()
@@ -72,8 +73,9 @@ public class WallMovement : MonoBehaviour
         {
             return;
         }
-
         m_IsClick = true;
+        if(m_IsClick && m_EnterMouse)
+            m_IsMoveable=true;
         PrintArrow();
     }
 

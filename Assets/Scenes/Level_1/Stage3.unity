@@ -442,6 +442,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 336941781491648888, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_MotionVectors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336941781491648888, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 336941781491648888, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ddd348b751bd9144ba86f55fddfb874, type: 2}
+    - target: {fileID: 336941781491648888, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_Parameters.generateLightingData
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4760131240571310215, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.4
@@ -485,6 +501,10 @@ PrefabInstance:
     - target: {fileID: 6997491708614920889, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437216928753888093, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.866
       objectReference: {fileID: 0}
     - target: {fileID: 8868741283777543498, guid: d83e30a2ae892c741af821aedf89af4f, type: 3}
       propertyPath: _fireRate

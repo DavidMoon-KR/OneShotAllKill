@@ -23,7 +23,6 @@ public class Laser : MonoBehaviour
     {//레이저 초기 설정(색, 굵기) 설정
         m_Laser = GetComponent<LineRenderer>();
         m_Cam = Camera.main;
-        m_Laser.material.color = Color.red;
         m_Laser.startWidth = 0.05f;
         m_Laser.endWidth = 0.05f;
     }

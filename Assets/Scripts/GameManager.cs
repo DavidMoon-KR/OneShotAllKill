@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool m_IsGameOver = false;       // 게임이 끝났는지 판단하는 변수
-    public bool m_IsFailed = false;         // 스테이지 클리어 실패했는지 판단하는 변수
-    public bool m_HasExplosioned = false;   // 스테이지 내에서 폭발이 일어났는지 판단하는 변수
-    public bool m_IsNotAmmo = false;        // 플레이어가 탄을 소유하고 있는지 확인하는 변수
+    [SerializeField] private bool m_IsGameOver = false;       // 게임이 끝났는지 판단하는 변수
+    [SerializeField] private bool m_IsFailed = false;         // 스테이지 클리어 실패했는지 판단하는 변수
+    [SerializeField] private bool m_HasExplosioned = false;   // 스테이지 내에서 폭발이 일어났는지 판단하는 변수
+    [SerializeField] private bool m_IsNotAmmo = false;        // 플레이어가 탄을 소유하고 있는지 확인하는 변수
 
     [SerializeField] private bool m_IsHumanoid; // 스테이지에 휴머노이드가 있는지 여부
     [SerializeField] private int m_SceneNumber; // 현 스테이지 단계
@@ -37,7 +37,10 @@ public class GameManager : MonoBehaviour
     public bool IsGamePause { get => m_IsGamePause; set => m_IsGamePause = value; }
     public bool IsNotAmmo { set => m_IsNotAmmo = value; }
     public int SceneNumber { get => m_SceneNumber; }
-    
+
+    public bool IsGameOver { get => m_IsGameOver; set => m_IsGameOver = value; }
+    public bool IsFailed { get => m_IsFailed; set => m_IsFailed = value; }
+    public bool HasExplosioned { get => m_HasExplosioned; set => m_HasExplosioned = value; }
 
     void Start()
     {

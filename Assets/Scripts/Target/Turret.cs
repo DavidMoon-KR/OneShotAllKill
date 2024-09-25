@@ -7,8 +7,6 @@ public class Turret : MonoBehaviour
     [SerializeField] private float m_ImpactTime;    // 폭발했을 때 쉐이킹 시간
     [SerializeField] private float m_ImpactGauge;   // 폭발 쉐이킹 강도
     [SerializeField] private float m_RotateSpeed;   // 회전 속도
-
-    private bool m_ExploionTrigger = false; // 폭발 했는지 여부
     
     [SerializeField] GameObject m_Explosion;    // 폭발 VFX 프리팹
     [SerializeField] private GameObject m_Spark;
@@ -35,14 +33,13 @@ public class Turret : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // 탄알에 충돌하거나 가스 폭발과 충돌했다면
-        if ((collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion")) && m_ExploionTrigger == false)
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion"))
         {
             m_IsHit = true;
             m_Anim.SetBool("die", true);
             Instantiate(m_Spark, transform.position, Quaternion.identity);
             // 게임매니저에서 현재 타겟 수 -1
             GameManager.Instance.m_Targets--;
-            m_ExploionTrigger = true;
 
             if (collision.gameObject.CompareTag("Bullet"))
             {
@@ -73,7 +70,7 @@ public class Turret : MonoBehaviour
         Instantiate(m_Explosion, transform.position, Quaternion.identity);
 
         // 스테이지 내에서 타겟이 폭파되었다는 것을 알림
-        GameManager.Instance.m_HasExplosioned = true;
+        GameManager.Instance.HasExplosioned = true;
 
         // 게임매니저에게 자신이 폭발한 위치를 전달하기
         GameManager.Instance.m_ExplosionedPos = transform.position;
