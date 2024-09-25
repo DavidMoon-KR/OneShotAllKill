@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684725169759820238}
   - component: {fileID: 7764158745023592760}
+  - component: {fileID: 5438008078360181884}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -54,3 +55,17 @@ MonoBehaviour:
   m_ExplosionedPos: {x: 0, y: 0, z: 0}
   m_GameOverDelay: 3
   m_DelayExplosion: 2
+--- !u!114 &5438008078360181884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627950899570989244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505bec83cfd1caa4183beb3c11aa016e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 25
+  color: {r: 1, g: 0, b: 0, a: 1}

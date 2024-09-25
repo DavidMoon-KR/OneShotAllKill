@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     private static UIManager m_Instance;
     public static UIManager Instance => m_Instance;
 
+    // 다른 것들보다 먼저 실행되도록 Awake로 실행
     void Awake()
     {
         m_Instance = GetComponent<UIManager>();
@@ -56,10 +57,11 @@ public class UIManager : MonoBehaviour
                 m_BulletCount[i].gameObject.SetActive(false);
                 continue;
             }
-            m_BulletCount[i].gameObject.SetActive(true);            
+            m_BulletCount[i].gameObject.SetActive(true);
         }
     }
 
+    // 총 및 총알 스프라이트 변경
     public void BulletSpriteChange(BulletType p_bullettype)
     {
         m_RifleImage.sprite = m_RifleSprites[(int)p_bullettype];
@@ -70,11 +72,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // 게임종료 메시지
     public void GameOverMessage()
     {
         StartCoroutine(GameOverAnim());
     }
-
+    
+    // 게임종료시 상황에 맞게 실행
     private IEnumerator GameOverAnim()
     {
         // 스테이지 클리어 못할 경우
@@ -124,6 +128,7 @@ public class UIManager : MonoBehaviour
         m_EscMessage.SetActive(false);
     }
 
+    // 재시작 버튼 눌렀을 때
     public void OnClickRestartButton()
     {
         GameManager.Instance.RestartGame();

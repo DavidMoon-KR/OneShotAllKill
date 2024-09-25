@@ -68,7 +68,7 @@ public class Tutorial3 : MonoBehaviour
         OnClickPopupButton();
     }
 
-    // 대화창에서 다음, 닫기 버튼을 클릭했을 경우
+    // 대화창에서 다음, 확인 버튼을 클릭했을 경우
     public void OnClickPopupButton()
     {
         if (m_IsTyping)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 버튼에서 눈에 보이는 이미지만 클릭되도록 하기
 public class ClickOnlyButtonImage : MonoBehaviour
 {
     void Start()
