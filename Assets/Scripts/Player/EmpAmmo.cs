@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmpAmmo : MonoBehaviour
 {
-    public float m_Speed = 70f;       // Åº ½ºÇÇµå
+    public float m_Speed = 25f;       // Åº ½ºÇÇµå
     public GameObject m_MuzzlePrefab; // Åº ÆÛÁü È¿°ú
     public GameObject m_HitPrefab;    // »ç¹°°ú Ãæµ¹ÇßÀ» °æ¿ì ÅºÆÛÁü È¿°ú
     private Vector3 m_Direction;      // Åº °Å¸®
@@ -67,7 +67,7 @@ public class EmpAmmo : MonoBehaviour
 
         // Åº ÆÛÁü »ý¼º
         Instantiate(m_HitPrefab, transform.position, Quaternion.identity);
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("RotateWall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("RotateWall") || collision.gameObject.CompareTag("AccessButton"))
         {
             var firstContact = collision.contacts[0];
 

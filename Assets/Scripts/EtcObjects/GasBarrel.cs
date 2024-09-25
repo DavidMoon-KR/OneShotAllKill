@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class GasBarrel : MonoBehaviour
@@ -8,6 +9,13 @@ public class GasBarrel : MonoBehaviour
     [SerializeField] private GameObject m_ExplosionObject;
     [SerializeField] private float m_ImpactTime;
     [SerializeField] private float m_mpactGauage;
+    
+    private NavMeshSurface m_NavMeshSurface;
+
+    private void Start()
+    {
+        m_NavMeshSurface = GameObject.Find("Navigation").GetComponent<NavMeshSurface>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,6 +23,8 @@ public class GasBarrel : MonoBehaviour
         {
             CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_mpactGauage);
             Instantiate(m_ExplosionObject, transform.position, transform.rotation);
+            if (m_NavMeshSurface != null)            
+                m_NavMeshSurface.BuildNavMesh();            
             Destroy(gameObject);
         }
     }
@@ -25,6 +35,8 @@ public class GasBarrel : MonoBehaviour
         {
             CameraShake.Instance.OnShakeCamera(m_ImpactTime, m_mpactGauage);
             Instantiate(m_ExplosionObject, transform.position, transform.rotation);
+            if (m_NavMeshSurface != null)            
+                m_NavMeshSurface.BuildNavMesh();            
             Destroy(gameObject);
         }
     }

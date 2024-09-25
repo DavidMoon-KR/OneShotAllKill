@@ -63,6 +63,8 @@ public class WallMovement : MonoBehaviour
     private void OnMouseExit()
     {
         m_EnterMouse=false;
+        if(m_EnterMouse == false && m_IsClick == false)
+            m_IsMoveable=false;
     }
 
     private void MouseRDown()

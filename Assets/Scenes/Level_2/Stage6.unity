@@ -1960,6 +1960,10 @@ PrefabInstance:
       value: -6.950001
       objectReference: {fileID: 0}
     - target: {fileID: 4391514633218771203, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_TagString
+      value: AccessButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4391514633218771203, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967287
       objectReference: {fileID: 0}

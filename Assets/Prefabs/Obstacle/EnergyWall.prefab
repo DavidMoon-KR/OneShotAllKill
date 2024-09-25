@@ -412,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793069743201563450, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: AccessButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -572,6 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shield:
   - {fileID: 4870670947236117072}
+  m_ArrowMark: []
   m_Clip: {fileID: 8300000, guid: 35fbad8cdde724f11ba6481f1e64af71, type: 3}
 --- !u!114 &5944389297749955878
 MonoBehaviour:

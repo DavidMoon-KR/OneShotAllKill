@@ -33,24 +33,29 @@ public class Turret : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // 탄알에 충돌하거나 가스 폭발과 충돌했다면
-        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             m_IsHit = true;
             m_Anim.SetBool("die", true);
             Instantiate(m_Spark, transform.position, Quaternion.identity);
             // 게임매니저에서 현재 타겟 수 -1
             GameManager.Instance.m_Targets--;
+            this.GetComponent<BoxCollider>().isTrigger = true;
+            StartCoroutine(ExplosionDelay(true));
+        }
+    }
 
-            if (collision.gameObject.CompareTag("Bullet"))
-            {
-                this.GetComponent<BoxCollider>().isTrigger = true;
-                StartCoroutine(ExplosionDelay(true));
-            }
-
-            else
-            {
-                StartCoroutine(ExplosionDelay(false));
-            }
+    private void OnTriggerEnter(Collider other)
+    {
+        // 탄알에 충돌하거나 가스 폭발과 충돌했다면
+        if (other.gameObject.CompareTag("GasExplosion"))
+        {
+            m_IsHit = true;
+            m_Anim.SetBool("die", true);
+            Instantiate(m_Spark, transform.position, Quaternion.identity);
+            // 게임매니저에서 현재 타겟 수 -1
+            GameManager.Instance.m_Targets--;
+            StartCoroutine(ExplosionDelay(false));
         }
     }
 

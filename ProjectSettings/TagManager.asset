@@ -16,6 +16,7 @@ TagManager:
   - EnergyWall
   - SecurityCamera
   - EmpExplosion
+  - AccessButton
   layers:
   - Default
   - TransparentFX

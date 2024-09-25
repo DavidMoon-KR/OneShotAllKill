@@ -17,6 +17,7 @@ public class Humanoid : MonoBehaviour
 
     [SerializeField] readonly float m_AgroTime = 14;
     private float m_Time;
+    private float m_TurnTime;
     [SerializeField] private bool m_AgroNow;
     private Vector3 m_OriginalLocation;
 
@@ -46,6 +47,7 @@ public class Humanoid : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         m_Anim = GetComponent<Animator>();
         m_Time = 0.0f;
+        m_TurnTime = 0.0f;
         m_OriginalLocation = transform.position;
         m_IsHit = false;
     }
@@ -54,7 +56,8 @@ public class Humanoid : MonoBehaviour
     {
         if (AgroNow)
             m_Time += Time.deltaTime;
-
+        if (m_ExplosionDetection)
+            m_TurnTime += Time.deltaTime;
         if (m_IsHit == false)//총알에 맞지 않았을 경우
         {
             // 웨이포인트가 있다면
@@ -90,8 +93,11 @@ public class Humanoid : MonoBehaviour
                     float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
                     //폭파가 감지된 위치로 이동
                     m_Agent.SetDestination(m_ExplosionedPos);
-                    if (m_Agent.velocity.sqrMagnitude > 0.0f && m_Agent.remainingDistance + 3 < Vector3.Distance(transform.position, m_ExplosionedPos))
+                    if ((m_Agent.velocity.sqrMagnitude > 0.0f && m_Agent.remainingDistance + 3 < Vector3.Distance(transform.position, m_ExplosionedPos)) && m_TurnTime > 0.2f)
                     {
+                        float f1 = m_Agent.remainingDistance + 3;
+                        float f2 = Vector3.Distance(transform.position, m_ExplosionedPos);
+                        float f3 = Vector3.Distance(transform.position, m_WayPoint[m_CurrentTarget].position);
                         m_Agent.SetDestination(transform.position);
                         m_Anim.SetBool("walk", false);
                         distance = 0;
@@ -101,6 +107,7 @@ public class Humanoid : MonoBehaviour
                     {
                         m_Time = 0.0f;
                         //경계하러 가던도중 폭발이 일어날수 있기 때문에 0으로 항상 초기화
+                        m_TurnTime = 0.0f;
 
                         // 작동 끄기
                         m_Distance = 0;
@@ -172,7 +179,6 @@ public class Humanoid : MonoBehaviour
         m_IsTriggerAni = true;
         m_TargetReached = false;
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if ((collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("GasExplosion")) && m_TriggerExplosion == false)
@@ -193,14 +199,7 @@ public class Humanoid : MonoBehaviour
             GameManager.Instance.m_Targets--;
 
             // 탄과 충돌할 경우 _hasBullet에 true 전달
-            if (collision.gameObject.CompareTag("Bullet"))
-            {
-                StartCoroutine(ExplosionDelay(true));
-            }
-            else
-            {
-                StartCoroutine(ExplosionDelay(false));
-            }
+            StartCoroutine(ExplosionDelay(true));
         }
         if (collision.gameObject.CompareTag("EnergyWall"))
         {
@@ -224,16 +223,7 @@ public class Humanoid : MonoBehaviour
 
             // 게임 매니저에서 현 스테이지에 타겟 수 감소
             GameManager.Instance.m_Targets--;
-
-            // 탄과 충돌할 경우 _hasBullet에 true 전달
-            if (other.tag == "Bullet")
-            {
-                StartCoroutine(ExplosionDelay(true));
-            }
-            else
-            {
-                StartCoroutine(ExplosionDelay(false));
-            }
+            StartCoroutine(ExplosionDelay(false));
         }
     }
 

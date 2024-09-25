@@ -63,7 +63,7 @@ public class Ammo : MonoBehaviour
 
         // 탄 퍼짐 생성
         Instantiate(m_HitPrefab, transform.position, Quaternion.identity);
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("RotateWall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("RotateWall") || collision.gameObject.CompareTag("AccessButton"))
         {
             var firstContact = collision.contacts[0];
 
