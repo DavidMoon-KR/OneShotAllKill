@@ -69,6 +69,13 @@ public class MainMenu : MonoBehaviour
     private const int m_Level2_StageCount = 3; // 문제 해결 능력 단계 스테이지 수
     private const int m_Level3_StageCount = 3; // 전략적 사고력 단계 스테이지 수
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnClickLevelExit();
+        }
+    }
 
     // 스테이지 버튼 눌렀을 때
     public void OnClickStage()
@@ -186,6 +193,7 @@ public class MainMenu : MonoBehaviour
         {
             // 스테이지 버튼 활성화
             m_StageButton.interactable = true;
+            m_Level.SetActive(false); // 각 레벨버튼 비활성화
 
             // 레벨 상세창 배경 비활성화 및 게임 제목 활성화
             m_LevelWindowBackGround.gameObject.SetActive(false);
@@ -196,21 +204,28 @@ public class MainMenu : MonoBehaviour
             m_StageListWindow.SetActive(false);
             m_StageInfoWindow.SetActive(false);
 
-            // 선택했던 레벨 리스트 창, 동그라미 마크 비활성화
-            m_LevelWindowList[m_SelectLevelNumber - 1].SetActive(false);
-            m_LevelMark[m_SelectLevelNumber - 1].sprite = m_MarkOffSprite;
+            // Esc버튼을 레벨 선택버튼에서 누를 경우엔 아직 선택한 레벨이 없음. 따라서 예외처리
+            if (0 != m_SelectLevelNumber)
+            {
+                // 선택했던 레벨 리스트 창, 동그라미 마크 비활성화
+                m_LevelWindowList[m_SelectLevelNumber - 1].SetActive(false);
+                m_LevelMark[m_SelectLevelNumber - 1].sprite = m_MarkOffSprite;
+            }            
         }
+        // Esc버튼을 레벨 선택버튼에서 누를 경우엔 아직 선택한 레벨이 없음. 따라서 예외처리
+        if (0 != m_SelectLevelNumber)
+        {
+            // 공통 사항 처리
+            // 선택했던 스테이지에 맞게 정보 창 관련된 것들 비활성화
+            m_LevelWindowInfo[m_SelectLevelNumber - 1].SetActive(false);
+            m_StageWindowInfo[m_SelectStageIDValue].gameObject.SetActive(false);
 
-        // 공통 사항 처리
-        // 선택했던 스테이지에 맞게 정보 창 관련된 것들 비활성화
-        m_LevelWindowInfo[m_SelectLevelNumber - 1].SetActive(false);
-        m_StageWindowInfo[m_SelectStageIDValue].gameObject.SetActive(false);
-
-        // 레벨에 따른 제목 활성화
-        // 맵 정보 활성화, 타겟 정보 비활성화
-        m_LevelWindowInfo_Title[m_SelectLevelNumber - 1].SetActive(true);
-        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("MapInfo").gameObject.SetActive(true);
-        m_StageWindowInfo[m_SelectStageIDValue].transform.Find("TargetInfo").gameObject.SetActive(false);
+            // 레벨에 따른 제목 활성화
+            // 맵 정보 활성화, 타겟 정보 비활성화
+            m_LevelWindowInfo_Title[m_SelectLevelNumber - 1].SetActive(true);
+            m_StageWindowInfo[m_SelectStageIDValue].transform.Find("MapInfo").gameObject.SetActive(true);
+            m_StageWindowInfo[m_SelectStageIDValue].transform.Find("TargetInfo").gameObject.SetActive(false);
+        }
     }
 
     // 각각의 스테이지를 눌렀을 때
