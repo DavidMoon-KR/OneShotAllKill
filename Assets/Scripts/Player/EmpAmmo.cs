@@ -59,10 +59,8 @@ public class EmpAmmo : MonoBehaviour
             {
                 GameManager.Instance.IsNotAmmo = true;
             }
-
             EmpExplosion();
             Destroy(gameObject);
-            return;
         }
 
         // Åº ÆÛÁü »ý¼º
