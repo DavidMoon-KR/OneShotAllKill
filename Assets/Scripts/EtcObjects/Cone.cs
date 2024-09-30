@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Cone : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.collider.tag == "Explosion")
+        if (other.gameObject.CompareTag("Explosion"))
         {
             GameManager.Instance.IsFailed = true;
             GameManager.Instance.IsGameOver = true;
