@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         m_Instance = GetComponent<UIManager>();
+        Time.timeScale = 1.0f;
     }
 
     void Update()
@@ -43,7 +44,15 @@ public class UIManager : MonoBehaviour
             m_EscMessage.SetActive(!m_EscMessage.activeSelf);
 
             GameManager.Instance.IsGamePause = m_EscMessage.activeSelf;
-            Time.timeScale = 1.0f - Time.timeScale;
+            if (m_EscMessage.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
+            
         }
     }
 

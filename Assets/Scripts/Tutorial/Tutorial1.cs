@@ -81,17 +81,23 @@ public class Tutorial1 : MonoBehaviour
         }
     }
 
+    // 벽을 우클릭하면 실행
     public void OnClickWall()
     {
+        // 다음 기믹(대사창) 활성화 및 벽을 가리키던 UI 비활성화
         m_NowGimicNumber++;
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(true);
+        m_WallObjects.gameObject.SetActive(false);
 
+        // 타이핑 치듯이 대사 출력
         StartCoroutine(Typing());
     }
 
     // 대화창에서 확인 버튼을 클릭했을 경우
     public void OnClickPopupButton()
     {
+        // 아직 타이핑 중이라면
+        // 나머지 대사가 모두 나오도록 설정
         if (m_IsTyping)
         {
             m_PopupDialogue.text = m_Dialogue;
@@ -99,13 +105,14 @@ public class Tutorial1 : MonoBehaviour
             return;
         }
 
-        m_WallObjects.gameObject.SetActive(false);
+        // 이전기믹(대사창) 비활성화 및 다음 기믹(이동경로 보이기) 활성화
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);
 
         m_NowGimicNumber++;
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(true);
     }
 
+    // 타이핑 효과
     IEnumerator Typing()
     {
         m_PopupDialogue.text = null;

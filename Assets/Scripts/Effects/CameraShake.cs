@@ -36,7 +36,7 @@ public class CameraShake : MonoBehaviour
         while(m_ShakeTime > 0.0f)
         {
             transform.position = startPosition + Random.insideUnitSphere * m_ShakeInstensity;
-            m_ShakeTime -= Time.deltaTime;
+            m_ShakeTime -= Time.unscaledDeltaTime;
 
             yield return null;
         }
