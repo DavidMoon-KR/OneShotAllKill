@@ -7,13 +7,33 @@ public class IndicateClickAbleObject : MonoBehaviour
 {
     [SerializeField] List<Material> m_Materials;
 
+    private void Start()
+    {
+        
+    }
+    private void Update()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        this.gameObject.GetComponent<MeshRenderer>().material = m_Materials[0];
+    }
+
     private void OnMouseEnter()
     {
-        this.gameObject.GetComponent<MeshRenderer>().material = m_Materials[1];
+        if (this.enabled)
+        {
+            this.gameObject.GetComponent<MeshRenderer>().material = m_Materials[1];
+        }        
     }
 
     private void OnMouseExit()
     {
-        this.gameObject.GetComponent<MeshRenderer>().material = m_Materials[0];
+        if (this.enabled)
+        {
+            this.gameObject.GetComponent<MeshRenderer>().material = m_Materials[0];
+        }
     }
 }

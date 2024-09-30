@@ -19,6 +19,8 @@ public class RotatingWall : MonoBehaviour
 
     private NavMeshSurface m_NavMeshSurface;
 
+    public bool IsMousePress { set =>  m_IsMousePress = value; }
+
     void Start()
     {
         if (null != GameObject.Find("Navigation"))
@@ -27,7 +29,7 @@ public class RotatingWall : MonoBehaviour
         _hitSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    void Update()
     {
         if(m_EnterMouse)
         {
@@ -61,7 +63,7 @@ public class RotatingWall : MonoBehaviour
         }
     }
 
-    private void MouseRButtonUp()
+    public void MouseRButtonUp()
     {
         m_IsMousePress = false;
         m_LeftArrow.SetActive(false);
