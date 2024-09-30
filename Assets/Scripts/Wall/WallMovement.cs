@@ -26,6 +26,13 @@ public class WallMovement : MonoBehaviour
     private float m_tempF;
     private void Update()
     {
+        if (Input.GetMouseButtonUp(1))
+        {
+            m_IsClick = false;
+            m_IsMoveable = false;
+            PrintArrow();
+        }
+
         // 튜토리얼이 진행중이라면 상호작용 불가
         // 게임이 일시정지인 상황에서는 행동 불가
         if (GameManager.Instance.IsGamePause)
@@ -35,16 +42,9 @@ public class WallMovement : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1) && m_EnterMouse)
         {
-            MouseRDown();
+            MouseLDown();
         }
 
-        if (Input.GetMouseButtonUp(1))
-        {
-            m_IsClick = false;
-            if (!m_EnterMouse)
-                m_IsMoveable = false;            
-            PrintArrow();
-        }
         if (m_IsMoveable)
             MoveUpdate();
     }
@@ -67,7 +67,7 @@ public class WallMovement : MonoBehaviour
             m_IsMoveable=false;
     }
 
-    private void MouseRDown()
+    private void MouseLDown()
     {
         // 튜토리얼이 진행중이라면 상호작용 불가
         // 게임이 일시정지인 상황에서는 행동 불가
@@ -102,8 +102,8 @@ public class WallMovement : MonoBehaviour
                 }
             }
             Debug.DrawRay(transform.position, transform.right * m_Walldistance, UnityEngine.Color.clear, 0.3f);
-            if (!Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance))
-            {
+            if (!Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance) || m_RaycastHit.transform.tag == "Cone")
+            {                
                 m_HitSource.clip = m_HitArrowClip;
                 m_HitSource.Play();
                 gameObject.transform.Translate(Vector3.right * 2, Space.Self);
@@ -122,7 +122,7 @@ public class WallMovement : MonoBehaviour
                 }
             }
             Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance, UnityEngine.Color.clear, 0.3f);
-            if (!Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance))
+            if (!Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance) || m_RaycastHit.transform.tag == "Cone")
             {
                 m_HitSource.clip = m_HitArrowClip;
                 m_HitSource.Play();

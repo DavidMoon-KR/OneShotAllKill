@@ -13,13 +13,4 @@ public class Cone : MonoBehaviour
             GameManager.Instance.IsGameOver = true;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Explosion")
-        {
-            GameManager.Instance.IsFailed = true;
-            GameManager.Instance.IsGameOver = true;
-        }
-    }
 }

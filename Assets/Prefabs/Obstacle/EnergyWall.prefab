@@ -414,6 +414,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AccessButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7793069743203495418, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

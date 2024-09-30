@@ -93,12 +93,13 @@ public class Humanoid : MonoBehaviour
                     float distance = Vector3.Distance(transform.position, m_ExplosionedPos);
                     //폭파가 감지된 위치로 이동
                     m_Agent.SetDestination(m_ExplosionedPos);
-                    if ((m_Agent.velocity.sqrMagnitude > 0.0f && m_Agent.remainingDistance < Vector3.Distance(transform.position, m_ExplosionedPos)) && m_TurnTime > 0.2f)
+                    if ((m_Agent.velocity.sqrMagnitude > 0.0f && m_Agent.remainingDistance + 1 < Vector3.Distance(transform.position, m_ExplosionedPos)) && m_TurnTime > 0.2f)
                     {
                         if (m_WayPoint.Count > 0)
                         {
                             m_ExplosionDetection = false;
-                            new WaitForSeconds(1.0f);
+                            m_Anim.SetBool("walk", false);
+                            new WaitForSeconds(3.0f);
                             return;
                         }                            
                         else
@@ -132,7 +133,7 @@ public class Humanoid : MonoBehaviour
                     m_Anim.SetBool("walk", true);
                     float distance = Vector3.Distance(transform.position, m_OriginalLocation);
                     m_Agent.SetDestination(m_OriginalLocation);
-                    if (m_Agent.velocity.sqrMagnitude > 0 && m_Agent.remainingDistance < Vector3.Distance(transform.position, m_OriginalLocation))
+                    if (m_Agent.velocity.sqrMagnitude > 0 && m_Agent.remainingDistance + 1 < Vector3.Distance(transform.position, m_OriginalLocation))
                     {
                         if (m_WayPoint.Count > 0)
                         {

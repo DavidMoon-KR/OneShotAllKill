@@ -10,7 +10,6 @@ public class Turret : MonoBehaviour
     
     [SerializeField] GameObject m_Explosion;    // 폭발 VFX 프리팹
     [SerializeField] private GameObject m_Spark;
-    private bool m_IsHit;
     private Animator m_Anim;
     // 사운드
     [SerializeField] private AudioClip m_ExplosionSound;
@@ -21,13 +20,6 @@ public class Turret : MonoBehaviour
         m_Anim = GetComponent<Animator>();
         m_Anim.SetBool("turnright", true);
         m_Audio = GetComponent<AudioSource>();
-        m_IsHit = false;
-    }
-
-    void Update()
-    {
-        if(m_IsHit == true)
-            m_Anim.SetBool("turnright", false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,7 +27,7 @@ public class Turret : MonoBehaviour
         // 탄알에 충돌하거나 가스 폭발과 충돌했다면
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            m_IsHit = true;
+            m_Anim.SetBool("turnright", false);
             m_Anim.SetBool("die", true);
             Instantiate(m_Spark, transform.position, Quaternion.identity);
             // 게임매니저에서 현재 타겟 수 -1
@@ -50,7 +42,7 @@ public class Turret : MonoBehaviour
         // 탄알에 충돌하거나 가스 폭발과 충돌했다면
         if (other.gameObject.CompareTag("GasExplosion"))
         {
-            m_IsHit = true;
+            m_Anim.SetBool("turnright", false);
             m_Anim.SetBool("die", true);
             Instantiate(m_Spark, transform.position, Quaternion.identity);
             // 게임매니저에서 현재 타겟 수 -1

@@ -17,6 +17,8 @@ TagManager:
   - SecurityCamera
   - EmpExplosion
   - AccessButton
+  - WebDemoController
+  - Cone
   layers:
   - Default
   - TransparentFX
