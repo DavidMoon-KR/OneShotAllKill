@@ -14,10 +14,14 @@ public class SecurityCamera : MonoBehaviour
     private float m_Timer;
     private int m_TurnCnt;
 
+    private GameObject m_Cone;
+    private Cone m_CurrentCone;
     private void Start()
     {
         m_TurnCnt = 0;
         m_Timer = 0.0f;
+        m_Cone = GameObject.FindGameObjectWithTag("Cone");
+        m_CurrentCone = m_Cone.GetComponent<Cone>();
     }
 
     void Update()
@@ -50,9 +54,8 @@ public class SecurityCamera : MonoBehaviour
         // 만약 Emp에 맞았으면 작동 멈추기
         if (other.gameObject.tag == "EmpExplosion")
         {
+            StartCoroutine(m_CurrentCone.FadeOut());
             m_isRotate = false;
-
-            transform.Find("Cone").gameObject.SetActive(false);
         }
     }
 }
