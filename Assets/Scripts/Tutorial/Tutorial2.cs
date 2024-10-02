@@ -23,6 +23,13 @@ public class Tutorial2 : MonoBehaviour
         if (!m_EnergyWall.activeSelf)
         {
             m_Laser.gameObject.SetActive(false);
+
+            m_BottomRotateWall2.GetComponent<IndicateClickAbleObject>().enabled = true;
+            m_BottomRotateWall2.GetComponent<RotatingWall>().enabled = true;
+
+            m_TopRotateWall1.GetComponent<IndicateClickAbleObject>().enabled = true;
+            m_TopRotateWall1.GetComponent<RotatingWall>().enabled = true;
+
             return;
         }
 
