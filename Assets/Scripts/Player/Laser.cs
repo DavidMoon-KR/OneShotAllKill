@@ -15,6 +15,7 @@ public class Laser : MonoBehaviour
     private int m_Reflections = 10;//튕기는 횟수 ※이거를 수정해야 여러번 튕깁니다※
     private bool m_IsCollidedAccessButton;
 
+    private bool m_HitGasBarrel = false;
     private bool m_IsReflected;
     private Vector3 m_Reflect;
     private Ray m_Ray;
@@ -42,6 +43,7 @@ public class Laser : MonoBehaviour
         m_Laser.positionCount = 1;
         m_IsReflected = false;
         m_IsCollidedAccessButton = false;
+        m_HitGasBarrel = false;
         //실시간으로 레이저의 충돌을 감지하여 선의 개수를 늘리기 위해 선의 개수를 항상 1개로 초기화
         m_Laser.SetPosition(0, transform.position);
         float remainLength = m_DefaultLength;
@@ -71,6 +73,31 @@ public class Laser : MonoBehaviour
                     else
                         m_Ray = new Ray(m_CollidedObject.point + transform.forward, transform.forward);
                 }
+                if (m_CollidedObject.collider.tag == "GasBarrel")
+                {
+                    m_HitGasBarrel = true;
+                    GameObject[] gasbarrels = GameObject.FindGameObjectsWithTag("GasBarrel");
+                    foreach (var gasbarrel in gasbarrels)
+                    {
+                        if (m_CollidedObject.transform == gasbarrel.transform)
+                        {
+                            GasBarrel currentgasbarrel = gasbarrel.GetComponent<GasBarrel>();
+                            currentgasbarrel.HitLaser = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (!m_HitGasBarrel)
+                    {
+                        GameObject[] gasbarrels = GameObject.FindGameObjectsWithTag("GasBarrel");
+                        foreach (var gasbarrel in gasbarrels)
+                        {
+                            GasBarrel currentgasbarrel = gasbarrel.GetComponent<GasBarrel>();
+                            currentgasbarrel.HitLaser = false;
+                        }
+                    }
+                }
             }
             else//어디에도 부딛히지 않았을 경우
             {
@@ -95,86 +122,4 @@ public class Laser : MonoBehaviour
     }
 }
 
-
-using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-
-[RequireComponent(typeof(LineRenderer))]
-public class Laser : MonoBehaviour
-{
-    //레이저 최대 거리
-    //[SerializeField]
-    //private float m_LaserDistance;
-    private LineRenderer m_Laser;
-    private RaycastHit m_CollidedObject;
-    [SerializeField]
-    private int m_Reflections;
-    [SerializeField]
-    private Transform m_StartPoint;
-    private Ray ray;
-    //[SerializeField]
-    //Vector3 RefelectVec;
-
-    void Start()
-    {
-        m_Laser = GetComponent<LineRenderer>();
-        m_Laser.SetPosition(0, transform.position);
-        //레이저 기본 설정
-        //Material material = new Material(Shader.Find("Standard"));
-        //material.color = Color.red;
-        //m_Laser.material = material;
-
-    }
-
-    void Update()
-    {
-        PrintLaser(transform.position,transform.forward);
-    }
-
-
-    void PrintLaser(Vector3 position,Vector3 direction)
-    {
-        m_Laser.SetPosition(0, m_StartPoint.position);
-
-        for (int i =0;i<m_Reflections;i++)
-        {
-            ray = new Ray(position, direction);
-            
-            if(Physics.Raycast(ray,out m_CollidedObject,300,1))
-            {
-                position = m_CollidedObject.point;
-                direction = Vector3.Reflect(direction, m_CollidedObject.normal);
-                m_Laser.SetPosition(i + 1, m_CollidedObject.point);
-
-                if(m_CollidedObject.transform.name != "Wall" || m_CollidedObject.transform.name != "RotatingWall")
-                {
-                    for(int j = (i+1);j<=m_Reflections;j++)
-                    {
-                        m_Laser.SetPosition(j, m_CollidedObject.point);
-                    }
-                    break;
-                }
-            }
-        }
-
-        
-        /*
-        m_Laser.SetPosition(0, transform.position);
-        Debug.DrawRay(transform.position, transform.forward * m_LaserDistance, Color.red, 0.5f);
-        if (Physics.Raycast(transform.position, transform.forward, out m_CollidedObject, m_LaserDistance)
-        || m_CollidedObject.collider.gameObject.CompareTag("Wall")
-            || m_CollidedObject.collider.gameObject.CompareTag("RotateWall"))
-            m_Laser.SetPosition(1, m_CollidedObject.point);
-        else
-            m_Laser.SetPosition(1, transform.position + (transform.forward * m_LaserDistance));
-        
-
-    }
-
-}
 */

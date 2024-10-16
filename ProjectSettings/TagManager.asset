@@ -19,6 +19,8 @@ TagManager:
   - AccessButton
   - WebDemoController
   - Cone
+  - Laser
+  - GasBarrel
   layers:
   - Default
   - TransparentFX

@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
 
     // 프로퍼티
     public int BulletSum { get => m_BulletSum; set => m_BulletSum = value; }
+    public BulletType SelectBulletType { get { return m_SelectBulletType; } }
 
     void Start()
     {

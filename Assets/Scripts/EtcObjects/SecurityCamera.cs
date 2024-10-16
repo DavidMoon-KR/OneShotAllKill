@@ -48,6 +48,19 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
+    private IEnumerator RotationDown()
+    {
+        float f = 0.3f;
+        while (f > 0)
+        {
+            f -= 0.005f;
+            Quaternion tempRotation = transform.rotation;
+            tempRotation.z -= 0.01f;
+            transform.rotation = tempRotation;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
     // 충돌 처리
     private void OnTriggerEnter(Collider other)
     {
@@ -55,6 +68,7 @@ public class SecurityCamera : MonoBehaviour
         if (other.gameObject.tag == "EmpExplosion")
         {
             StartCoroutine(m_CurrentCone.FadeOut());
+            StartCoroutine(RotationDown());
             m_isRotate = false;
         }
     }
