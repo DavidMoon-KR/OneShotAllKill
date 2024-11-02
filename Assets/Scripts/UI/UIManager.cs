@@ -1,14 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// 총 이미지 관련 정보
+[Serializable]
+public class RifleImageInfo
+{
+    // 총, 총알 이미지
+    public Image RifleImage;
+    public List<Image> BulletCount;
+}
+
 public class UIManager : MonoBehaviour
 {
     // 총, 총알 UI
-    [SerializeField] private Image m_RifleImage;
-    [SerializeField] private List<Image> m_BulletCount;
+    [SerializeField] private List<RifleImageInfo> m_RifleImageInfo;
+
+    //[SerializeField] private Image m_RifleImage;
+    //[SerializeField] private List<Image> m_BulletCount;
 
     // 총, 총알 스프라이트
     [SerializeField] private List<Sprite> m_RifleSprites;
@@ -56,29 +69,66 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // 탄 개수 표시
+    // 모든 총알 개수 설정
+    public void AllBulletCountSet(BulletType p_SelectType, List<int> p_bullet)
+    {
+        for (int i = 0; i < m_RifleImageInfo.Count; i++)
+        {
+            if ((int)p_SelectType >= m_RifleImageInfo.Count)
+            {
+                p_SelectType = BulletType.BulletType_Normal;
+            }
+
+            for (int j = 0; j < m_RifleImageInfo[(int)p_SelectType].BulletCount.Count; j++)
+            {
+                if (p_bullet[i] < (j + 1))
+                {
+                    m_RifleImageInfo[(int)p_SelectType].BulletCount[j].gameObject.SetActive(false);
+                    continue;
+                }
+                m_RifleImageInfo[(int)p_SelectType].BulletCount[j].gameObject.SetActive(true);
+            }
+
+            p_SelectType++;
+        }
+    }
+
+    // 현재 사용중인 총알 개수 설정
     public void BulletCountSet(int p_bullet)
     {
-        for (int i = 0; i < m_BulletCount.Count; i++)
+        for (int i = 0; i < m_RifleImageInfo[0].BulletCount.Count; i++)
         {
             if (p_bullet < (i + 1))
             {
-                m_BulletCount[i].gameObject.SetActive(false);
+                m_RifleImageInfo[0].BulletCount[i].gameObject.SetActive(false);
                 continue;
             }
-            m_BulletCount[i].gameObject.SetActive(true);
+            m_RifleImageInfo[0].BulletCount[i].gameObject.SetActive(true);
         }
     }
 
     // 총 및 총알 스프라이트 변경
-    public void BulletSpriteChange(BulletType p_bullettype)
+    public void RifleInfoSpriteChange(BulletType p_SelectType, List<int> p_bullet)
     {
-        m_RifleImage.sprite = m_RifleSprites[(int)p_bullettype];
+        AllBulletCountSet(p_SelectType, p_bullet);
 
-        for (int i = 0; i < m_BulletCount.Count; i++)
+        for (int i = 0; i < m_RifleImageInfo.Count; i++)
         {
-            m_BulletCount[i].sprite = m_BulletSprites[(int)p_bullettype];
+            if ((int)p_SelectType >= m_RifleImageInfo.Count)
+            {
+                p_SelectType = BulletType.BulletType_Normal;
+            }
+
+            m_RifleImageInfo[i].RifleImage.sprite = m_RifleSprites[(int)p_SelectType];
+
+            for (int j = 0; j < m_RifleImageInfo[i].BulletCount.Count; j++)
+            {
+                m_RifleImageInfo[i].BulletCount[j].sprite = m_BulletSprites[(int)p_SelectType];
+            }
+
+            p_SelectType++;
         }
+        
     }
 
     // 게임종료 메시지

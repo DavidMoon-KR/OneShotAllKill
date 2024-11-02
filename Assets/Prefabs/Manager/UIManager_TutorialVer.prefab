@@ -369,7 +369,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990711061864032445}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -384,7 +384,7 @@ RectTransform:
   - {fileID: 7341370528905752394}
   - {fileID: 2657517870776931223}
   - {fileID: 5653826523517988793}
-  m_Father: {fileID: 5233842952470185778}
+  m_Father: {fileID: 6252306311662908310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -701,18 +701,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2be89aad2359f458ae5cb02a06ea24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RifleImage: {fileID: 549988448512170855}
-  m_BulletCount:
-  - {fileID: 894055882790853368}
-  - {fileID: 4092405696404811244}
-  - {fileID: 4870688945776959926}
-  - {fileID: 1334140300394962004}
-  - {fileID: 6639000892526118941}
-  - {fileID: 19399489140777693}
-  - {fileID: 8920290250516577996}
-  - {fileID: 2924117617581887104}
-  - {fileID: 5948773119544791547}
-  - {fileID: 5433878836734613202}
+  m_RifleImageInfo:
+  - RifleImage: {fileID: 549988448512170855}
+    BulletCount:
+    - {fileID: 894055882790853368}
+    - {fileID: 4092405696404811244}
+    - {fileID: 4870688945776959926}
+    - {fileID: 1334140300394962004}
+    - {fileID: 6639000892526118941}
+    - {fileID: 19399489140777693}
+    - {fileID: 8920290250516577996}
+    - {fileID: 2924117617581887104}
+    - {fileID: 5948773119544791547}
+    - {fileID: 5433878836734613202}
   m_RifleSprites:
   - {fileID: 21300000, guid: 15dd66aa8b4b04be3a26d483bb4b2f47, type: 3}
   - {fileID: 21300000, guid: df5cc12082e264727a2dc45ec1b9e468, type: 3}
@@ -2397,8 +2398,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3908745512848940313}
-  - {fileID: 8822747387271849452}
+  - {fileID: 6252306311662908310}
   m_Father: {fileID: 4296669932444311370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3260,6 +3260,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7700361402939050164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6252306311662908310}
+  m_Layer: 5
+  m_Name: Rifle1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6252306311662908310
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700361402939050164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3908745512848940313}
+  - {fileID: 8822747387271849452}
+  m_Father: {fileID: 5233842952470185778}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7701699718240333570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3577,7 +3614,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4410214097958015032}
-  m_Father: {fileID: 5233842952470185778}
+  m_Father: {fileID: 6252306311662908310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

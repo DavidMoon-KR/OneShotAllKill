@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public enum BulletType
 {
     BulletType_Normal,
-    BulletType_Emp,
+    BulletType_Emp
 }
 
 public class Player : MonoBehaviour
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         m_Instance = GetComponent<Player>();
-        UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
+        UIManager.Instance.AllBulletCountSet(m_SelectBulletType, m_BulletCount);
         m_AudioSource = GetComponent<AudioSource>();
         m_AudioSource.clip = m_FireGenerated;
 
@@ -104,10 +104,7 @@ public class Player : MonoBehaviour
             }
 
             // ¹Ù²ï ÃÑ UI¿¡ Ç¥½Ã
-            UIManager.Instance.BulletSpriteChange(m_SelectBulletType);
-
-            // ¹Ù²ï ÃÑ¾Ë °³¼ö UI¿¡ Ç¥½Ã
-            UIManager.Instance.BulletCountSet(m_BulletCount[(int)m_SelectBulletType]);
+            UIManager.Instance.RifleInfoSpriteChange(m_SelectBulletType, m_BulletCount);
         }
     }
 
