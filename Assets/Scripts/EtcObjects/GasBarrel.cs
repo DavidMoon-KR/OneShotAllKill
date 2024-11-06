@@ -10,13 +10,12 @@ public class GasBarrel : MonoBehaviour
     [SerializeField] private float m_ImpactTime;
     [SerializeField] private float m_mpactGauage;
     private bool m_HitLaser = false;
-    private int m_Radius;
+    [SerializeField] private float m_Radius;
     private LineRenderer m_Line;    
     private NavMeshSurface m_NavMeshSurface;
     public bool HitLaser { set { m_HitLaser = value; } }
     private void Start()
     {
-        m_Radius = 3;
         m_Line = gameObject.GetComponent<LineRenderer>();
         m_Line.positionCount = 81;
         m_Line.useWorldSpace = false;

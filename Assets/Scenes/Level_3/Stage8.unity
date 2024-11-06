@@ -2968,6 +2968,10 @@ PrefabInstance:
       value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 4391514633218771203, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4391514633218771203, guid: 91769b064dc24e64e84f4e42c9350726, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967287
       objectReference: {fileID: 0}
@@ -3673,6 +3677,67 @@ Transform:
   - {fileID: 340026455}
   m_Father: {fileID: 1116023494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1756384393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7004988547627517328, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_Name
+      value: Button_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004988547627517328, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628448347910934653, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
 --- !u!1 &1758755380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4499,6 +4564,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GasBarrel
       objectReference: {fileID: 0}
+    - target: {fileID: 7307833490088954992, guid: 6e79a6d9febfcfa4dbfcb8aff6c95972, type: 3}
+      propertyPath: m_Radius
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307833490088954992, guid: 6e79a6d9febfcfa4dbfcb8aff6c95972, type: 3}
+      propertyPath: m_ImpactTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307833490088954992, guid: 6e79a6d9febfcfa4dbfcb8aff6c95972, type: 3}
+      propertyPath: m_mpactGauage
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7357142503341326983, guid: 6e79a6d9febfcfa4dbfcb8aff6c95972, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11
@@ -4890,3 +4967,4 @@ SceneRoots:
   - {fileID: 1094258718}
   - {fileID: 2113759088}
   - {fileID: 1765548342}
+  - {fileID: 1756384393}

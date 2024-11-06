@@ -3102,6 +3102,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7307833490088954992, guid: 6e79a6d9febfcfa4dbfcb8aff6c95972, type: 3}
+      propertyPath: m_Radius
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307833490088954992, guid: 6e79a6d9febfcfa4dbfcb8aff6c95972, type: 3}
       propertyPath: _impactTime
       value: 1
       objectReference: {fileID: 0}

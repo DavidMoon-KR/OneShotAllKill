@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 7004988547627517328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 42d35a715a3f56745a0685ea82ff9017, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 42d35a715a3f56745a0685ea82ff9017, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7899099928202489408, guid: 42d35a715a3f56745a0685ea82ff9017, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7899099928202489408, guid: 42d35a715a3f56745a0685ea82ff9017, type: 3}
       propertyPath: m_LocalPosition.x
@@ -175,8 +175,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.18678382, y: 0.18678379, z: 0.092142835}
-  m_Center: {x: 0, y: -0.000000014901161, z: 0.046068624}
+  m_Size: {x: 0.12, y: 0.4, z: 0.06}
+  m_Center: {x: 0, y: 0.15, z: 0.1}
 --- !u!82 &3247001605599017714
 AudioSource:
   m_ObjectHideFlags: 0
