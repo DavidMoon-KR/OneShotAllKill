@@ -8,7 +8,8 @@ public class EmpExplosionRange : MonoBehaviour
     private LineRenderer m_Line;
     void Start()
     {
-        m_Radius = 3;
+        if(m_Radius == 0)
+            m_Radius = 3;
         m_Line = gameObject.GetComponent<LineRenderer>();
         m_Line.positionCount = 81;
         m_Line.startWidth = 0.05f;

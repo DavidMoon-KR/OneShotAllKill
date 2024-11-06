@@ -8,13 +8,12 @@ using UnityEngine.UI;
 public class Laser : MonoBehaviour
 {
     [SerializeField] public float m_DefaultLength;
-
     private LineRenderer m_Laser;
     private Camera m_Cam;
+    private Player m_Player;
     private RaycastHit m_CollidedObject;
     private int m_Reflections = 10;//튕기는 횟수 ※이거를 수정해야 여러번 튕깁니다※
-    private bool m_IsCollidedAccessButton;
-
+    private bool m_IsCollidedAccessButton;    
     private bool m_HitGasBarrel = false;
     private bool m_IsReflected;
     private Vector3 m_Reflect;
@@ -23,6 +22,7 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
+        m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
         m_IsCollidedAccessButton = false;
         //레이저 초기 설정(색, 굵기) 설정
         m_Laser = GetComponent<LineRenderer>();
@@ -63,7 +63,9 @@ public class Laser : MonoBehaviour
                     m_Ray = new Ray(m_CollidedObject.point, Vector3.Reflect(m_Ray.direction, m_CollidedObject.normal));//반사각 구하기
                 }
                 else if(m_CollidedObject.collider.tag == "Broken" || (m_CollidedObject.collider.tag == "EnergyWall" && m_IsCollidedAccessButton == false))//총알이 부딛혔을때 파괴되는 오브젝트를 만났을때                                    
+                {
                     m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point);//점을 찍어 선 생성                                              
+                }                    
                 else
                 {
                     m_Laser.SetPosition(m_Laser.positionCount - 1, m_CollidedObject.point);//점을 찍어 선 생성                
@@ -104,9 +106,14 @@ public class Laser : MonoBehaviour
                 m_Laser.positionCount++;//레이저를 구현할 선의 점의 개수를 1개 늘림
                 m_Laser.SetPosition(m_Laser.positionCount - 1, m_Ray.origin + (m_Ray.direction * remainLength));//레이저의 남은 거리만큼 레이저 생성
             }
+            if ((int)m_Player.SelectBulletType == 1 && i == m_Reflections - 1)
+                GameObject.FindWithTag("Player").GetComponent<EmpExplosionRange>().DrawEmpExplosionRange(true, m_Laser.GetPosition(m_Laser.positionCount - 1));            
+            else
+                GameObject.FindWithTag("Player").GetComponent<EmpExplosionRange>().DrawEmpExplosionRange(false, m_Laser.GetPosition(m_Laser.positionCount - 1));
         }
     }
-}
+}    
+
     /*void NormalLaser()//혹시 몰라서 남겨둔 튕기지 않는 레이저
     {
         m_Laser.SetPosition(0, transform.position);
