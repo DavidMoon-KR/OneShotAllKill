@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject m_NextStageButton;  // 다음 스테이지 넘어가는 버튼
     [SerializeField] private GameObject m_GameExitButton;   // 게임 종료 버튼
     [SerializeField] private GameObject m_EscMessage;       // Esc 눌렀을 떄 나오는 메시지
+    [SerializeField] private GameObject m_HintMessage;      // 힌트 메시지
 
     public bool m_MissionComplete = false;   // 스테이지 클리어 여부 판단
     private bool m_OneChecking = true;       // 결과 애니메이션이 한번만 나오게 하는 변수
@@ -169,6 +170,26 @@ public class UIManager : MonoBehaviour
     public void MainMenuLoadScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    // 힌트 메시지 보여주기
+    public void ShowHint()
+    {
+        m_HintMessage.SetActive(true);
+
+        StartCoroutine(InitHintMessage());
+    }
+
+    public void CloseHint()
+    {
+        m_HintMessage.SetActive(false);
+    }
+
+    IEnumerator InitHintMessage()
+    {
+        yield return new WaitForSeconds(7f);
+
+        CloseHint();
     }
 
     // Esc메시지에서 Yes버튼 눌렀을 때

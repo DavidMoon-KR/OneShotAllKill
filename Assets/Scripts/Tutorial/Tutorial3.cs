@@ -34,8 +34,12 @@ public class Tutorial3 : MonoBehaviour
     {
         if (3 == m_NowGimicNumber)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            TutorialManager.Instance.IsTutorial = false;
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                TutorialManager.Instance.IsTutorial = true;
+
                 m_EnergyWall[0].SetActive(false);
 
                 m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);
@@ -47,6 +51,8 @@ public class Tutorial3 : MonoBehaviour
         {
             if(m_Turret == null && !m_SecurityCameraCone.activeSelf)
             {
+                TutorialManager.Instance.IsTutorial = false;
+
                 m_EnergyWall[0].SetActive(true);
                 m_EnergyWall[1].SetActive(false);
                 m_EnergyWall[2].SetActive(false);

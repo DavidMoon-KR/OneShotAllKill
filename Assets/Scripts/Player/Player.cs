@@ -95,6 +95,12 @@ public class Player : MonoBehaviour
         if (1 >= m_BulletPrefab.Count)
             return;
 
+        // 만약 튜토리얼이 있다면 정해진 타이밍에 바꿀 수 있도록 조치
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsTutorial)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             m_SelectBulletType++;

@@ -55,6 +55,8 @@ MonoBehaviour:
   m_ExplosionedPos: {x: 0, y: 0, z: 0}
   m_GameOverDelay: 3
   m_DelayExplosion: 2
+  m_HintShowDelay: 180
+  m_HintCount: 0
 --- !u!114 &5438008078360181884
 MonoBehaviour:
   m_ObjectHideFlags: 0
