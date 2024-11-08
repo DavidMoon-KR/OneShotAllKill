@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> m_HintClearTargets;   // 힌트를 통해서 처리해야 할 타겟들
     [SerializeField] private List<float> m_HintShowDelay;   // 힌트 메시지 띄우기까지 걸리는 시간
     [SerializeField] private List<int> m_AllHintWallCount;  // 힌트를 적용할 벽의 수
+    [SerializeField] private List<bool> m_IsApplyHint;      // 힌트를 바로 적용할 지 시간이 흐른 후 적용할 지 여부
     [SerializeField] private int m_AllHintCount;            // 힌트 수
     private int m_NowHintCount = 0;                         // 현재 힌트 번호
 
@@ -110,8 +111,9 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.GameOverMessage();
         }
 
+        // 힌트를 바로 적용하기로 설정했다면 무조건 바로 힌트 생성
         // 힌트 메시지가 활성화 되었고, F키를 눌렀다면
-        if (m_IsShowHintMessage && Input.GetKeyDown(KeyCode.F))
+        if (m_NowHintCount > 0 && m_IsApplyHint[m_NowHintCount-1] || m_IsShowHintMessage && Input.GetKeyDown(KeyCode.F))
         {
             // 힌트 메시지 끄기
             UIManager.Instance.CloseHint();

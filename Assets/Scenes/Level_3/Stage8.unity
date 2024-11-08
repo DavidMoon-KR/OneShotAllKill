@@ -1153,8 +1153,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
+      propertyPath: m_IsApplyHint.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
       propertyPath: m_HintShowDelay.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
+      propertyPath: m_IsApplyHint.Array.data[1]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
       propertyPath: m_AllHintWallCount.Array.size
@@ -1166,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
       propertyPath: m_HintShowDelay.Array.data[0]
-      value: 180
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
       propertyPath: m_HintShowDelay.Array.data[1]
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7764158745023592760, guid: ff057e85a7c458845aa2028ee0b3c9dd, type: 3}
       propertyPath: m_AllHintWallCount.Array.data[0]
