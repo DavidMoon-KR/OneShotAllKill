@@ -10,9 +10,11 @@ public class EnergyWallButton : MonoBehaviour
     // 사운드
     [SerializeField] private AudioClip m_Clip;
     private AudioSource m_AudioSource;
+    private Animator m_Anim;
 
     void Start()
     {
+        m_Anim = GetComponent<Animator>();
         m_AudioSource = GetComponent<AudioSource>();
     }
 
@@ -21,6 +23,7 @@ public class EnergyWallButton : MonoBehaviour
         // 탄과 충돌할 경우
         if (collision.collider.tag == "Bullet")
         {
+            m_Anim.SetTrigger("Access");
             // 에너지 방벽이 켜있다면 꺼준다.
             if (m_Shield[0].activeSelf)
             {
@@ -43,4 +46,5 @@ public class EnergyWallButton : MonoBehaviour
             }
         }
     }
+
 }
