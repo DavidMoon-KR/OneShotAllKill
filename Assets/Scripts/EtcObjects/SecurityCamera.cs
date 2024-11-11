@@ -61,15 +61,10 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
-    // 충돌 처리
-    private void OnTriggerEnter(Collider other)
+    public void StartCoroutines()
     {
-        // 만약 Emp에 맞았으면 작동 멈추기
-        if (other.gameObject.tag == "EmpExplosion")
-        {
-            StartCoroutine(m_CurrentCone.FadeOut());
-            StartCoroutine(RotationDown());
-            m_isRotate = false;
-        }
+        StartCoroutine(m_CurrentCone.FadeOut());
+        StartCoroutine(RotationDown());
+        m_isRotate = false;
     }
 }

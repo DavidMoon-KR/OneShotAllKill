@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7103789624382796827}
   - component: {fileID: -7305055974828079898}
   - component: {fileID: 5477871076164909176}
-  - component: {fileID: 3818457100354592693}
+  - component: {fileID: 5236043241433255892}
   m_Layer: 0
   m_Name: UNI_Aerial_Explosion_Teal
   m_TagString: EmpExplosion
@@ -267,7 +267,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.94
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3818457100354592693
+--- !u!114 &5236043241433255892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,6 +276,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5361129478927472489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0d7c00703e0f145a5ea81ceff1e8ac, type: 3}
+  m_Script: {fileID: 11500000, guid: d379ca596fb4c27479e925ff0276e8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EmpExplosionRange : MonoBehaviour
 {
-    [SerializeField] private int m_Radius;
+    [SerializeField] private float m_Radius;
     private LineRenderer m_Line;
     void Start()
     {
         if(m_Radius == 0)
-            m_Radius = 3;
+            m_Radius = 4.3f;
         m_Line = gameObject.GetComponent<LineRenderer>();
         m_Line.positionCount = 81;
         m_Line.startWidth = 0.05f;

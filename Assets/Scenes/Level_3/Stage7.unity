@@ -3644,10 +3644,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3781260467443617734, guid: 04d09010af6d90849995d68395999edc, type: 3}
+      propertyPath: m_TagString
+      value: SecurityCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 7236668793060342419, guid: 04d09010af6d90849995d68395999edc, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 55000714}
+    - target: {fileID: 7460960109554664902, guid: 04d09010af6d90849995d68395999edc, type: 3}
+      propertyPath: m_Center.x
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460960109554664902, guid: 04d09010af6d90849995d68395999edc, type: 3}
+      propertyPath: m_Center.y
+      value: -0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 7742751993494462210, guid: 04d09010af6d90849995d68395999edc, type: 3}
       propertyPath: m_AdditionalVertexStreams
       value: 
