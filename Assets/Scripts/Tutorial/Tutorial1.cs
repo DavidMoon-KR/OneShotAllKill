@@ -111,7 +111,7 @@ public class Tutorial1 : MonoBehaviour
         
         // 일시정지 해제
         GameManager.Instance.IsGamePause = false;
-
+        TutorialManager.Instance.IsTutorial = false;
 
         // 이전기믹(대사창) 비활성화 및 다음 기믹(이동경로 보이기) 활성화
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);

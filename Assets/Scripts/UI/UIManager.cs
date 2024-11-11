@@ -57,9 +57,11 @@ public class UIManager : MonoBehaviour
         {
             m_EscMessage.SetActive(!m_EscMessage.activeSelf);
 
-            if (!TutorialManager.Instance.IsTutorial)
+            GameManager.Instance.IsGamePause = m_EscMessage.activeSelf;
+
+            if (!GameManager.Instance.IsGamePause && TutorialManager.Instance != null && TutorialManager.Instance.IsTutorial)
             {
-                GameManager.Instance.IsGamePause = m_EscMessage.activeSelf;
+                GameManager.Instance.IsGamePause = true;
             }
                 
             if (m_EscMessage.activeSelf)
@@ -200,10 +202,14 @@ public class UIManager : MonoBehaviour
     public void OnclickEscMessageYes()
     {
         Time.timeScale = 1.0f;
-        if (GameManager.Instance.IsGamePause && !TutorialManager.Instance.IsTutorial)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsTutorial)
+        {
+            GameManager.Instance.IsGamePause = true;
+        }
+        else
         {
             GameManager.Instance.IsGamePause = false;
-        }        
+        }
         
         MainMenuLoadScene();
     }
@@ -212,7 +218,11 @@ public class UIManager : MonoBehaviour
     public void OnclickEscMessageNo()
     {
         Time.timeScale = 1.0f;
-        if (GameManager.Instance.IsGamePause && !TutorialManager.Instance.IsTutorial)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsTutorial)
+        {
+            GameManager.Instance.IsGamePause = true;
+        }
+        else
         {
             GameManager.Instance.IsGamePause = false;
         }
