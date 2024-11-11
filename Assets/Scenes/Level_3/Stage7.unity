@@ -541,7 +541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &132968213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1266,7 +1266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GimicObjects:
-  - {fileID: 132968212}
   - {fileID: 1282259089}
   - {fileID: 967196566}
   m_PopupDialogue: {fileID: 152293521}

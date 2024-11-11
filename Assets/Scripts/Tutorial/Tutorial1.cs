@@ -89,6 +89,10 @@ public class Tutorial1 : MonoBehaviour
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(true);
         m_WallObjects.gameObject.SetActive(false);
 
+        // 메시지창 뜨는 동안에는 게임 일시정지
+        GameManager.Instance.IsGamePause = true;
+        TutorialManager.Instance.IsTutorial = true;
+
         // 타이핑 치듯이 대사 출력
         StartCoroutine(Typing());
     }
@@ -104,6 +108,10 @@ public class Tutorial1 : MonoBehaviour
             m_IsTyping = false;
             return;
         }
+        
+        // 일시정지 해제
+        GameManager.Instance.IsGamePause = false;
+
 
         // 이전기믹(대사창) 비활성화 및 다음 기믹(이동경로 보이기) 활성화
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);

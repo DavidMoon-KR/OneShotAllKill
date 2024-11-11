@@ -28,13 +28,16 @@ public class Tutorial3 : MonoBehaviour
         m_DialogueList.Add("감시카메라에 감시망이 있습니다");
         m_DialogueList.Add("감시망에 폭발이 포착되지 않도록 주의하세요");
         m_DialogueList.Add("감시카메라는 EMP탄(<sprite=0>)을 활용해서 무력화하세요");
+
+        TutoMeesage();
     }
 
     void Update()
     {
-        if (3 == m_NowGimicNumber)
+        if (2 == m_NowGimicNumber)
         {
             TutorialManager.Instance.IsTutorial = false;
+            GameManager.Instance.IsGamePause = false;
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -47,7 +50,7 @@ public class Tutorial3 : MonoBehaviour
             }            
         }
 
-        if (4 == m_NowGimicNumber)
+        if (3 == m_NowGimicNumber)
         {
             if(m_Turret == null && !m_SecurityCameraCone.activeSelf)
             {
@@ -62,13 +65,12 @@ public class Tutorial3 : MonoBehaviour
         }
     }
 
-    // ! 아이콘을 클릭했을 경우
-    public void OnClickNoticeIcon()
+    // 게임 시작하자마자 튜토리얼 메시지 출력
+    public void TutoMeesage()
     {
-        EventSystem.current.currentSelectedGameObject.gameObject.SetActive(false);
+        GameManager.Instance.IsGamePause = true;
+        TutorialManager.Instance.IsTutorial = true;
 
-        m_GimicObjects[m_NowGimicNumber - 1].SetActive(false);
-        m_NowGimicNumber++;
         m_GimicObjects[m_NowGimicNumber - 1].SetActive(true);
 
         OnClickPopupButton();
