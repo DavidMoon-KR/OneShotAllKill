@@ -366,6 +366,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AccessButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3247001605599017714, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: caca9a97edb2b7047a44ecfe40ffce1d, type: 3}
     - target: {fileID: 7004988547627517328, guid: 2b1ae4d03fc85b146b6b0144fed61a02, type: 3}
       propertyPath: m_Name
       value: Gate Access Machine
@@ -450,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shield:
   - {fileID: 4870670947236117072}
-  m_Clip: {fileID: 8300000, guid: 35fbad8cdde724f11ba6481f1e64af71, type: 3}
+  m_Clip: {fileID: 8300000, guid: caca9a97edb2b7047a44ecfe40ffce1d, type: 3}
 --- !u!1001 &7004631428184805660
 PrefabInstance:
   m_ObjectHideFlags: 0
