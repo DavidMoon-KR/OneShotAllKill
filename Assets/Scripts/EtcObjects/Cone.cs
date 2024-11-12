@@ -19,7 +19,9 @@ public class Cone : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {        
+    {
+        Debug.Log(other.tag);
+
         if (other.gameObject.CompareTag("Explosion"))
         {
             GameManager.Instance.IsFailed = true;

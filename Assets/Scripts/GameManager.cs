@@ -55,6 +55,12 @@ public class GameManager : MonoBehaviour
     public bool IsActiveHint { get => m_IsActiveHint; }
     public int NowHintCount { get  => m_NowHintCount; }
 
+    void Awake()
+    {
+        QualitySettings.vSyncCount = 0;     // V-Sync 비활성화
+        Application.targetFrameRate = 240;  // 프레임 전환
+    }
+
     void Start()
     {
         m_Instance = GetComponent<GameManager>();
@@ -171,7 +177,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(m_GameOverDelay);
 
         // 타겟이 없을경우
-        if (m_Targets == 0)
+        if (m_Targets <= 0)
         {
             m_IsGameOver = true;
             m_IsFailed = false;

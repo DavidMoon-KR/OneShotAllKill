@@ -55,8 +55,11 @@ MonoBehaviour:
   m_ExplosionedPos: {x: 0, y: 0, z: 0}
   m_GameOverDelay: 3
   m_DelayExplosion: 2
-  m_HintShowDelay: 180
-  m_HintCount: 0
+  m_HintClearTargets: []
+  m_HintShowDelay: []
+  m_AllHintWallCount: 
+  m_IsApplyHint: 
+  m_AllHintCount: 0
 --- !u!114 &5438008078360181884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +67,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627950899570989244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 505bec83cfd1caa4183beb3c11aa016e, type: 3}
   m_Name: 

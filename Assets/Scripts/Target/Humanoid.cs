@@ -225,7 +225,7 @@ public class Humanoid : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 탄과 충돌하거나 가스폭발과 충돌할 경우
-        if ((other.tag == "Bullet" || other.tag == "GasExplosion") && m_TriggerExplosion == false)
+        if ((other.tag == "GasExplosion"))
         {
             StopMoving();
             Instantiate(m_Spark, transform.position, Quaternion.identity);
