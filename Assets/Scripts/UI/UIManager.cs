@@ -169,6 +169,11 @@ public class UIManager : MonoBehaviour
     // 다음 스테이지로 이동
     public void NextStageLoadScene()
     {
+        if (TimerCheckDontDestroy.Instance != null)
+        {
+            TimerCheckDontDestroy.Instance.InitDatas();
+        }
+
         SceneManager.LoadScene(GameManager.Instance.SceneNumber + 1);
     }
 

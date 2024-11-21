@@ -69,6 +69,11 @@ public class MainMenu : MonoBehaviour
     private const int m_Level2_StageCount = 3; // 문제 해결 능력 단계 스테이지 수
     private const int m_Level3_StageCount = 3; // 전략적 사고력 단계 스테이지 수
 
+    private void Start()
+    {
+        OnClickStage();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -284,6 +289,11 @@ public class MainMenu : MonoBehaviour
     // 게임시작 버튼을 눌렀을 때
     public void OnClickGameStart()
     {
+        if (TimerCheckDontDestroy.Instance != null)
+        {
+            TimerCheckDontDestroy.Instance.InitDatas();
+        }
+
         // 선택한 스테이지에 맞게 게임 시작
         SceneManager.LoadScene(m_SelectStageIDValue + 1);
     }
