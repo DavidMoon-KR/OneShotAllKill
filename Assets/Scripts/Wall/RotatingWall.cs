@@ -6,9 +6,9 @@ using UnityEngine;
 public class RotatingWall : MonoBehaviour
 {
     private AudioSource _hitSource;
-    
+
     [SerializeField] private AudioClip _hitWallClip;
-    [SerializeField] private float _rotationAngle = 15.0f;
+    [SerializeField] private float m_rotationAngle = 15.0f;
 
     [SerializeField] private GameObject m_LeftArrow;
     [SerializeField] private GameObject m_RightArrow;
@@ -19,7 +19,7 @@ public class RotatingWall : MonoBehaviour
 
     private NavMeshSurface m_NavMeshSurface;
 
-    public bool IsMousePress { set =>  m_IsMousePress = value; }
+    public bool IsMousePress { set => m_IsMousePress = value; }
 
     void Start()
     {
@@ -31,12 +31,19 @@ public class RotatingWall : MonoBehaviour
 
     void Update()
     {
-        if(m_EnterMouse)
+        if (m_EnterMouse)
         {
             if (Input.GetMouseButtonDown(1))
                 MouseRButtonDown();
             else if (Input.GetMouseButtonUp(1))
                 MouseRButtonUp();
+            if (m_IsMousePress)
+            {
+                if (Input.GetKeyDown(KeyCode.A))
+                    Rotation(-1);
+                else if (Input.GetKeyDown(KeyCode.D))
+                    Rotation(1);
+            }
         }
     }
     private void OnMouseEnter()
@@ -56,11 +63,7 @@ public class RotatingWall : MonoBehaviour
         m_LeftArrow.SetActive(true);
         m_RightArrow.SetActive(true);
 
-        if (!m_IsMouseCoroutineActive)
-        {
-            StartCoroutine(MouseDownDelay());
-            m_IsMouseCoroutineActive = true;
-        }
+
     }
 
     public void MouseRButtonUp()
@@ -70,25 +73,27 @@ public class RotatingWall : MonoBehaviour
         m_RightArrow.SetActive(false);
     }
 
-    public void Rotation()
+    public void Rotation(int num)
     {
         _hitSource.clip = _hitWallClip;
         _hitSource.Play();
-        this.gameObject.transform.Rotate(new Vector3(0, _rotationAngle, 0));
-
+        if (num > 0)
+            this.gameObject.transform.Rotate(new Vector3(0, m_rotationAngle, 0));
+        else
+            this.gameObject.transform.Rotate(new Vector3(0, -m_rotationAngle, 0));
         if (m_NavMeshSurface != null)
         {
             m_NavMeshSurface.BuildNavMesh();
         }
     }
 
-    public IEnumerator MouseDownDelay()
-    {
-        while (m_IsMousePress && m_EnterMouse)
-        {
-            Rotation();
-            yield return new WaitForSeconds(0.15f);
-        }
-        m_IsMouseCoroutineActive = false;
-    }
+    //public IEnumerator MouseDownDelay(int num)
+    //{
+    //    while (m_IsMousePress && m_EnterMouse)
+    //    {
+    //        Rotation(num);
+    //        yield return new WaitForSeconds(0.15f);
+    //    }
+    //    m_IsMouseCoroutineActive = false;
+    // }
 }
