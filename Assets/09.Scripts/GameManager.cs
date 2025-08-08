@@ -5,6 +5,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class HintEtcTargets
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver { get => m_IsGameOver; set => m_IsGameOver = value; }
     public bool IsFailed { get => m_IsFailed; set => m_IsFailed = value; }
     public bool HasExplosioned { get => m_HasExplosioned; set => m_HasExplosioned = value; }
+    
+    // 엑스트라 스테이지인지 분간
+    public bool isExtraStage = false;
+    public string extraStageName = "1B";
+    public int nextExtraStageSceneNumber = 0;
 
     void Awake()
     {
@@ -134,7 +140,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         m_IsGamePause = false;
-        SceneManager.LoadScene(m_SceneNumber);
+        //SceneManager.LoadScene(m_SceneNumber);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // 게임오버

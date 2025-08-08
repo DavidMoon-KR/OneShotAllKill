@@ -1,18 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+using DG.Tweening;
 using Unity.AI.Navigation;
 using UnityEngine;
 
 public class WallMovement : MonoBehaviour
 {
-    // ÃÖ´ë +ÀÌµ¿ÇÒ ¼ö ÀÖ´Â °Å¸®
+    // ìµœëŒ€ +ì´ë™í•  ìˆ˜ ìˆëŠ” ê±°ë¦¬
     [SerializeField] private float m_MaxDirection;
 
-    // ÃÖ¼Ò -ÀÌµ¿ÇÒ ¼ö ÀÖ´Â °Å¸®
+    // ìµœì†Œ -ì´ë™í•  ìˆ˜ ìˆëŠ” ê±°ë¦¬
     [SerializeField] private float m_MinDirection;
 
-    // »ç¿îµå
+    // ì‚¬ìš´ë“œ
     [SerializeField] private AudioClip m_HitArrowClip;
     private AudioSource m_HitSource;
 
@@ -20,12 +19,21 @@ public class WallMovement : MonoBehaviour
     private bool m_IsClick = false;
     private bool m_IsMoveable = false;
     private Vector3 m_MouseP;
-    private float m_Walldistance = 3.9f;//µÎ º®°£ÀÇ °Å¸®
+    private float m_Walldistance = 3.9f; //ë‘ ë²½ê°„ì˜ ê±°ë¦¬
     private NavMeshSurface m_NavMeshSurface;
     RaycastHit m_RaycastHit;
     private float m_tempF;
+
+    // ê±°ìš¸ì´ ìë™ìœ¼ë¡œ ì›€ì§ì´ëŠ” ì˜¤í† ëª¨ë“œ ì¶”ê°€
+    [Header("AutoMode Settings")]
+    public bool autoMode = false;
+    public bool moveStartFromMin = true;
+    public float moveDuration = 3f;
+
     private void Update()
     {
+        if (autoMode) return;
+
         if (Input.GetMouseButtonUp(1))
         {
             m_IsClick = false;
@@ -33,14 +41,14 @@ public class WallMovement : MonoBehaviour
             PrintArrow();
         }
 
-        // Æ©Åä¸®¾óÀÌ ÁøÇàÁßÀÌ¶ó¸é »óÈ£ÀÛ¿ë ºÒ°¡
-        // °ÔÀÓÀÌ ÀÏ½ÃÁ¤ÁöÀÎ »óÈ²¿¡¼­´Â Çàµ¿ ºÒ°¡
+        // íŠœí† ë¦¬ì–¼ì´ ì§„í–‰ì¤‘ì´ë¼ë©´ ìƒí˜¸ì‘ìš© ë¶ˆê°€
+        // ê²Œì„ì´ ì¼ì‹œì •ì§€ì¸ ìƒí™©ì—ì„œëŠ” í–‰ë™ ë¶ˆê°€
         if (GameManager.Instance.IsGamePause)
         {
             return;
         }
 
-        if(Input.GetMouseButtonDown(1) && m_EnterMouse)
+        if (Input.GetMouseButtonDown(1) && m_EnterMouse)
         {
             MouseLDown();
         }
@@ -56,46 +64,63 @@ public class WallMovement : MonoBehaviour
         m_HitSource = GetComponent<AudioSource>();
 
         m_HitSource.volume = (float)GameDataManager.Instance.Data.SfxVolume;
+
+        // ì˜¤í† ëª¨ë“œ êµ¬í˜„ ì¶”ê°€
+        if (!autoMode) return;
+        
+        var firstDest = moveStartFromMin ? m_MaxDirection : m_MinDirection;
+        var secondDest = moveStartFromMin ? m_MinDirection : m_MaxDirection;
+        
+        transform.localPosition = new Vector3(secondDest, transform.localPosition.y);
+        
+        var tween = DOTween.Sequence();
+        tween.Append(gameObject.transform.DOLocalMoveX(firstDest, moveDuration).SetEase(Ease.Linear));
+        tween.Append(gameObject.transform.DOLocalMoveX(secondDest, moveDuration).SetEase(Ease.Linear));
+        tween.SetLoops(-1, LoopType.Restart);
     }
 
     private void OnMouseEnter()
     {
         m_EnterMouse = true;
     }
+
     private void OnMouseExit()
     {
-        m_EnterMouse=false;
-        if(m_EnterMouse == false && m_IsClick == false)
-            m_IsMoveable=false;
+        m_EnterMouse = false;
+        if (m_EnterMouse == false && m_IsClick == false)
+            m_IsMoveable = false;
     }
 
     private void MouseLDown()
     {
-        // Æ©Åä¸®¾óÀÌ ÁøÇàÁßÀÌ¶ó¸é »óÈ£ÀÛ¿ë ºÒ°¡
-        // °ÔÀÓÀÌ ÀÏ½ÃÁ¤ÁöÀÎ »óÈ²¿¡¼­´Â Çàµ¿ ºÒ°¡
+        // íŠœí† ë¦¬ì–¼ì´ ì§„í–‰ì¤‘ì´ë¼ë©´ ìƒí˜¸ì‘ìš© ë¶ˆê°€
+        // ê²Œì„ì´ ì¼ì‹œì •ì§€ì¸ ìƒí™©ì—ì„œëŠ” í–‰ë™ ë¶ˆê°€
         if (GameManager.Instance.IsGamePause)
         {
             return;
         }
+
         m_IsClick = true;
-        if(m_IsClick && m_EnterMouse)
-            m_IsMoveable=true;
+        if (m_IsClick && m_EnterMouse)
+            m_IsMoveable = true;
         PrintArrow();
     }
 
-    // º® ¿òÁ÷ÀÌ±â
+    // ë²½ ì›€ì§ì´ê¸°
     private void MoveUpdate()
     {
         if (GameManager.Instance.IsGamePause)
         {
             return;
         }
-        m_MouseP = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+
+        m_MouseP = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+            -Camera.main.transform.position.z));
         if ((gameObject.transform.eulerAngles.y == 0 && this.gameObject.transform.position.x + 2 < m_MouseP.x) ||
             (gameObject.transform.eulerAngles.y == 270 && this.gameObject.transform.position.z + 2 < m_MouseP.z))
         {
-            Debug.DrawRay(transform.position, transform.right * m_Walldistance * 2, UnityEngine.Color.clear, 0.3f);
-            if (Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance*2))
+            Debug.DrawRay(transform.position, transform.right * m_Walldistance * 2, Color.clear, 0.3f);
+            if (Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance * 2))
             {
                 if (m_RaycastHit.transform.CompareTag("RotateWall"))
                 {
@@ -103,19 +128,21 @@ public class WallMovement : MonoBehaviour
                         return;
                 }
             }
-            Debug.DrawRay(transform.position, transform.right * m_Walldistance, UnityEngine.Color.clear, 0.3f);
-            if (!Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance) || m_RaycastHit.transform.tag == "Cone")
-            {                
+
+            Debug.DrawRay(transform.position, transform.right * m_Walldistance, Color.clear, 0.3f);
+            if (!Physics.Raycast(transform.position, transform.right, out m_RaycastHit, m_Walldistance) ||
+                m_RaycastHit.transform.tag == "Cone")
+            {
                 m_HitSource.clip = m_HitArrowClip;
                 m_HitSource.Play();
                 gameObject.transform.Translate(Vector3.right * 2, Space.Self);
             }
         }
         else if ((gameObject.transform.eulerAngles.y == 0 && this.gameObject.transform.position.x - 2 > m_MouseP.x) ||
-            (gameObject.transform.eulerAngles.y == 270 && this.gameObject.transform.position.z - 2 > m_MouseP.z))
+                 (gameObject.transform.eulerAngles.y == 270 && this.gameObject.transform.position.z - 2 > m_MouseP.z))
         {
-            Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance * 2, UnityEngine.Color.clear, 0.3f);
-            if (Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance*2))
+            Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance * 2, Color.clear, 0.3f);
+            if (Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance * 2))
             {
                 if (m_RaycastHit.transform.CompareTag("RotateWall"))
                 {
@@ -123,20 +150,24 @@ public class WallMovement : MonoBehaviour
                         return;
                 }
             }
-            Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance, UnityEngine.Color.clear, 0.3f);
-            if (!Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance) || m_RaycastHit.transform.tag == "Cone")
+
+            Debug.DrawRay(transform.position, transform.right * -1 * m_Walldistance, Color.clear, 0.3f);
+            if (!Physics.Raycast(transform.position, transform.right * -1, out m_RaycastHit, m_Walldistance) ||
+                m_RaycastHit.transform.tag == "Cone")
             {
                 m_HitSource.clip = m_HitArrowClip;
                 m_HitSource.Play();
                 gameObject.transform.Translate(Vector3.left * 2, Space.Self);
             }
         }
+
         if (m_NavMeshSurface != null)
         {
             m_NavMeshSurface.BuildNavMesh();
         }
     }
-private void PrintArrow()
+
+    private void PrintArrow()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
@@ -156,5 +187,3 @@ private void PrintArrow()
         }
     }
 }
-
-
