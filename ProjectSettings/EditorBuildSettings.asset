@@ -6,30 +6,60 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StageMenu.unity
-    guid: 9f8cca2518896144c89b76627dfc1812
+    path: Assets/00.Scenes/MainMenu.unity
+    guid: f3ca5ff9c3de2f84dbc9a787734c2884
   - enabled: 1
-    path: Assets/Scenes/Level_1/Stage1.unity
+    path: Assets/00.Scenes/Level_1/Stage1.unity
     guid: b1796039efadb744ca62dda54e571824
   - enabled: 1
-    path: Assets/Scenes/Level_1/Stage2.unity
+    path: Assets/00.Scenes/Level_1/Stage2.unity
     guid: d4b8f060d75374e4487ba07186728f77
   - enabled: 1
-    path: Assets/Scenes/Level_1/Stage3.unity
+    path: Assets/00.Scenes/Level_1/Stage3.unity
+    guid: acbf94957c2a14849abf377866b2cac8
+  - enabled: 1
+    path: Assets/00.Scenes/Level_1/Stage4.unity
     guid: 7ba7eef42722bda4ebf2c4190d96ee3e
   - enabled: 1
-    path: Assets/Scenes/Level_2/Stage4.unity
+    path: Assets/00.Scenes/Level_1/Stage5.unity
+    guid: 71637bd3f48371f4abc2c07c45d59c97
+  - enabled: 1
+    path: Assets/00.Scenes/Level_1/Stage6.unity
+    guid: 4bd20f4483c8d8641b70177ad5edafa9
+  - enabled: 1
+    path: Assets/00.Scenes/Level_2/Stage7.unity
     guid: f8fc81beab6c5b6468c1e4fb8ed2a0e2
   - enabled: 1
-    path: Assets/Scenes/Level_2/Stage5.unity
+    path: Assets/00.Scenes/Level_2/Stage8.unity
     guid: 24a443de0f15a774688a11ca0625db08
   - enabled: 1
-    path: Assets/Scenes/Level_2/Stage6.unity
+    path: Assets/00.Scenes/Level_2/Stage9.unity
+    guid: 038408e8a8398a349840f87390607f6b
+  - enabled: 1
+    path: Assets/00.Scenes/Level_2/Stage10.unity
+    guid: f44e7b64e8df1684db4d47de0b704110
+  - enabled: 1
+    path: Assets/00.Scenes/Level_2/Stage11.unity
     guid: a8d08cd52ccb1e04ca4d74e15d43fe88
   - enabled: 1
-    path: Assets/Scenes/Level_3/Stage7.unity
+    path: Assets/00.Scenes/Level_3/Stage12.unity
     guid: 8cc9dd17fa2831f4f868c4458a2b1b07
   - enabled: 1
-    path: Assets/Scenes/Level_3/Stage8.unity
+    path: Assets/00.Scenes/Level_3/Stage13.unity
+    guid: fb96386ee833bc344b095258e25fd3bd
+  - enabled: 1
+    path: Assets/00.Scenes/Level_3/Stage14.unity
     guid: 1c6b0c2e658750b4aae756ca7469f820
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/00.Scenes/Level_3/Stage15.unity
+    guid: 6c442ccc6624c43489aa5dd50ce5b066
+  - enabled: 1
+    path: Assets/00.Scenes/Level_3/Stage16.unity
+    guid: a8b1a6d101f577f4387e22cca3ecf7e5
+  - enabled: 1
+    path: Assets/00.Scenes/Level_3/Stage17.unity
+    guid: 18174afd12310d64db28af43ed424dcd
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ab4ef73ef71bf7e46852f0b7c304c2cb, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: ebde49eb05b45874a8654c565bf91a53, type: 2}
+  m_UseUCBPForAssetBundles: 0
