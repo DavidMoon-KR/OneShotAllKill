@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: PopupContexts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: PopupContexts
+  m_TableCollectionNameGuidString: 35b6262509c5b374283e65c4f48a20ae
+  m_Entries:
+  - m_Id: 50522750976
+    m_Key: Popup_Key_ExitStage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118202040320
+    m_Key: Popup_Key_ExitGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239769747456
+    m_Key: Popup_Key_Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282148995072
+    m_Key: Popup_Key_No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 620809682944
+    m_Key: Popup_Key_RestartMsg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 686039498752
+    m_Key: Popup_Key_StageFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1496114790400
+    m_Key: Popup_Key_Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1589362556928
+    m_Key: Popup_Key_Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1611575590912
+    m_Key: Popup_Key_NextStage
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2876507548830924804
+  references:
+    version: 2
+    RefIds:
+    - rid: 2876507548830924804
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1747554183736

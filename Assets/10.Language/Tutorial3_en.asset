@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorial3_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 536873247f77d264d83a56439ed06b7e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 450311225344
+    m_Localized: "The surveillance camera has a red detection zone.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 466954223616
+    m_Localized: "Avoid triggering an explosion within the red zone.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 485375606784
+    m_Localized: "Fire the EMP round(<sprite=0>) at a wall to disable the surveillance
+      camera.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428192817221632
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5428272240562176
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5429593760894976
+    m_Localized: Press "SHIFT"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

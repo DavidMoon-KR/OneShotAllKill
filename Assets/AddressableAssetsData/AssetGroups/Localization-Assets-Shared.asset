@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 9de34919c6c0b4c4d97076f80b364643
+  m_SerializeEntries:
+  - m_GUID: 35b6262509c5b374283e65c4f48a20ae
+    m_Address: Assets/10.Language/PopupContexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 536873247f77d264d83a56439ed06b7e
+    m_Address: Assets/10.Language/Tutorial3 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 769948f77c6224b4a88ba2fdb9e685d0
+    m_Address: Assets/10.Language/New Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7af7dc48ffc82b14fb553d0dfe162482
+    m_Address: Assets/10.Language/Settings Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d286f2aba91f4d4481cfd8ee290d51f
+    m_Address: Assets/10.Language/Tutorial2 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5b24190be697ec44b88ba1a7426f974
+    m_Address: Assets/10.Language/Stage_Popup Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbc4d668cdc46e741aed41936dd67a49
+    m_Address: Assets/10.Language/StageInContexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee4ae892ca901f149af8faea487bd697
+    m_Address: Assets/10.Language/Tilte_Menu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 0bfceebe8845769479d6a40b27fc2f8b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 37401d25eb9ac264a9b78226cd6e7b77, type: 2}
+    - {fileID: 11400000, guid: 5653832870437214d8c7aacfbbb3a301, type: 2}
