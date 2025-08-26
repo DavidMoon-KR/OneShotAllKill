@@ -8,15 +8,11 @@ public class StartMessage : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_StageMessage;
     [SerializeField] private GameObject m_StartMessage;
     [SerializeField] private GameObject m_WaitSecondsImg;
-        
+
     void OnEnable()
     {
         GameManager.Instance.IsGamePause = true;
-
-        if (!GameManager.Instance.isExtraStage)
-            m_StageMessage.text = $"Stage {GameManager.Instance.SceneNumber}";
-        else
-            m_StageMessage.text = $"Stage {GameManager.Instance.extraStageName}";
+        m_StageMessage.text = $"Stage {GameManager.Instance.SceneNumber}";
 
         Invoke("StartMsg", 1.3f);
         Invoke("Hide", 2.9f);

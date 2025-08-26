@@ -52,25 +52,24 @@ public class EnergyWallButton : MonoBehaviour
             m_ButtonPush = true;
             ChangeButtonColor();
             // 에너지 방벽이 켜있다면 꺼준다.
-            if (m_Shield[0].activeSelf)
+            for (int i = 0; i < m_Shield.Count; i++)
             {
-                m_AudioSource.clip = m_Clip;
-                m_AudioSource.Play();
-
-                // 에너지 방벽이 두개 이상일 수 있기 때문에 모든 방벽의 개수를 파악해서 끄기
-                for (int i = 0; i < m_Shield.Count; i++)
+                if (m_Shield[i].activeSelf)
                 {
+                    m_AudioSource.clip = m_Clip;
+                    m_AudioSource.Play();
                     m_Shield[i].SetActive(false);
+                    // 에너지 방벽이 두개 이상일 수 있기 때문에 모든 방벽의 개수를 파악해서 끄기
+
                 }
-            }
-            // 에너지 방벽이 꺼져있다면 켜준다.
-            else if (!m_Shield[0].activeSelf)
-            {
-                for (int i = 0; i < m_Shield.Count; i++)
+                // 에너지 방벽이 꺼져있다면 켜준다.
+                else if (!m_Shield[i].activeSelf)
                 {
                     m_Shield[i].SetActive(true);
                 }
-            }            
+            }
+
+           
         }
     }
     private void ChangeButtonColor()

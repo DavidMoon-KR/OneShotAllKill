@@ -55,7 +55,8 @@ public class Turret : MonoBehaviour
             m_Anim.SetBool("die", true);
             Instantiate(m_Spark, transform.position, Quaternion.identity);
             // 게임매니저에서 현재 타겟 수 -1
-            GameManager.Instance.m_Targets--;
+            if(!m_IsExplotion)
+                GameManager.Instance.m_Targets--;
             StartCoroutine(ExplosionDelay(false));
         }
     }

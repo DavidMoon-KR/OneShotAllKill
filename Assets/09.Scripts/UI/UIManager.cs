@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// ì´ ì´ë¯¸ì§€ ê´€ë ¨ ì •ë³´
+// ÃÑ ÀÌ¹ÌÁö °ü·Ã Á¤º¸
 [Serializable]
 public class RifleImageInfo
 {
-    // ì´, ì´ì•Œ ì´ë¯¸ì§€
+    // ÃÑ, ÃÑ¾Ë ÀÌ¹ÌÁö
     public Image RifleImage;
     public List<Image> BulletCount;
 }
@@ -20,39 +21,39 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> m_BeforeStartActiveFalseObjs;
 
-    // ì´, ì´ì•Œ UI
+    // ÃÑ, ÃÑ¾Ë UI
     [SerializeField] private List<RifleImageInfo> m_RifleImageInfo;
 
     //[SerializeField] private Image m_RifleImage;
     //[SerializeField] private List<Image> m_BulletCount;
 
-    // ì´, ì´ì•Œ ìŠ¤í”„ë¼ì´íŠ¸
+    // ÃÑ, ÃÑ¾Ë ½ºÇÁ¶óÀÌÆ®
     [SerializeField] private List<Sprite> m_RifleSprites;
     [SerializeField] private List<Sprite> m_BulletSprites;
 
-    // ê°ì¢… ì˜¤ë¸Œì íŠ¸ë“¤
-    [SerializeField] private GameObject m_RestartToMessage; // ì¬ì‹œì‘ ë©”ì‹œì§€
-    [SerializeField] private GameObject m_ClearBackGround;  // í´ë¦¬ì–´ í™”ë©´ ê¸°ë³¸ ë°°ê²½
-    [SerializeField] private GameObject m_BlackScreen;      // ê²€ì€ í™”ë©´
-    [SerializeField] private GameObject m_NotFinalStageUI;  // ë§ˆì§€ë§‰ ìŠ¤í…Œì´ì§€ê°€ ì•„ë‹ ê²½ìš° UI
-    [SerializeField] private GameObject m_FinalStageUI;     // ë§ˆì§€ë§‰ ìŠ¤í…Œì´ì§€ì¼ ê²½ìš° UI
-    [SerializeField] private GameObject m_ClearText;        // Clear ê¸€ì
-    [SerializeField] private GameObject m_VictoryText;      // Victory ê¸€ì
-    [SerializeField] private GameObject m_EscMessage;       // Esc ëˆŒë €ì„ ï¿½ï¿½ ë‚˜ì˜¤ëŠ” ë©”ì‹œì§€
+    // °¢Á¾ ¿ÀºêÁ§Æ®µé
+    [SerializeField] private GameObject m_RestartToMessage; // Àç½ÃÀÛ ¸Ş½ÃÁö
+    [SerializeField] private GameObject m_ClearBackGround;  // Å¬¸®¾î È­¸é ±âº» ¹è°æ
+    [SerializeField] private GameObject m_BlackScreen;      // °ËÀº È­¸é
+    [SerializeField] private GameObject m_NotFinalStageUI;  // ¸¶Áö¸· ½ºÅ×ÀÌÁö°¡ ¾Æ´Ò °æ¿ì UI
+    [SerializeField] private GameObject m_FinalStageUI;     // ¸¶Áö¸· ½ºÅ×ÀÌÁöÀÏ °æ¿ì UI
+    [SerializeField] private GameObject m_ClearText;        // Clear ±ÛÀÚ
+    [SerializeField] private GameObject m_VictoryText;      // Victory ±ÛÀÚ
+    [SerializeField] private GameObject m_EscMessage;       // Esc ´­·¶À» ‹š ³ª¿À´Â ¸Ş½ÃÁö
 
-    [SerializeField] private Button m_HintBtn;          // íŒíŠ¸ ë²„íŠ¼
-    [SerializeField] private GameObject m_HintNotification; // íŒíŠ¸ ì•Œë¦¼
-    [SerializeField] private GameObject m_HintMessage;              // íŒíŠ¸ ë©”ì‹œì§€
-    [SerializeField] private TextMeshProUGUI m_HintRemaningCount;   // ë‚¨ì€ íŒíŠ¸ ê°œìˆ˜
+    [SerializeField] private Button m_HintBtn;          // ÈùÆ® ¹öÆ°
+    [SerializeField] private GameObject m_HintNotification; // ÈùÆ® ¾Ë¸²
+    [SerializeField] private GameObject m_HintMessage;              // ÈùÆ® ¸Ş½ÃÁö
+    [SerializeField] private TextMeshProUGUI m_HintRemaningCount;   // ³²Àº ÈùÆ® °³¼ö
 
-    public bool m_MissionComplete = false;   // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ì—¬ë¶€ íŒë‹¨
-    private bool m_OneChecking = true;       // ê²°ê³¼ ì• ë‹ˆë©”ì´ì…˜ì´ í•œë²ˆë§Œ ë‚˜ì˜¤ê²Œ í•˜ëŠ” ë³€ìˆ˜
+    public bool m_MissionComplete = false;   // ½ºÅ×ÀÌÁö Å¬¸®¾î ¿©ºÎ ÆÇ´Ü
+    private bool m_OneChecking = true;       // °á°ú ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÇÑ¹ø¸¸ ³ª¿À°Ô ÇÏ´Â º¯¼ö
 
-    // UIë§¤ë‹ˆì €ë¥¼ ì¸ìŠ¤í„´ìŠ¤í™” í•œ ê²ƒ
+    // UI¸Å´ÏÀú¸¦ ÀÎ½ºÅÏ½ºÈ­ ÇÑ °Í
     private static UIManager m_Instance;
     public static UIManager Instance => m_Instance;
 
-    // ë‹¤ë¥¸ ê²ƒë“¤ë³´ë‹¤ ë¨¼ì € ì‹¤í–‰ë˜ë„ë¡ Awakeë¡œ ì‹¤í–‰
+    // ´Ù¸¥ °Íµéº¸´Ù ¸ÕÀú ½ÇÇàµÇµµ·Ï Awake·Î ½ÇÇà
     void Awake()
     {
         m_Instance = GetComponent<UIManager>();
@@ -61,30 +62,30 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        // Escí‚¤ ëˆ„ë¥´ë©´ ë©”ì‹œì§€ ëœ¨ê³  ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
+        // EscÅ° ´©¸£¸é ¸Ş½ÃÁö ¶ß°í »ç¶óÁö°Ô ÇÏ±â
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PressEscBtn();
         }
     }
 
-    // Esc ë²„íŠ¼ ëˆŒë €ì„ ë•Œ
+    // Esc ¹öÆ° ´­·¶À» ¶§
     public void PressEscBtn()
     {
         EventSystem.current.SetSelectedGameObject(null);
 
-        // Esc ë©”ì‹œì§€ í™œì„±í™” ë° ê²Œì„ ì¼ì‹œì •ì§€ ìƒíƒœë¥¼ ë°˜ëŒ€ë¡œ ì„¤ì •
+        // Esc ¸Ş½ÃÁö È°¼ºÈ­ ¹× °ÔÀÓ ÀÏ½ÃÁ¤Áö »óÅÂ¸¦ ¹İ´ë·Î ¼³Á¤
         m_EscMessage.SetActive(!m_EscMessage.activeSelf);
         GameManager.Instance.IsGamePause = m_EscMessage.activeSelf;
 
-        // í˜„ì¬ ì¼ì‹œì •ì§€ê°€ ë˜ì–´ìˆì§€ ì•Šê³ , íŠœí† ë¦¬ì–¼ì´ ì§„í–‰ì¤‘ì´ë¼ë©´
-        // ê²Œì„ ì¼ì‹œì •ì§€
+        // ÇöÀç ÀÏ½ÃÁ¤Áö°¡ µÇ¾îÀÖÁö ¾Ê°í, Æ©Åä¸®¾óÀÌ ÁøÇàÁßÀÌ¶ó¸é
+        // °ÔÀÓ ÀÏ½ÃÁ¤Áö
         if (!GameManager.Instance.IsGamePause && TutorialManager.Instance != null && TutorialManager.Instance.IsTutorial)
         {
             GameManager.Instance.IsGamePause = true;
         }
 
-        // Escë©”ì‹œì§€ì˜ í™œì„±í™” ì—¬ë¶€ì— ë”°ë¼ ê²Œì„ ì‹œê°„ ì •ì§€ ë˜ëŠ” ì¬ìƒ
+        // Esc¸Ş½ÃÁöÀÇ È°¼ºÈ­ ¿©ºÎ¿¡ µû¶ó °ÔÀÓ ½Ã°£ Á¤Áö ¶Ç´Â Àç»ı
         if (m_EscMessage.activeSelf)
         {
             Time.timeScale = 0.0f;
@@ -99,8 +100,8 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < m_BeforeStartActiveFalseObjs.Count; i++)
         {
-            // íŒíŠ¸ëŠ” ì•„ì§ í™œì„±í™” ì•ˆí•¨
-            // ì´í›„ ëª¨ë°”ì¼ ë²„ì „ì—ì„œ ì‚¬ìš©í•  ì˜ˆì •
+            // ÈùÆ®´Â ¾ÆÁ÷ È°¼ºÈ­ ¾ÈÇÔ
+            // ÀÌÈÄ ¸ğ¹ÙÀÏ ¹öÀü¿¡¼­ »ç¿ëÇÒ ¿¹Á¤
             if (m_BeforeStartActiveFalseObjs[i].name == "HintUI")
             {
                 continue;
@@ -110,7 +111,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // ëª¨ë“  ì´ì•Œ ê°œìˆ˜ ì„¤ì •
+    // ¸ğµç ÃÑ¾Ë °³¼ö ¼³Á¤
     public void AllBulletCountSet(BulletType p_SelectType, List<int> p_bullet)
     {
         for (int i = 0; i < m_RifleImageInfo.Count; i++)
@@ -134,7 +135,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // í˜„ì¬ ì‚¬ìš©ì¤‘ì¸ ì´ì•Œ ê°œìˆ˜ ì„¤ì •
+    // ÇöÀç »ç¿ëÁßÀÎ ÃÑ¾Ë °³¼ö ¼³Á¤
     public void BulletCountSet(int p_bullet)
     {
         for (int i = 0; i < m_RifleImageInfo[0].BulletCount.Count; i++)
@@ -148,7 +149,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // ì´ ë° ì´ì•Œ ìŠ¤í”„ë¼ì´íŠ¸ ë³€ê²½
+    // ÃÑ ¹× ÃÑ¾Ë ½ºÇÁ¶óÀÌÆ® º¯°æ
     public void RifleInfoSpriteChange(BulletType p_SelectType, List<int> p_bullet)
     {
         AllBulletCountSet(p_SelectType, p_bullet);
@@ -172,22 +173,22 @@ public class UIManager : MonoBehaviour
         
     }
 
-    // ê²Œì„ì¢…ë£Œ ë©”ì‹œì§€
+    // °ÔÀÓÁ¾·á ¸Ş½ÃÁö
     public void GameOverMessage()
     {
         StartCoroutine(GameOverAnim());
     }
     
-    // ê²Œì„ì¢…ë£Œì‹œ ìƒí™©ì— ë§ê²Œ ì‹¤í–‰
+    // °ÔÀÓÁ¾·á½Ã »óÈ²¿¡ ¸Â°Ô ½ÇÇà
     private IEnumerator GameOverAnim()
     {
-        // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ëª»í•  ê²½ìš°
+        // ½ºÅ×ÀÌÁö Å¬¸®¾î ¸øÇÒ °æ¿ì
         if (m_MissionComplete == false && m_OneChecking == true)
         {
             m_RestartToMessage.gameObject.SetActive(true);
             m_OneChecking = false;
         }
-        // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ í•œ ê²½ìš°
+        // ½ºÅ×ÀÌÁö Å¬¸®¾î ÇÑ °æ¿ì
         else if (m_MissionComplete == true && m_OneChecking == true)
         {
             m_BlackScreen.SetActive(true);
@@ -214,16 +215,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™
+    // ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿
     public void NextStageLoadScene()
     {
-        // ì—‘ìŠ¤íŠ¸ë¼ ìŠ¤í…Œì´ì§€ì¼ ê²½ìš° ë‹¨ìˆœ ì‚°ìˆ  ëŒ€ì‹  ë‹¤ìŒ ì”¬ ë„˜ë²„ë¥¼ ìˆ˜ë™ìœ¼ë¡œ ì°¸ì¡°...
-        var nextSceneNumber = GameManager.Instance.isExtraStage
-            ? GameManager.Instance.nextExtraStageSceneNumber
-            : GameManager.Instance.SceneNumber + 1;
-
-        SceneManager.LoadScene(nextSceneNumber);
-        if (HintManager.Instance != null)
+        SceneManager.LoadScene(GameManager.Instance.SceneNumber + 1);
+        if(HintManager.Instance != null)
         {
             HintManager.Instance.StageChange();
         }
@@ -231,7 +227,7 @@ public class UIManager : MonoBehaviour
         SoundManager.Instance.DestroySound();
     }
 
-    // ë©”ì¸ë©”ë‰´ ì”¬ ë¡œë“œ
+    // ¸ŞÀÎ¸Ş´º ¾À ·Îµå
     public void MainMenuLoadScene()
     {
         UIBeforeStart.Instance.IsActiveStageMessage = true;
@@ -243,7 +239,7 @@ public class UIManager : MonoBehaviour
         SoundManager.Instance.DestroySound();
     }
 
-    // íŒíŠ¸ ë²„íŠ¼ ë³´ì—¬ì£¼ê¸°
+    // ÈùÆ® ¹öÆ° º¸¿©ÁÖ±â
     public void ShowHintBtn()
     {
         m_HintBtn.gameObject.SetActive(true);
@@ -257,45 +253,45 @@ public class UIManager : MonoBehaviour
         m_HintNotification.SetActive(false);
     }
 
-    // íŒíŠ¸ ë©”ì‹œì§€ ë³´ì—¬ì£¼ê¸°
+    // ÈùÆ® ¸Ş½ÃÁö º¸¿©ÁÖ±â
     public void ShowHintMessage()
     {
         m_HintMessage.SetActive(true);
-        //m_HintRemaningCount.text = $"ë‚¨ì€ íŒíŠ¸ ê°œìˆ˜ : {HintManager.Instance.RemaningHintCount}";
+        //m_HintRemaningCount.text = $"³²Àº ÈùÆ® °³¼ö : {HintManager.Instance.RemaningHintCount}";
     }
 
-    // íŒíŠ¸ ë©”ì‹œì§€ ë‹«ê¸°
+    // ÈùÆ® ¸Ş½ÃÁö ´İ±â
     public void CloseHintMessage()
     {
         m_HintMessage.SetActive(false);
     }
 
-    // íŒíŠ¸ ë³´ì—¬ì£¼ê¸°
+    // ÈùÆ® º¸¿©ÁÖ±â
     public void ShowHint()
     {
         m_HintMessage.SetActive(false);
         HintManager.Instance.ActiveHint();
 
-        // íŒíŠ¸ ë²„íŠ¼ ë¹„í™œì„±í™”
+        // ÈùÆ® ¹öÆ° ºñÈ°¼ºÈ­
         m_HintBtn.interactable = false;
     }
 
-    // íŒíŠ¸ ì™„ë£Œ
+    // ÈùÆ® ¿Ï·á
     public void CompleteHint()
     {
-        // ë²„íŠ¼ ë‹¤ì‹œ í™œì„±í™”
+        // ¹öÆ° ´Ù½Ã È°¼ºÈ­
         m_HintBtn.interactable = true;
     }
 
-    // ëª¨ë“  íŒíŠ¸ ì™„ë£Œ
+    // ¸ğµç ÈùÆ® ¿Ï·á
     public void CompleteAllHint()
     {
-        // ë²„íŠ¼ ë° ë©”ì‹œì§€ ë¹„í™œì„±í™”
+        // ¹öÆ° ¹× ¸Ş½ÃÁö ºñÈ°¼ºÈ­
         m_HintBtn.gameObject.SetActive(false);
         m_HintNotification.SetActive(false);
     }
 
-    // Escë©”ì‹œì§€ì—ì„œ Yesë²„íŠ¼ ëˆŒë €ì„ ë•Œ
+    // Esc¸Ş½ÃÁö¿¡¼­ Yes¹öÆ° ´­·¶À» ¶§
     public void OnclickEscMessageYes()
     {
         Time.timeScale = 1.0f;
@@ -311,7 +307,7 @@ public class UIManager : MonoBehaviour
         MainMenuLoadScene();
     }
 
-    // Escë©”ì‹œì§€ì—ì„œ Noë²„íŠ¼ ëˆŒë €ì„ ë•Œ
+    // Esc¸Ş½ÃÁö¿¡¼­ No¹öÆ° ´­·¶À» ¶§
     public void OnclickEscMessageNo()
     {
         Time.timeScale = 1.0f;
@@ -326,7 +322,7 @@ public class UIManager : MonoBehaviour
         m_EscMessage.SetActive(false);
     }
 
-    // ì¬ì‹œì‘ ë²„íŠ¼ ëˆŒë €ì„ ë•Œ
+    // Àç½ÃÀÛ ¹öÆ° ´­·¶À» ¶§
     public void OnClickRestartButton()
     {
         GameManager.Instance.RestartGame();
